@@ -1,0 +1,23 @@
+{
+	"name": "gathering-data",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Mohamed Shebl",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"start": "ts-node index.ts"
+	},
+	"dependencies": {
+		"cheerio": "^1.0.0-rc.12",
+		"request": "^2.88.2",
+		"request-promise": "^4.2.6",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.4.2"
+	},
+	"devDependencies": {
+		"@types/cheerio": "^0.22.35",
+		"@types/request": "^2.48.12",
+		"@types/request-promise": "^4.1.51"
+	}
+}

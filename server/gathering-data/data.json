@@ -1,0 +1,182 @@
+[
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Your Service Villa With D. P 10% By Sheraton In New cairo\",\"url\":\"https://www.bayut.eg/en/property/details-500605517.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.01321,\"longitude\":31.48737},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"150\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873657-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Your Service Villa With D. P 10% By Sheraton In New cairo",
+        "price": "EGP2,300,500VillaVilla3333Area:150 Sq. M.Area:150 Sq. M.150 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605517.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Your Address is Plot No. 1 Mostakbal City In The First Serviced Villas Compound By Sheraton\",\"url\":\"https://www.bayut.eg/en/property/details-500605512.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.01321,\"longitude\":31.48737},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"151\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873630-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Your Address is Plot No. 1 Mostakbal City In The First Serviced Villas Compound By Sheraton",
+        "price": "EGP2,400,000VillaVilla3333Area:151 Sq. M.Area:151 Sq. M.151 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605512.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Serviced Villa Finished By D. P 5% in Sheraton Res. New cairo\",\"url\":\"https://www.bayut.eg/en/property/details-500605496.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.01321,\"longitude\":31.48737},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"150\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873631-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Serviced Villa Finished By D. P 5% in Sheraton Res. New cairo",
+        "price": "EGP23,000,000VillaVilla3333Area:150 Sq. M.Area:150 Sq. M.150 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605496.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment for sale in Mostakbal City - Bloomfields Compound - New Cairo - 0% - 10% down payment\",\"url\":\"https://www.bayut.eg/en/property/details-500605480.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0669117,\"longitude\":31.3375553},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"70\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"1\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873505-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "Apartment for sale in Mostakbal City - Bloomfields Compound - New Cairo - 0% - 10% down payment",
+        "price": "EGP6,149,000ApartmentApartment1122Area:70 Sq. M.Area:70 Sq. M.70 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605480.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment for sale in Mostakbal City - Bloomfields Compound - New Cairo - 0% - 10% down payment\",\"url\":\"https://www.bayut.eg/en/property/details-500605434.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0669117,\"longitude\":31.3375553},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"233\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"4\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873264-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "Apartment for sale in Mostakbal City - Bloomfields Compound - New Cairo - 0% - 10% down payment",
+        "price": "EGP19,720,000ApartmentApartment3344Area:233 Sq. M.Area:233 Sq. M.233 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605434.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment for sale in the New Administrative Capital - Al Maqsad Compound (R3) , New Cairo - 5% - 10% down payment\",\"url\":\"https://www.bayut.eg/en/property/details-500605386.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0395901,\"longitude\":31.6985965},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"121\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873074-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Capital City\"}}",
+        "title": "Apartment for sale in the New Administrative Capital - Al Maqsad Compound (R3) , New Cairo - 5% - 10% down payment",
+        "price": "EGP3,527,000ApartmentApartment3333Area:121 Sq. M.Area:121 Sq. M.121 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605386.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"5 % down payment – Fully Finished - installments up to 8 years\",\"url\":\"https://www.bayut.eg/en/property/details-500605349.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":31.085864,\"longitude\":28.047712},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"108\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"2\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872932-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Matruh\",\"addressLocality\":\"North Coast\"}}",
+        "title": "5 % down payment – Fully Finished - installments up to 8 years",
+        "price": "EGP11,034,136ChaletChalet2222Area:108 Sq. M.Area:108 Sq. M.108 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605349.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"Villa Town house for sale in Fifth Settlement - Hyde Park Compound - New Cairo - 5% down payment\",\"url\":\"https://www.bayut.eg/en/property/details-500605320.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.9842656,\"longitude\":31.540594},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"490\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"4\"},\"numberOfBathroomsTotal\":\"4\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872784-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Villa Town house for sale in Fifth Settlement - Hyde Park Compound - New Cairo - 5% down payment",
+        "price": "EGP21,030,000TownhouseTownhouse4444Area:490 Sq. M.Area:490 Sq. M.490 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605320.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"Corner townhouse villa for sale in Mostakbal City - The Wonder MarQ Compound - New Cairo - 10% - 20% down payment\",\"url\":\"https://www.bayut.eg/en/property/details-500605199.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.045667,\"longitude\":31.6430115},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"175\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"4\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872192-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "Corner townhouse villa for sale in Mostakbal City - The Wonder MarQ Compound - New Cairo - 10% - 20% down payment",
+        "price": "EGP19,000,000TownhouseTownhouse3344Area:175 Sq. M.Area:175 Sq. M.175 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605199.html"
+    },
+    {
+        "type": "",
+        "title": "",
+        "price": "",
+        "location": ""
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment for sale in Madinaty, 140m, immediate receipt, in B10, view garden, peime location\",\"url\":\"https://www.bayut.eg/en/property/details-500605143.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.09177585,\"longitude\":31.6426486},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"140\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15871897-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Madinaty\"}}",
+        "title": "Apartment for sale in Madinaty, 140m, immediate receipt, in B10, view garden, peime location",
+        "price": "EGP6,500,000ApartmentApartment3322Area:140 Sq. M.Area:140 Sq. M.140 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605143.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Villa For Sale In El Defaa El Watany Compound In Fifth Settelment Ultra Super Lux Finished\",\"url\":\"https://www.bayut.eg/en/property/details-500605098.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0075103,\"longitude\":31.4773895},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"300\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15871780-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Villa For Sale In El Defaa El Watany Compound In Fifth Settelment Ultra Super Lux Finished",
+        "price": "EGP32,500,000VillaVilla3333Area:300 Sq. M.Area:300 Sq. M.300 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605098.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment Ready to Move Ultra Super Lux Ground Best Location\",\"url\":\"https://www.bayut.eg/en/property/details-500604933.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.9842656,\"longitude\":31.540594},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"127\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"2\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15870627-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Apartment Ready to Move Ultra Super Lux Ground Best Location",
+        "price": "EGP7,550,000ApartmentApartment2222Area:127 Sq. M.Area:127 Sq. M.127 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500604933.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"For sale apartment 107m less than current price 2 million open view in B14\",\"url\":\"https://www.bayut.eg/en/property/details-500604905.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.09177585,\"longitude\":31.6426486},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"107\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15870368-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Madinaty\"}}",
+        "title": "For sale apartment 107m less than current price 2 million open view in B14",
+        "price": "EGP5,220,000ApartmentApartment3322Area:107 Sq. M.Area:107 Sq. M.107 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500604905.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"For sale with lowest total in Privado studio 63m lake view installment 12 years\",\"url\":\"https://www.bayut.eg/en/property/details-500604830.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.096464,\"longitude\":31.6670565},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"63\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"0\"},\"numberOfBathroomsTotal\":\"1\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15869833-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Madinaty\"}}",
+        "title": "For sale with lowest total in Privado studio 63m lake view installment 12 years",
+        "price": "EGP2,100,000ApartmentApartmentStudioStudio11Area:63 Sq. M.Area:63 Sq. M.63 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500604830.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"Townhouse for sale f3 in Madinaty with 11-year installments, prime location\",\"url\":\"https://www.bayut.eg/en/property/details-500604788.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.09177585,\"longitude\":31.6426486},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"200\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15869709-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Madinaty\"}}",
+        "title": "Townhouse for sale f3 in Madinaty with 11-year installments, prime location",
+        "price": "EGP4,150,000TownhouseTownhouse3333Area:200 Sq. M.Area:200 Sq. M.200 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500604788.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"شاليه للبيع بالساحل الشمالى\",\"url\":\"https://www.bayut.eg/en/property/details-500604716.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.8412642,\"longitude\":28.9270873},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"80\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"2\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15869228-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Matruh\",\"addressLocality\":\"North Coast\"}}",
+        "title": "شاليه للبيع بالساحل الشمالى",
+        "price": "EGP3,000,000ChaletChalet2222Area:80 Sq. M.Area:80 Sq. M.80 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500604716.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"شقة غرفتين متشطبة RESALE في سولانا الشيخ زايد SOLANA FULLY FINISHED APARTMENT FOR SALE\",\"url\":\"https://www.bayut.eg/en/property/details-500605706.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0548836,\"longitude\":30.86942476},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"126\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"2\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15875191-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Giza\",\"addressLocality\":\"Sheikh Zayed\"}}",
+        "title": "شقة غرفتين متشطبة RESALE في سولانا الشيخ زايد SOLANA FULLY FINISHED APARTMENT FOR SALE",
+        "price": "EGP9,598,000ApartmentApartment2222Area:126 Sq. M.Area:126 Sq. M.126 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605706.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"شقة داخل كمبوند الزهور الفردوس 6 اكتوبر 200 متر تشطيب سوبر لوكس\",\"url\":\"https://www.bayut.eg/en/property/details-500605631.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.9496487,\"longitude\":30.9043506},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"200\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15874748-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Giza\",\"addressLocality\":\"6th of October\"}}",
+        "title": "شقة داخل كمبوند الزهور الفردوس 6 اكتوبر 200 متر تشطيب سوبر لوكس",
+        "price": "EGP4,000,000ApartmentApartment3333Area:200 Sq. M.Area:200 Sq. M.200 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605631.html"
+    },
+    {
+        "type": "",
+        "title": "",
+        "price": "",
+        "location": ""
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Al Ahly Sabbour in Partnership with Al Ahly Bank Villa Fir sale In New cairo\",\"url\":\"https://www.bayut.eg/en/property/details-500605559.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.05119306,\"longitude\":31.61371581},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"161\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15874007-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "Al Ahly Sabbour in Partnership with Al Ahly Bank Villa Fir sale In New cairo",
+        "price": "EGP1,300,000VillaVilla3333Area:161 Sq. M.Area:161 Sq. M.161 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605559.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"With Al Ahly Sabbour Villa By D. P 10% Near Hap Town And Mountain View\",\"url\":\"https://www.bayut.eg/en/property/details-500605556.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.05119306,\"longitude\":31.61371581},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"160\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15874031-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "With Al Ahly Sabbour Villa By D. P 10% Near Hap Town And Mountain View",
+        "price": "EGP1,220,000VillaVilla3333Area:160 Sq. M.Area:160 Sq. M.160 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605556.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"Partnership With Al Ahly Bank Villa Near Mountain View And Hap Town\",\"url\":\"https://www.bayut.eg/en/property/details-500605546.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.05119306,\"longitude\":31.61371581},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"160\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15873985-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "Partnership With Al Ahly Bank Villa Near Mountain View And Hap Town",
+        "price": "EGP12,200,000VillaVilla3333Area:160 Sq. M.Area:160 Sq. M.160 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605546.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Apartment\",\"name\":\"Apartment Lowest Price Fully Finished with ACs Super Lux\",\"url\":\"https://www.bayut.eg/en/property/details-500605308.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0468424,\"longitude\":30.998248},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"76\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"1\"},\"numberOfBathroomsTotal\":\"1\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872739-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Giza\",\"addressLocality\":\"Sheikh Zayed\"}}",
+        "title": "Apartment Lowest Price Fully Finished with ACs Super Lux",
+        "price": "EGP6,060,000ApartmentApartment1111Area:76 Sq. M.Area:76 Sq. M.76 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605308.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"Residence\",\"name\":\"Prime location duplex for sale in front of Mirage Mall and Kempinski Hotel Near Cairo Festival City\",\"url\":\"https://www.bayut.eg/en/property/details-500605193.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.06805,\"longitude\":31.406379},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"227\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"4\"},\"numberOfBathroomsTotal\":\"3\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872182-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"New Cairo\"}}",
+        "title": "Prime location duplex for sale in front of Mirage Mall and Kempinski Hotel Near Cairo Festival City",
+        "price": "EGP13,100,000DuplexDuplex4433Area:227 Sq. M.Area:227 Sq. M.227 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605193.html"
+    },
+    {
+        "type": "{\"@context\":\"https://schema.org\",\"@type\":\"House\",\"name\":\"For only 1,200,000 million, I own a separate villa on the Suez Road next to Madinaty and minutes from the New Administrative Capital\",\"url\":\"https://www.bayut.eg/en/property/details-500605165.html\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.0941611,\"longitude\":31.7041108},\"floorSize\":{\"@type\":\"QuantitativeValue\",\"value\":\"212\",\"unitText\":\"SQM\"},\"numberOfRooms\":{\"@type\":\"QuantitativeValue\",\"name\":\"Bedroom(s)\",\"value\":\"3\"},\"numberOfBathroomsTotal\":\"2\",\"image\":\"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15872009-400x300.jpeg\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"Egypt\",\"addressRegion\":\"Cairo\",\"addressLocality\":\"Mostakbal City\"}}",
+        "title": "For only 1,200,000 million, I own a separate villa on the Suez Road next to Madinaty and minutes from the New Administrative Capital",
+        "price": "EGP12,000,000VillaVilla3322Area:212 Sq. M.Area:212 Sq. M.212 Sq. M. Call  Email ",
+        "location": "",
+        "link": "/en/property/details-500605165.html"
+    }
+]

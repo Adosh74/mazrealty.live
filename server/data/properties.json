@@ -1,0 +1,64 @@
+[
+	{
+		"name": "Catalyst",
+		"description": "Palm Hills Company is launching its new project, PX Palm Hills, in the Eastern Expansion Area, 6 October, within the Palm Hills project, on a hill 140 meters above the ground.",
+		"price": 11319530,
+		"bedrooms": "2",
+		"bathrooms": "3",
+		"address": "PX Palm Hills, 6th of October, Giza",
+		"area": "122",
+		"images": [
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921643-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921648-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921645-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921646-800x600.webp"
+		],
+		"owner": {
+			"_id": "660d2ee4fd335f23749d0a04"
+		},
+		"approved": true,
+		"location": {
+			"type": "Point",
+			"coordinates": [-30.9997, 30.9997],
+			"address": "PX Palm Hills, 6th of October, Giza",
+			"description": "Palm Hills Company is launching its new project, PX Palm Hills, in the Eastern Expansion Area, 6 October, within the Palm Hills project, on a hill 140 meters above the ground."
+		},
+		"contract": "test",
+		"city": {
+			"_id": "6603cdb48cc36a22dc4eb025"
+		}
+	},
+	{
+		"name": "Catalyst2",
+		"description": " Area: 140 m -------------------------------- مساحة : 140 م Bedrooms: 2 -------------------------------- غرف النوم: 2 Bathrooms: 3 -------------------------------- حمامات: 3 Total price: 7,800,000 EGP ----------------- السعر الإجمالي : 7,800,000 ح. مDown payment: 1,550,000 EGP ---------------- مقدم : 1,550,000 ج. م  Delivery after 3 years -------------------- التسليم بعد 3 سنين",
+		"price": "7750000",
+		"bedrooms": "2",
+		"bathrooms": "3",
+		"address": "Haptown, Mostakbal City, Cairo",
+		"area": "140",
+		"images": [
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921643-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921648-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921645-800x600.webp",
+			"https://bayut-eg-production.s3.amazonaws.com/thumbnails/15921646-800x600.webp"
+		],
+		"owner": {
+			"_id": "65f624aec672e327780ae613",
+			"name": "Mohamed",
+			"phone": "01151119846",
+			"email": "adoshadosh0@gmail.com",
+			"whatsapp": "01151119846"
+		},
+		"approved": true,
+		"location": {
+			"type": "Point",
+			"coordinates": [-30.9997, 30.9997],
+			"address": "PX Palm Hills, 6th of October, Giza",
+			"description": "Palm Hills Company is launching its new project, PX Palm Hills, in the Eastern Expansion Area, 6 October, within the Palm Hills project, on a hill 140 meters above the ground."
+		},
+		"contract": "test",
+		"city": {
+			"_id": "6603cdb48cc36a22dc4eb025"
+		}
+	}
+]

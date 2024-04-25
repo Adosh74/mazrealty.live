@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "900a5891-eb74-46d6-a465-9321e2684e55",
+		"name": "1- Graduation Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22825654"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/v1/users/65c3d62dc428543924d45aa2",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"65c3d62dc428543924d45aa2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mohamed Hamdy\",\r\n    \"email\": \"users@user.user\",\r\n    \"password\": \"test1234\",\r\n    \"passwordConfirm\": \"test1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/users",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/users/65b366caefa6532aa455e17d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"65b366caefa6532aa455e17d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/users/65b366caefa6532aa455e17d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"65b366caefa6532aa455e17d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passwordCurrent\": \"test12345\",\r\n    \"password\": \"test1234\",\r\n    \"passwordConfirm\": \"test1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/users/updateMyPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"updateMyPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mohamed Hamdy Shebl\",\r\n    \"email\": \"mohamedshebla@gamil.com\",\r\n    \"password\": \"test1234\",\r\n    \"passwordConfirm\": \"test1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohamedshebla@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "properties",
+			"item": [
+				{
+					"name": "get all properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/properties?sort=-bathrooms&fields=price, bathrooms, bedrooms&bedrooms[gt]=3&page=2",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"properties"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "66069f41c6ea0e09149b8212",
+									"disabled": true
+								},
+								{
+									"key": "city._id",
+									"value": "6603cdb48cc36a22dc4eb025",
+									"disabled": true
+								},
+								{
+									"key": "bedrooms[gt]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "-bathrooms"
+								},
+								{
+									"key": "fields",
+									"value": "price, bathrooms, bedrooms"
+								},
+								{
+									"key": "bedrooms[gt]",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "area",
+									"value": "122",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Catalyst",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Palm Hills Company is launching its new project, PX Palm Hills, in the Eastern Expansion Area, 6 October, within the Palm Hills project, on a hill 140 meters above the ground.",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "11319530",
+									"type": "text"
+								},
+								{
+									"key": "bedrooms",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "bathrooms",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "PX Palm Hills, 6th of October, Giza",
+									"type": "text"
+								},
+								{
+									"key": "approved",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "contract",
+									"type": "file",
+									"src": "/C:/Users/SHEBL/Desktop/CV/Resume.pdf"
+								},
+								{
+									"key": "city",
+									"value": "6603cdb48cc36a22dc4eb012",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/SHEBL/Desktop/CV/273623335_4854318841312816_70384317858996062771111_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}api/v1/properties",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/properties/66069f41c6ea0e09149b8212",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"properties",
+								"66069f41c6ea0e09149b8212"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user favorite",
+			"item": [
+				{
+					"name": "get all user favorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/favorites/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"favorites",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create favorites",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/favorites/65d35055f1d0163220ea158b",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"favorites",
+								"65d35055f1d0163220ea158b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user favorites",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/favorites/65e38bd66f3bad169c6ea2d2",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"favorites",
+								"65e38bd66f3bad169c6ea2d2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cities",
+			"item": [
+				{
+					"name": "get cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/cities",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}healthz",
+					"host": [
+						"{{url}}healthz"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
