@@ -20,22 +20,22 @@ app.use(express.static('public'));
 // parse cookies
 app.use(cookieParser());
 
-// enable cors
-app.use(cors());
+// enable cors and allow credentials
 
-// enable connection to the frontend app (flutter mobile app)
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Credentials', 'true');
-	res.header(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-	);
-	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-	next();
-});
-// middleware to enable flutter mobile app to connect to the server
-app.options('*', cors());
+const whitelist = [process.env.CLIENT_URL as string, '*'];
+
+app.use(
+	cors({
+		origin: function (origin, callback) {
+			if (whitelist.indexOf(origin as string) !== -1) {
+				callback(null, true);
+			} else {
+				callback(new Error('Not allowed by CORS'));
+			}
+		},
+		credentials: true,
+	})
+);
 
 // development logging
 process.env.NODE_ENV === 'development' ? app.use(morgan('dev')) : null;
