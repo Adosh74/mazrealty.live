@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import apiRequest from '../../lib/apiRequest';
 import './register.scss';
 
 function Register() {
@@ -25,7 +26,7 @@ function Register() {
 		const whatsapp = formatDate.get('whatsapp');
 
 		try {
-			const res = await axios.post('http://localhost:3001/api/v1/auth/signup', {
+			const res = await apiRequest.post('/auth/signup', {
 				name,
 				email,
 				password,
