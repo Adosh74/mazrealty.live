@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './login.scss';
 
 function Login() {
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { updateUser } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
@@ -24,7 +27,8 @@ function Login() {
 				email,
 				password,
 			});
-			localStorage.setItem('user', JSON.stringify(res.data.data.user));
+			updateUser(res.data.data.user);
+			navigate('/');
 		} catch (error) {
 			setError(error.response.data.message);
 		} finally {
@@ -35,7 +39,9 @@ function Login() {
 		<div className="login">
 			<div className="formContainer">
 				<form onSubmit={handleSubmit}>
-					<h1>Welcome back</h1>
+					<h1>
+						Sign In To <span>MAZ Realty</span>
+					</h1>
 					<input name="email" required type="email" placeholder="Email" />
 					<input
 						name="password"
