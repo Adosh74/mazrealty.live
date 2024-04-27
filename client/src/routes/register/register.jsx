@@ -44,7 +44,10 @@ function Register() {
 		<div className="register">
 			<div className="formContainer">
 				<form onSubmit={handleSubmit}>
-					<h1>Create an Account</h1>
+					<h1>
+						{' '}
+						Sign Up To <span>MAZ Realty</span>
+					</h1>
 					<input name="fullName" type="text" placeholder="Full Name" />
 					<input name="email" type="text" placeholder="Email" />
 					<input
