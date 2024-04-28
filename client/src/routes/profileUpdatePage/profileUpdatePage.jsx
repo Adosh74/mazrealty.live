@@ -1,72 +1,144 @@
-import "./profileUpdatePage.scss";
+import { useContext, useState } from 'react';
+import UploadWidget from '../../components/uploadWidget/uploadWidget';
+import { AuthContext } from '../../context/authContext';
+import apiRequest from '../../lib/apiRequest';
+import baseURL from '../../lib/baseURL';
+import './profileUpdatePage.scss';
 
 function ProfileUpdatePage() {
-  return (
-    <div className="profileUpdatePage">
-      <div className="formContainer">
-        <form>
-          <h1>Update Profile</h1>
-          <div className="item">
-            <label htmlFor="username">Full Name</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-            />
-          </div>
-          <div className="item">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-            />
-          </div>
-          <div className="item">
-            <label htmlFor="phone">Phone</label>
-            <input id="phone" name="phone" type="text"  />
-          </div>
-          <div className="item">
-            <label htmlFor="whatsapp">WhatsApp</label>
-            <input id="whatsapp" name="whatsapp" type="text" />
-          </div>
-          <button>Update</button>
-        </form>
+	const { currentUser, updateUser } = useContext(AuthContext);
 
-        <form>
-          <h1>Update Password</h1>
-          <div className="item">
-            <label htmlFor="currentpassword">Current Password</label>
-            <input
-              id="currentpassword"
-              name="currentpassword"
-              type="password"
-            />
-          </div>
-          <div className="item">
-            <label htmlFor="newpassword">New Password</label>
-            <input
-              id="newpassword"
-              name="newpassword"
-              type="password"
-            />
-          </div>
-          <div className="item">
-            <label htmlFor="confirmNewpassword">Confirm New Password</label>
-            <input
-              id="confirmNewpassword"
-              name="confirmNewpassword"
-              type="password"
-            />
-          </div>
-          <button>Update</button>
-        </form>
-      </div>
-      <div className="sideContainer">
-        <img src="" alt="" className="avatar" />
-      </div>
-    </div>
-  );
+	const [error, setError] = useState('');
+	const [photo, setPhoto] = useState(currentUser.photo);
+
+	const handleUpdateInformationSubmit = async (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+
+		const name = formData.get('fullName');
+		const email = formData.get('email');
+		const phone = formData.get('phone');
+		const whatsapp = formData.get('whatsapp');
+
+		try {
+			const res = await apiRequest.patch('/users/updateMe', {
+				name,
+				email,
+				phone,
+				whatsapp,
+			});
+
+			updateUser(res.data.data.user);
+			setError('');
+		} catch (error) {
+			setError(error.response.data.message);
+		}
+	};
+	return (
+		<div className="profileUpdatePage">
+			<div className="formContainer">
+				<h1
+					style={{
+						textAlign: 'center',
+						marginBottom: '1rem',
+						fontSize: '2rem',
+					}}
+				>
+					Update Profile
+				</h1>
+				<form onSubmit={handleUpdateInformationSubmit}>
+					<h1>Update Information</h1>
+					<div className="item">
+						<label htmlFor="fullName">Full Name</label>
+						<input
+							id="fullName"
+							name="fullName"
+							type="text"
+							defaultValue={currentUser.name}
+						/>
+					</div>
+					<div className="item">
+						<label htmlFor="email">Email</label>
+						<input
+							id="email"
+							name="email"
+							type="email"
+							defaultValue={currentUser.email}
+						/>
+					</div>
+					<div className="item">
+						<label htmlFor="phone">Phone</label>
+						<input
+							minLength={11}
+							maxLength={11}
+							id="phone"
+							name="phone"
+							type="text"
+							defaultValue={currentUser.phone}
+						/>
+					</div>
+					<div className="item">
+						<label htmlFor="whatsapp">Whatsapp</label>
+						<input
+							minLength={11}
+							maxLength={11}
+							id="whatsapp"
+							name="whatsapp"
+							type="text"
+							defaultValue={currentUser.whatsapp}
+						/>
+					</div>
+					{error && (
+						<span style={{ color: 'red', textAlign: 'center' }}>{error}</span>
+					)}
+					<button>Update Information</button>
+				</form>
+
+				<form>
+					<h1>Update Password</h1>
+					<div className="item">
+						<label htmlFor="currentPassword">Current Password</label>
+						<input
+							id="currentPassword"
+							name="currentPassword"
+							type="password"
+						/>
+					</div>
+					<div className="item">
+						<label htmlFor="newPassword">New Password</label>
+						<input id="newPassword" name="newPassword" type="password" />
+					</div>
+					<div className="item">
+						<label htmlFor="confirmNewPassword">Confirm New Password</label>
+						<input
+							id="confirmNewPassword"
+							name="confirmNewPassword"
+							type="password"
+						/>
+					</div>
+					<button>Update Password</button>
+				</form>
+			</div>
+			<div className="sideContainer">
+				<img
+					src={`${photo.startsWith('http') ? photo : `${baseURL}/img/users/${currentUser.photo}`} `}
+					alt=""
+					className="avatar"
+				/>
+				<UploadWidget
+					uwConfig={{
+						cloudName: 'mazrealty',
+						uploadPreset: 'mazrealty.live',
+						multiple: false,
+						maxImageFileSize: 2000000, // 2MB
+						folder: 'users',
+					}}
+					setPhoto={setPhoto}
+				/>
+			</div>
+		</div>
+	);
 }
 
 export default ProfileUpdatePage;
