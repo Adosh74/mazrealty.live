@@ -1,55 +1,61 @@
 .profileUpdatePage {
-  height: 100%;
-  display: flex;
-  overflow: auto; 
-  .formContainer {
-    flex:3;
-    display:block;
-    align-items: center;
-    justify-content: center;
-    margin-right: 30px;
+	height: 100%;
+	display: flex;
+	overflow: auto;
+	.formContainer {
+		flex: 3;
+		display: block;
+		align-items: center;
+		justify-content: center;
+		margin-right: 30px;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			padding: 20px;
 
-      .item {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+			.item {
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
 
-        input {
-          padding: 20px;
-          border-radius: 5px;
-          border: 1px solid gray;
-        }
-      }
-      button {
-        padding: 20px;
-        border-radius: 5px;
-        border: none;
-        background-color: teal;
-        color: white;
-        font-weight: bold;
-        margin-bottom: 50px;
-        cursor: pointer;
-      }
-    }
-  }
+				input {
+					padding: 20px;
+					border-radius: 5px;
+					border: 1px solid gray;
+				}
+				// pretty Label styling
+				label {
+					font-weight: bold;
+					font-size: 1.2em;
+				}
+			}
+			button {
+				padding: 20px;
+				border-radius: 5px;
+				border: none;
+				background-color: teal;
+				color: white;
+				font-weight: bold;
+				margin-bottom: 50px;
+				cursor: pointer;
+			}
+		}
+	}
 
-  .sideContainer {
-    flex: 2;
-    background-color: #fcf5f3;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+	.sideContainer {
+		flex: 2;
+		background-color: #fcf5f3;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+		justify-content: center;
 
-    .avatar{
-      width: 50%;
-      object-fit: cover;
-    }
-  }
+		.avatar {
+			width: 50%;
+			object-fit: cover;
+		}
+	}
 }
