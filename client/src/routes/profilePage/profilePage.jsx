@@ -22,7 +22,6 @@ function ProfilePage() {
 			console.log(error);
 		}
 	};
-
 	return (
 		<div className="profilePage">
 			<div className="details">
@@ -37,12 +36,8 @@ function ProfilePage() {
 						<span>
 							photo:
 							<img
-								src={
-									currentUser?.photo
-										? `${baseURL}/img/users/${currentUser?.photo}`
-										: '/default.jpg'
-								}
-								alt=""
+								src={`${currentUser.photo.startsWith('http') ? currentUser.photo : `${baseURL}/img/users/${currentUser.photo}`} `}
+								alt="user photo"
 							/>
 						</span>
 						<span>
