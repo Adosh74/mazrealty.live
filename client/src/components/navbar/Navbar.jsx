@@ -24,11 +24,7 @@ function Navbar() {
 				{currentUser ? (
 					<div className="user">
 						<img
-							src={
-								currentUser.photo
-									? `${baseURL}/img/users/${currentUser.photo}`
-									: '/default.jpg'
-							}
+							src={`${currentUser.photo.startsWith('http') ? currentUser.photo : `${baseURL}/img/users/${currentUser.photo}`} `}
 							alt=""
 						/>
 						<span>{currentUser.name.split(' ')[0]}</span>
