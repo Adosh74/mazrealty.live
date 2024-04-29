@@ -9,6 +9,7 @@ function ProfileUpdatePage() {
 	const { currentUser, updateUser } = useContext(AuthContext);
 
 	const [error, setError] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [photo, setPhoto] = useState(currentUser.photo);
 
 	const handleUpdateInformationSubmit = async (e) => {
@@ -27,12 +28,40 @@ function ProfileUpdatePage() {
 				email,
 				phone,
 				whatsapp,
+				photo,
 			});
 
 			updateUser(res.data.data.user);
 			setError('');
 		} catch (error) {
 			setError(error.response.data.message);
+		}
+	};
+
+	const handleUpdatePasswordSubmit = async (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+
+		const passwordCurrent = formData.get('currentPassword');
+		const password = formData.get('newPassword');
+		const passwordConfirm = formData.get('confirmNewPassword');
+
+		if (password !== passwordConfirm) {
+			setErrorMessage('Passwords do not match');
+			return;
+		}
+
+		try {
+			await apiRequest.patch('/users/updateMyPassword', {
+				passwordCurrent,
+				password,
+				passwordConfirm,
+			});
+
+			setErrorMessage('');
+		} catch (error) {
+			setErrorMessage(error.response.data.message);
 		}
 	};
 	return (
@@ -92,10 +121,10 @@ function ProfileUpdatePage() {
 					{error && (
 						<span style={{ color: 'red', textAlign: 'center' }}>{error}</span>
 					)}
-					<button>Update Information</button>
+					<button>Save Information and Photo</button>
 				</form>
 
-				<form>
+				<form onSubmit={handleUpdatePasswordSubmit}>
 					<h1>Update Password</h1>
 					<div className="item">
 						<label htmlFor="currentPassword">Current Password</label>
@@ -117,9 +146,15 @@ function ProfileUpdatePage() {
 							type="password"
 						/>
 					</div>
+					{errorMessage && (
+						<span style={{ color: 'red', textAlign: 'center' }}>
+							{errorMessage}
+						</span>
+					)}
 					<button>Update Password</button>
 				</form>
 			</div>
+
 			<div className="sideContainer">
 				<img
 					src={`${photo.startsWith('http') ? photo : `${baseURL}/img/users/${currentUser.photo}`} `}
