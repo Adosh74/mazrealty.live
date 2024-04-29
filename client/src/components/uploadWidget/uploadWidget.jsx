@@ -32,7 +32,7 @@ function UploadWidget({ uwConfig, setPublicId, setPhoto }) {
 				(error, result) => {
 					if (!error && result && result.event === 'success') {
 						console.log('Done! Here is the image info: ', result.info);
-						setPublicId(result.info.public_id);
+						setPhoto(result.info.secure_url);
 					}
 				}
 			);
