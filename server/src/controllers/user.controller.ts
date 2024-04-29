@@ -49,6 +49,9 @@ export const updateMe = async (req: Request, res: Response, next: NextFunction) 
 	// 4) If user is trying to update photo, add the photo to the filteredBody
 	if (req.file) filteredBody.photo = req.file.filename;
 
+	if (req.body.photo && !req.file) {
+		filteredBody.photo = req.body.photo;
+	}
 	const oldUserPhoto = await User.findById((req as any).user.id).select('photo');
 
 	// 5) Update user document
