@@ -50,7 +50,9 @@ function ProfilePage() {
 					</div>
 					<div className="title">
 						<h1>My List</h1>
-						<button>Create New Post</button>
+						<Link to="/add">
+							<button>Create New Property</button>
+						</Link>
 					</div>
 					<List />
 					<div className="title">
