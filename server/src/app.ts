@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // enable cors and allow credentials
 
-const whitelist = [process.env.CLIENT_URL as string, '*'];
+const whitelist = [process.env.CLIENT_URL as string];
 
 app.use(
 	cors({
@@ -30,7 +30,7 @@ app.use(
 			if (whitelist.indexOf(origin as string) !== -1) {
 				callback(null, true);
 			} else {
-				callback(new Error('Not allowed by CORS'));
+				callback(null, true);
 			}
 		},
 		credentials: true,
