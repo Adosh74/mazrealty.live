@@ -10,7 +10,6 @@ import './profilePage.scss';
 function ProfilePage() {
 	const navigate = useNavigate();
 	const { updateUser, currentUser } = useContext(AuthContext);
-	console.log(currentUser);
 
 	const handleLogout = async () => {
 		try {

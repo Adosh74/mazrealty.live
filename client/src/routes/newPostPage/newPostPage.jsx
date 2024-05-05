@@ -1,20 +1,40 @@
 import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { ClipLoader } from 'react-spinners';
 import apiRequest from '../../lib/apiRequest';
 import './newPostPage.scss';
 
 function NewPostPage() {
 	const [value, setValue] = useState('');
 	const [cities, setCities] = useState([]);
-	const [images, setImages] = useState([]);
-
+	const [images, setImages] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState('');
+	//get current user
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
+
+		formData.append('description', value);
+		if (!images) return alert('Please select at least one image for the property');
+
+		//  make images like contract
+		const img = Array.from(images);
+
+		console.log(img);
+		formData.append('images', img);
 		const input = Object.fromEntries(formData);
-		console.log(input);
-		console.log(value);
+		const cityId = cities.find((city) => city.city_name_en === input.city)._id;
+		formData.delete('city');
+		formData.append('city', cityId);
+		try {
+			const res = await apiRequest.post('/properties', formData);
+			setError('');
+		} catch (error) {
+			console.log(error);
+			setError(error.response.data.message);
+		}
 	};
 
 	useEffect(() => {
@@ -22,9 +42,39 @@ function NewPostPage() {
 			const res = await apiRequest.get('/cities');
 
 			setCities(res.data.data.cities);
+			setLoading(false);
 		}
 		fetchData();
 	}, []);
+
+	const override = {
+		display: 'block',
+		margin: '0 auto',
+		borderColor: 'green',
+	};
+	if (loading)
+		return (
+			<div
+				className="newPostPage"
+				style={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: '80vh',
+				}}
+			>
+				<div className="loading">
+					<ClipLoader
+						loading={loading}
+						color="#ff0"
+						cssOverride={override}
+						size={150}
+						aria-label="Loading Spinner"
+						data-testid="loader"
+					/>
+				</div>
+			</div>
+		);
 	return (
 		<div className="newPostPage">
 			<div className="formContainer">
@@ -32,19 +82,19 @@ function NewPostPage() {
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
 						<div className="item">
-							<label htmlFor="title">Title</label>
-							<input id="title" name="title" type="text" />
+							<label htmlFor="name">Title</label>
+							<input id="name" name="name" type="text" required />
 						</div>
 						<div className="item">
 							<label htmlFor="price">Price</label>
-							<input id="price" name="price" type="number" />
+							<input id="price" name="price" type="number" required />
 						</div>
 						<div className="item">
 							<label htmlFor="address">Address</label>
-							<input id="address" name="address" type="text" />
+							<input id="address" name="address" type="text" required />
 						</div>
 						<div className="item description">
-							<label htmlFor="desc">Description</label>
+							<label htmlFor="description">Description</label>
 							<ReactQuill theme="snow" onChange={setValue} value={value} />
 						</div>
 						<div className="item">
@@ -60,12 +110,24 @@ function NewPostPage() {
 							)}
 						</div>
 						<div className="item">
-							<label htmlFor="bedroom">Bedroom Number</label>
-							<input min={1} id="bedroom" name="bedroom" type="number" />
+							<label htmlFor="bedrooms">Bedroom Number</label>
+							<input
+								min={1}
+								id="bedrooms"
+								name="bedrooms"
+								type="number"
+								required
+							/>
 						</div>
 						<div className="item">
-							<label htmlFor="bathroom">Bathroom Number</label>
-							<input min={1} id="bathroom" name="bathroom" type="number" />
+							<label htmlFor="bathrooms">Bathroom Number</label>
+							<input
+								min={1}
+								id="bathrooms"
+								name="bathrooms"
+								type="number"
+								required
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="latitude">Latitude</label>
@@ -76,8 +138,8 @@ function NewPostPage() {
 							<input id="longitude" name="longitude" type="text" />
 						</div>
 						<div className="item">
-							<label htmlFor="type">Type</label>
-							<select name="type">
+							<label htmlFor="transaction">Transaction Type</label>
+							<select name="transaction">
 								<option value="rent" defaultChecked>
 									Rent
 								</option>
@@ -85,82 +147,68 @@ function NewPostPage() {
 							</select>
 						</div>
 						<div className="item">
-							<label htmlFor="type">Property</label>
-							<select name="property">
+							<label htmlFor="type">Property Type</label>
+							<select name="type">
 								<option value="apartment">Apartment</option>
-								<option value="house">House</option>
-								<option value="condo">Condo</option>
-								<option value="land">Land</option>
+								<option value="villa">Villa</option>
+								<option value="office">Office</option>
+								<option value="shop">Shop</option>
 							</select>
 						</div>
 						<div className="item">
-							<label htmlFor="utilities">Utilities Policy</label>
-							<select name="utilities">
-								<option value="owner">Owner is responsible</option>
-								<option value="tenant">Tenant is responsible</option>
-								<option value="shared">Shared</option>
+							<label htmlFor="area">Total area size (Sq. M.)</label>
+							<input min={0} id="area" name="area" type="number" required />
+						</div>
+						{/* add level */}
+						<div className="item">
+							<label htmlFor="level">Level</label>
+							<input id="level" name="level" type="number" required />
+						</div>
+						{/* add Furnished that yes or no */}
+						<div className="item">
+							<label htmlFor="furnished">Furnished</label>
+							<select name="furnished">
+								<option value="true">Yes</option>
+								<option value="false">No</option>
 							</select>
 						</div>
+						{/* add contract field accept file type pdf or image */}
 						<div className="item">
-							<label htmlFor="pet">Pet Policy</label>
-							<select name="pet">
-								<option value="allowed">Allowed</option>
-								<option value="not-allowed">Not Allowed</option>
-							</select>
+							<label htmlFor="contract">Contract</label>
+							<input type="file" name="contract" accept=".pdf, image/*" />
 						</div>
-						<div className="item">
-							<label htmlFor="income">Income Policy</label>
-							<input
-								id="income"
-								name="income"
-								type="text"
-								placeholder="Income Policy"
-							/>
-						</div>
-						<div className="item">
-							<label htmlFor="size">Total Size (sqft)</label>
-							<input min={0} id="size" name="size" type="number" />
-						</div>
-						<div className="item">
-							<label htmlFor="school">School</label>
-							<input min={0} id="school" name="school" type="number" />
-						</div>
-						<div className="item">
-							<label htmlFor="bus">bus</label>
-							<input min={0} id="bus" name="bus" type="number" />
-						</div>
-						<div className="item">
-							<label htmlFor="restaurant">Restaurant</label>
-							<input
-								min={0}
-								id="restaurant"
-								name="restaurant"
-								type="number"
-							/>
-						</div>
+
 						<button className="sendButton">Add</button>
+						{error && <p className="error">{error}</p>}
 					</form>
 				</div>
 			</div>
 			<div className="sideContainer">
 				{/* take multiple images from user */}
 				<input
+					// pretty style for input file
+					style={{
+						border: '1px solid #ccc',
+						padding: '10px',
+						borderRadius: '5px',
+						cursor: 'pointer',
+					}}
 					type="file"
 					multiple
 					accept="image/*"
 					onChange={(e) => setImages(e.target.files)}
 				/>
 				{/* display selected images */}
-				<div className="images">
-					{images.length > 0 &&
-						Array.from(images).map((image, index) => (
-							<img
-								key={index}
-								src={URL.createObjectURL(image)}
-								alt="property"
-							/>
-						))}
-				</div>
+
+				{images &&
+					images.length > 0 &&
+					Array.from(images).map((image, index) => (
+						<img
+							key={index}
+							src={URL.createObjectURL(image)}
+							alt="property"
+						/>
+					))}
 			</div>
 		</div>
 	);
