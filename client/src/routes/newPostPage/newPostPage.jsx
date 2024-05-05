@@ -22,12 +22,15 @@ function NewPostPage() {
 		//  make images like contract
 		const img = Array.from(images);
 
-		console.log(img);
-		formData.append('images', img);
+		for (const oneImg of img) {
+			formData.append('images', oneImg);
+		}
+		// formData.append('images', ...img);
 		const input = Object.fromEntries(formData);
 		const cityId = cities.find((city) => city.city_name_en === input.city)._id;
 		formData.delete('city');
 		formData.append('city', cityId);
+		console.log(input);
 		try {
 			const res = await apiRequest.post('/properties', formData);
 			setError('');
