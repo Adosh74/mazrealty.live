@@ -30,8 +30,8 @@ export interface IPropertySchema extends Document {
 	contract: string;
 	approved: boolean;
 	// location: ILocation;
-	bedrooms: string;
-	bathrooms: string;
+	bedrooms: number;
+	bathrooms: number;
 	city: ICity;
 	Furnished: boolean;
 	level: number;
@@ -40,17 +40,21 @@ export interface IPropertySchema extends Document {
 
 export const propertySchema: Schema<IPropertySchema> = new Schema(
 	{
+		// 1
 		name: {
 			type: String,
 			required: [true, 'The Property must has a name'],
 			trim: true,
 			maxlength: [255, 'The name must be at least 255 characters'],
 		},
+		// 2
 		description: {
 			type: String,
 			required: [true, 'The Property must has a description'],
 			trim: true,
+			maxlength: [1200, 'The description must be at least 1200 characters'],
 		},
+		// 3
 		price: {
 			type: Number,
 			required: [true, 'The Property must has a price'],
@@ -75,11 +79,16 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 				type: String,
 			},
 		},
+		// 4
 		address: {
 			type: String,
 			required: [true, 'The Property must has a address'],
+			trim: true,
+			maxlength: [255, 'The address must be at least 255 characters'],
 		},
+		// 5
 		images: [String],
+		// 6
 		contract: {
 			type: String,
 			required: [true, 'You must provide a contract'],
@@ -98,16 +107,19 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 		// 	address: String,
 		// 	description: String,
 		// },
+		// 7
 		bedrooms: {
-			type: String,
+			type: Number,
 			default: 0,
 			required: [true, 'The Property must has a number of bedrooms'],
 		},
+		// 8
 		bathrooms: {
-			type: String,
+			type: Number,
 			default: 0,
 			required: [true, 'The Property must has a number of bathrooms'],
 		},
+		// 9
 		city: {
 			_id: {
 				type: Schema.Types.ObjectId,
@@ -121,27 +133,44 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 				type: String,
 			},
 		},
+		// 10
 		area: {
-			type: String,
+			type: Number,
 			required: [true, 'The Property must has a area size'],
 		},
+		// 11
 		type: {
 			type: String,
 			enum: ['apartment', 'villa', 'office', 'shop'],
 			default: 'apartment',
 		},
+		// 12
 		transaction: {
 			type: String,
 			enum: ['sale', 'rent'],
 			default: 'sale',
 		},
+		// 13
 		Furnished: {
 			type: Boolean,
 			default: false,
 		},
+		// 14
 		level: {
 			type: Number,
 			default: 0,
+		},
+		// 15
+		latitude: {
+			type: String,
+			trim: true,
+			maxlength: [255, 'The latitude must be at least 255 characters'],
+		},
+		// 16
+		longitude: {
+			type: String,
+			trim: true,
+			maxlength: [255, 'The longitude must be at least 255 characters'],
 		},
 	},
 	{
