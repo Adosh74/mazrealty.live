@@ -8,6 +8,19 @@ export const getNotApproved = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const propertyNotApproved = await Property.find({ approved: false });
 
+		propertyNotApproved.forEach((property) => {
+			property.contract = `${req.protocol}://${req.get('host')}/img/properties/${
+				property.contract
+			}`;
+			property.images.forEach((img: any) => {
+				if (!img.startsWith('https')) {
+					property.images[property.images.indexOf(img)] = `${
+						req.protocol
+					}://${req.get('host')}/img/properties/${img}`;
+				}
+			});
+		});
+
 		res.status(200).json({
 			status: 'success',
 			result: propertyNotApproved.length,
