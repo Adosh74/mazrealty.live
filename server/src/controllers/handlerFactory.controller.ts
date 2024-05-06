@@ -21,8 +21,6 @@ export const getAll = (Model: Model<any>, modelName?: string) =>
 			docs.forEach((doc: any) => {
 				doc.images.forEach((img: string) => {
 					if (!img.startsWith('https')) {
-						console.log('img', img);
-
 						doc.images[doc.images.indexOf(img)] = `${
 							req.protocol
 						}://${req.get('host')}/img/properties/${img}`;
