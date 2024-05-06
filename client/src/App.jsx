@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import EditProperty from './routes/editMyProperty/editMyProperty';
 import HomePage from './routes/homePage/homePage';
 import { Layout, RequireAuth } from './routes/layout/layout';
 import ListPage from './routes/listPage/listPage';
@@ -52,6 +53,10 @@ function App() {
 				{
 					path: '/add',
 					element: <NewPostPage />,
+				},
+				{
+					path: '/edit/property/:id',
+					element: <EditProperty />,
 				},
 			],
 		},
