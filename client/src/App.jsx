@@ -9,6 +9,9 @@ import ProfilePage from './routes/profilePage/profilePage';
 import ProfileUpdatePage from './routes/profileUpdatePage/profileUpdatePage';
 import Register from './routes/register/register';
 import SinglePage from './routes/singlePage/singlePage';
+import LawyerPage from './routes/lawyerPage/LawyerPage';
+import PageNotFound from './routes/pageNotFound/PageNotFound';
+import {Toaster} from "react-hot-toast";
 
 function App() {
 	const router = createBrowserRouter([
@@ -58,11 +61,21 @@ function App() {
 					path: '/edit/property/:id',
 					element: <EditProperty />,
 				},
+				{
+					path: '/lawyer',
+					element: <LawyerPage />,
+				},
 			],
+		},
+		{
+			path: '*',
+			element: <PageNotFound />,
+			
 		},
 	]);
 
-	return <RouterProvider router={router} />;
+	return (<><RouterProvider router={router} /><Toaster />
+</>);
 }
 
 export default App;

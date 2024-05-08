@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import apiRequest from '../../lib/apiRequest';
 import './register.scss';
+import toast from "react-hot-toast";
+
 
 function Register() {
 	const [error, setError] = useState('');
@@ -36,6 +38,19 @@ function Register() {
 			});
 
 			navigate('/login');
+			toast.success(' Successful registration ', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft:'25px',
+					paddingRight:"25px",
+					color: '#3ddb55',
+				},
+				iconTheme: {
+					primary: '#3ddb55',
+					secondary: '#FFFAEE',
+				},
+				});
 		} catch (error) {
 			setError(error.response.data.message);
 		}
