@@ -18,7 +18,7 @@ function Navbar() {
 				<a href="/">Home</a>
 				<a href="/">About</a>
 				<a href="/">Contact</a>
-				{currentUser  &&<a href="/">Favourites</a>}
+				{currentUser  &&<a href="/favourites">Favourites</a>}
 			</div>
 			<div className="right">
 				{currentUser ? (
@@ -52,7 +52,7 @@ function Navbar() {
 					<a href="/">Home</a>
 					<a href="/">About</a>
 					<a href="/">Contact</a>
-					<a href="/">Agents</a>
+				{currentUser  &&<a href="/favourites">Favourites</a>}
 					<a href="/login">Sign in</a>
 					<a href="/register">Sign up</a>
 				</div>

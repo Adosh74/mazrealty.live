@@ -113,14 +113,20 @@ nav {
     .menuIcon {
       display: none;
       z-index: 999;
-
       img {
         width: 36px;
         height: 36px;
         cursor: pointer;
+        
       }
 
       @include sm {
+        display: inline;
+      }
+      @include lg {
+        display: inline;
+      }
+      @include md {
         display: inline;
       }
     }
@@ -129,7 +135,7 @@ nav {
       position: absolute;
       top: 0;
       right: -50%;
-      background-color: black;
+      background-color: rgb(2, 42, 10);
       color: white;
       height: 100vh;
       width: 50%;
@@ -143,11 +149,18 @@ nav {
       &.active {
         right: 0;
       }
+      @include md {
+		overflow: scroll;
+          
+        }
 
       @include sm {
+		overflow: scroll;
         a {
+          
           display: initial;
         }
+
       }
     }
   }

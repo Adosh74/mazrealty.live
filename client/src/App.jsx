@@ -12,6 +12,7 @@ import Register from './routes/register/register';
 import SinglePage from './routes/singlePage/singlePage';
 import LawyerPage from './routes/lawyerPage/LawyerPage';
 import PageNotFound from './routes/pageNotFound/PageNotFound';
+import Favourites from './routes/favourites/Favourites';
 import {Toaster} from "react-hot-toast";
 
 function App() {
@@ -67,6 +68,11 @@ function App() {
 				{
 					path: '/lawyer',
 					element: <LawyerPage />,
+				},
+				,
+				{
+					path: '/favourites',
+					element: <Favourites />,
 				},
 			],
 		},
