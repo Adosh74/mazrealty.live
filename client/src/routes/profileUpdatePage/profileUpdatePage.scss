@@ -15,6 +15,9 @@
 			gap: 20px;
 			padding: 20px;
 
+			h1{
+			color:rgb(39, 94, 66);	
+			}
 			.item {
 				display: flex;
 				flex-direction: column;
@@ -31,15 +34,20 @@
 					font-size: 1.2em;
 				}
 			}
-			button {
-				padding: 20px;
-				border-radius: 5px;
-				border: none;
-				background-color: teal;
-				color: white;
-				font-weight: bold;
-				margin-bottom: 50px;
-				cursor: pointer;
+			 button {
+                cursor: pointer;
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: teal;
+                color: white;
+                font-weight: bold;
+                margin-bottom: 50px;
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
 			}
 		}
 	}

@@ -4,81 +4,99 @@ import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import baseURL from '../../lib/baseURL';
 import './profileUpdatePage.scss';
+import toast from "react-hot-toast";
 
 function ProfileUpdatePage() {
-	const { currentUser, updateUser } = useContext(AuthContext);
+    const { currentUser, updateUser } = useContext(AuthContext);
 
-	const [error, setError] = useState('');
-	const [errorMessage, setErrorMessage] = useState('');
-	const [photo, setPhoto] = useState(currentUser.photo);
+    const [error, setError] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [photo, setPhoto] = useState(currentUser.photo);
+    const [informationChanged, setInformationChanged] = useState(false);
+	const [passwordChanged, setPasswordChanged] = useState(false);
 
-	const handleUpdateInformationSubmit = async (e) => {
-		e.preventDefault();
 
-		const formData = new FormData(e.target);
+    const handleUpdateInformationSubmit = async (e) => {
+        e.preventDefault();
 
-		const name = formData.get('fullName');
-		const email = formData.get('email');
-		const phone = formData.get('phone');
-		const whatsapp = formData.get('whatsapp');
+				
 
-		try {
-			const res = await apiRequest.patch('/users/updateMe', {
-				name,
-				email,
-				phone,
-				whatsapp,
-				photo,
-			});
+        const formData = new FormData(e.target);
 
-			updateUser(res.data.data.user);
-			setError('');
-		} catch (error) {
-			setError(error.response.data.message);
-		}
-	};
+        const name = formData.get('fullName');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const whatsapp = formData.get('whatsapp');
 
-	const handleUpdatePasswordSubmit = async (e) => {
-		e.preventDefault();
+			
 
-		const formData = new FormData(e.target);
+        try {
+            const res = await apiRequest.patch('/users/updateMe', {
+                name,
+                email,
+                phone,
+                whatsapp,
+                photo,
+            });
 
-		const passwordCurrent = formData.get('currentPassword');
-		const password = formData.get('newPassword');
-		const passwordConfirm = formData.get('confirmNewPassword');
+            updateUser(res.data.data.user);
+            setError('');
+            toast.success('Successfully updated information');
+            setInformationChanged(false); // Reset the information changed state
+        } catch (error) {
+            setError(error.response.data.message);
+            toast.error("Update failed")
+        }
+    };
 
-		if (password !== passwordConfirm) {
-			setErrorMessage('Passwords do not match');
-			return;
-		}
+    const handleUpdatePasswordSubmit = async (e) => {
+        e.preventDefault();
 
-		try {
-			await apiRequest.patch('/users/updateMyPassword', {
-				passwordCurrent,
-				password,
-				passwordConfirm,
-			});
+        const formData = new FormData(e.target);
 
-			setErrorMessage('');
-		} catch (error) {
-			setErrorMessage(error.response.data.message);
-		}
-	};
-	return (
-		<div className="profileUpdatePage">
-			<div className="formContainer">
-				<h1
-					style={{
-						textAlign: 'center',
-						marginBottom: '1rem',
-						fontSize: '2rem',
-					}}
-				>
-					Update Profile
-				</h1>
-				<form onSubmit={handleUpdateInformationSubmit}>
-					<h1>Update Information</h1>
-					<div className="item">
+        const passwordCurrent = formData.get('currentPassword');
+        const password = formData.get('newPassword');
+        const passwordConfirm = formData.get('confirmNewPassword');
+
+        if (password !== passwordConfirm) {
+            setErrorMessage('Passwords do not match');
+            return;
+        }
+
+        try {
+            await apiRequest.patch('/users/updateMyPassword', {
+                passwordCurrent,
+                password,
+                passwordConfirm,
+            });
+            setErrorMessage('');
+            setPasswordChanged(false); // Reset the password changed state
+            toast.success('Successfully updated password');
+        } catch (error) {
+            setErrorMessage(error.response.data.message);
+            toast.error("Update failed")
+        }
+    };
+
+    const handleInputChange = () => {
+		
+		// if (currentUser === updateUser) {
+		// 					setInformationChanged(false);
+		// 	}
+        setInformationChanged(true);
+    };
+
+    const handlePasswordChange = () => {
+        setPasswordChanged(true);
+    };
+
+    return (
+        <div className="profileUpdatePage">
+            <div className="formContainer">
+                <h1 style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '2rem' }}>Update Profile</h1>
+                <form onSubmit={handleUpdateInformationSubmit} onChange={handleInputChange}>
+                    <h1>Update Information</h1>
+                    <div className="item">
 						<label htmlFor="fullName">Full Name</label>
 						<input
 							id="fullName"
@@ -121,12 +139,12 @@ function ProfileUpdatePage() {
 					{error && (
 						<span style={{ color: 'red', textAlign: 'center' }}>{error}</span>
 					)}
-					<button>Save Information and Photo</button>
-				</form>
+                    <button disabled={!informationChanged}>Save Information and Photo</button>
+                </form>
 
-				<form onSubmit={handleUpdatePasswordSubmit}>
-					<h1>Update Password</h1>
-					<div className="item">
+                <form onSubmit={handleUpdatePasswordSubmit} onChange={handlePasswordChange}>
+                    <h1>Update Password</h1>
+                    <div className="item">
 						<label htmlFor="currentPassword">Current Password</label>
 						<input
 							id="currentPassword"
@@ -151,29 +169,28 @@ function ProfileUpdatePage() {
 							{errorMessage}
 						</span>
 					)}
-					<button>Update Password</button>
-				</form>
-			</div>
+                    <button disabled={!passwordChanged}>Update Password</button>
+                </form>
+            </div>
 
-			<div className="sideContainer">
-				<img
-					src={`${photo.startsWith('http') ? photo : `${baseURL}/img/users/${currentUser.photo}`} `}
-					alt=""
-					className="avatar"
-				/>
-				<UploadWidget
-					uwConfig={{
-						cloudName: 'mazrealty',
-						uploadPreset: 'mazrealty.live',
-						multiple: false,
-						maxImageFileSize: 2000000, // 2MB
-						folder: 'users',
-					}}
-					setPhoto={setPhoto}
-				/>
-			</div>
-		</div>
-	);
+            <div className="sideContainer">
+                <img src={`${photo.startsWith('http') ? photo : `${baseURL}/img/users/${currentUser.photo}`} `}
+                    alt=""
+                    className="avatar"
+                />
+                <UploadWidget
+                    uwConfig={{
+                        cloudName: 'mazrealty',
+                        uploadPreset: 'mazrealty.live',
+                        multiple: false,
+                        maxImageFileSize: 2000000, // 2MB
+                        folder: 'users',
+                    }}
+                    setPhoto={setPhoto}
+                />
+            </div>
+        </div>
+    );
 }
 
 export default ProfileUpdatePage;

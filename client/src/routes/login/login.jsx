@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './login.scss';
+import toast from "react-hot-toast";
 
 function Login() {
 	const [error, setError] = useState('');
@@ -29,6 +30,19 @@ function Login() {
 			});
 			updateUser(res.data.data.user);
 			navigate('/');
+			toast.success(' You Welcome ', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft:'25px',
+					paddingRight:"25px",
+					color: '#3ddb55',
+				},
+				iconTheme: {
+					primary: '#3ddb55',
+					secondary: '#FFFAEE',
+				},
+				});
 		} catch (error) {
 			setError(error.response.data.message);
 		} finally {

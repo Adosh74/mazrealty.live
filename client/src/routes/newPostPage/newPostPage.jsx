@@ -4,6 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import { ClipLoader } from 'react-spinners';
 import apiRequest from '../../lib/apiRequest';
 import './newPostPage.scss';
+import toast from "react-hot-toast";
+
 
 function NewPostPage() {
 	const [value, setValue] = useState('');
@@ -33,6 +35,7 @@ function NewPostPage() {
 		console.log(input);
 		try {
 			const res = await apiRequest.post('/properties', formData);
+            toast.success('Created Successfully');
 			setError('');
 		} catch (error) {
 			console.log(error);
