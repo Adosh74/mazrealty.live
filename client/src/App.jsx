@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { singlePageLoader, listPageLoader } from './lib/loaders';
 import EditProperty from './routes/editMyProperty/editMyProperty';
 import HomePage from './routes/homePage/homePage';
 import { Layout, RequireAuth } from './routes/layout/layout';
@@ -23,10 +24,12 @@ function App() {
 				{
 					path: '/list',
 					element: <ListPage />,
+					loader: listPageLoader,
 				},
 				{
 					path: '/:id',
 					element: <SinglePage />,
+					loader: singlePageLoader,
 				},
 				{
 					path: '/login',
