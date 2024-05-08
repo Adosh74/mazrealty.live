@@ -1,15 +1,28 @@
-import './list.scss'
-import Card from"../card/Card"
-import {listData} from"../../lib/dummydata"
+import { useEffect, useState } from 'react';
+import apiRequest from '../../lib/apiRequest';
+import Card from '../card/Card';
+import './list.scss';
 
-function List(){
-  return (
-    <div className='list'>
-      {listData.map(item=>(
-        <Card key={item.id} item={item}/>
-      ))}
-    </div>
-  )
+function List() {
+	const [properties, setProperties] = useState([]);
+	useEffect(() => {
+		apiRequest
+			.get('/properties')
+			.then((res) => {
+				console.log(res.data.data.data);
+				setProperties(res.data.data.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, []);
+	return (
+		<div className="list">
+			{properties.map((item) => (
+				<Card key={item._id} item={item} />
+			))}
+		</div>
+	);
 }
 
-export default List
+export default List;
