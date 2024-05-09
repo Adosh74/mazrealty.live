@@ -4,6 +4,10 @@
   display: flex;
   height: 100%;
 
+			@include sm {
+      overflow: scroll;
+      }
+      
   .textContainer {
     flex: 3;
 
