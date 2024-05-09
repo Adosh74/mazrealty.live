@@ -187,6 +187,10 @@ propertySchema.index({
 	type: 'text',
 	description: 'text',
 	address: 'text',
+	transaction: 'text',
+	area: 'text',
+	bedrooms: 'text',
+	bathrooms: 'text',
 	'city.city_name_ar': 'text',
 	'city.city_name_en': 'text',
 });
