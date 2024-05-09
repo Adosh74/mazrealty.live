@@ -1,18 +1,24 @@
-.register {
-  height: 100%;
-  display: flex;
+@import '../../responsive.scss';
 
+.register {
+  display: flex;
+  height: 100%;
+	overflow-y: scroll;
+
+   
   .formContainer {
     flex: 3;
-    height: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+  
 
     form {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
 
       input {
         padding: 20px;
@@ -38,7 +44,7 @@
       span {
         color: rgba(255, 0, 0, 0.591);
       }
-
+    
       a {
         font-size: 14px;
         color: gray;
@@ -49,6 +55,8 @@
   }
 
   .imgContainer {
+    height: 100vh;
+    margin-top: 20px;
     flex: 2;
     background-color: #fcf5f3;
     display: flex;

@@ -55,13 +55,17 @@ function Navbar() {
 				{currentUser  &&<a href="/favourites">Favourites</a>}
 				
 					{currentUser ? (
+						<>
 						<a href="/profile">Profile</a>
+						<button onClick={() => setOpen((prev) => !prev)}>hide</button>
+						</>
 				) : (
 					<>
 						<a href="/login">Sign in</a>
-						<a href="/register" className="register">
+						<a href="/register" >
 							Sign up
 						</a>
+						<button onClick={() => setOpen((prev) => !prev)}>hide</button>
 					</>
 				)}
 				</div>

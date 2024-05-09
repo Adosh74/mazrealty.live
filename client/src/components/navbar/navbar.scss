@@ -6,16 +6,17 @@ nav {
   justify-content: space-between;
   align-items: center;
 
+  
+
   a {
     transition: all 0.4s ease;
-
     @include sm {
       display: none;
     }
-
     &:hover {
       scale: 1.05;
     }
+   
   }
 
   .left {
@@ -57,6 +58,20 @@ nav {
     @include md {
       background-color: transparent;
     }
+
+button{
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 5px 15px;
+  background-color: #d8aa35;
+
+
+  &:hover {
+  background-color: #fece51;
+            
+            }
+}
 
     a {
       padding: 12px 24px;
@@ -107,7 +122,9 @@ nav {
     }
 
     .register {
+      height: auto;
       background-color: #fece51;
+      overflow: hidden;
     }
 
     .menuIcon {
@@ -132,15 +149,15 @@ nav {
     }
 
     .menu {
+      display: none;
       position: absolute;
       top: 0;
       right: -50%;
       background-color: rgb(2, 42, 10);
       color: white;
       height: 100vh;
-      width: 50%;
+      max-width: 50%;
       transition: all 1s ease;
-      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -148,6 +165,8 @@ nav {
 
       &.active {
         right: 0;
+    display: flex;
+
       }
       @include md {
 		overflow: scroll;
@@ -156,6 +175,7 @@ nav {
 
       @include sm {
 		overflow: scroll;
+
         a {
           
           display: initial;

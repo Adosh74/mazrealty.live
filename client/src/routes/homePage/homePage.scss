@@ -3,9 +3,16 @@
 .homePage {
   display: flex;
   height: 100%;
+      overflow-y: scroll;
 
 			@include sm {
-      overflow: scroll;
+      overflow-y: scroll;
+      }
+      @include md {
+      overflow-y: scroll;
+      }
+      @include lg {
+      overflow-y: scroll;
       }
       
   .textContainer {
@@ -64,6 +71,8 @@
   }
 
   .imgContainer {
+    margin-top: 20px;
+    height: 100vh;
     flex: 2;
     background-color: #fcf5f3;
     position: relative;
@@ -81,7 +90,7 @@
 
       @include lg {
         width: 105%;
-      }
+      }  
     }
   }
 }

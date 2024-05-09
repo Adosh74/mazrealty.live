@@ -38,6 +38,21 @@
 			border: none;
 		}
 
+		select{
+			padding-right: 27px;
+
+			
+			@include sm {
+				width: auto;
+				&:nth-child(2),
+				&:nth-child(3) {
+					width: auto;
+				}
+				padding: 20px;
+				border: 1px solid #999;
+			}
+		}
+
 		input {
 			border: none;
 			padding: 0px 10px;
