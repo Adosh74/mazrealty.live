@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
@@ -9,10 +9,15 @@ function Login() {
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
-	const { updateUser } = useContext(AuthContext);
+	const { updateUser, currentUser } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (currentUser) {
+			navigate('/');
+		}
+	}, [currentUser, navigate]);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 

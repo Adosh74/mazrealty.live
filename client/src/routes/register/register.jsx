@@ -1,17 +1,22 @@
-import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './register.scss';
-import toast from "react-hot-toast";
-
 
 function Register() {
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const { currentUser } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (currentUser) {
+			navigate('/');
+		}
+	}, [currentUser, navigate]);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -28,7 +33,7 @@ function Register() {
 		const whatsapp = formatDate.get('whatsapp');
 
 		try {
-			const res = await apiRequest.post('/auth/signup', {
+			await apiRequest.post('/auth/signup', {
 				name,
 				email,
 				password,
@@ -42,17 +47,30 @@ function Register() {
 				style: {
 					border: '1px solid #713200',
 					padding: '16px',
-					paddingLeft:'25px',
-					paddingRight:"25px",
+					paddingLeft: '25px',
+					paddingRight: '25px',
 					color: '#3ddb55',
 				},
 				iconTheme: {
 					primary: '#3ddb55',
 					secondary: '#FFFAEE',
 				},
-				});
+			});
 		} catch (error) {
 			setError(error.response.data.message);
+			toast.error(`${error.response.data.message}`, {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
 		}
 	};
 
