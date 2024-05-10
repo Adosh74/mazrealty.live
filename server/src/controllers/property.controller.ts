@@ -106,6 +106,15 @@ export const getMyProperties = catchAsync(
 		const userId = (req as any).user.id;
 		const properties = await Property.find({ 'owner._id': userId });
 
+		properties.forEach((doc: any) => {
+			doc.images.forEach((img: string) => {
+				if (!img.startsWith('https')) {
+					doc.images[doc.images.indexOf(img)] = `${req.protocol}://${req.get(
+						'host'
+					)}/img/properties/${img}`;
+				}
+			});
+		});
 		res.status(200).json({
 			status: 'success',
 			results: properties.length,
