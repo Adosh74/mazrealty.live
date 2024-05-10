@@ -26,11 +26,16 @@ function Card({ item }) {
 							<img src="/bath.png" alt="" />
 							<span>{item.bathrooms} bathroom</span>
 						</div>
+						<div className="feature">
+							<img src="/logo.png" alt="" />
+							<span>{item.type}</span>
+						</div>
+						<div className="feature">
+							<img src="/fee.png" alt="" />
+							<span>For {item.transaction}</span>
+						</div>
 					</div>
 					<div className="icons">
-						<div className="icon">
-							<img src="/save.png" alt="" />
-						</div>
 						<div className="icon">
 							<img src="/chat.png" alt="" />
 						</div>
