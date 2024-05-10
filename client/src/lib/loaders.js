@@ -27,3 +27,10 @@ export const myFavoritesLoader = async ({ request, params }) => {
 		favorites: res.then((res) => res.data.data.favorites),
 	});
 };
+
+export const myPropertiesLoader = async ({ request, params }) => {
+	const res = apiRequest.get('/properties/my-properties');
+	return defer({
+		properties: res.then((res) => res.data.data.properties),
+	});
+};
