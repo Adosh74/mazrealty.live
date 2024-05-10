@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Suspense, useContext } from 'react';
+import { Await, Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import List from '../../components/list/List';
 import { AuthContext } from '../../context/authContext';
@@ -10,6 +10,8 @@ import './profilePage.scss';
 function ProfilePage() {
 	const navigate = useNavigate();
 	const { updateUser, currentUser } = useContext(AuthContext);
+
+	const data = useLoaderData();
 
 	const handleLogout = async () => {
 		try {
@@ -30,11 +32,10 @@ function ProfilePage() {
 						<Link to="/profile/update">
 							<button>Update Profile</button>
 						</Link>
-						
+
 						<Link to="/lawyer">
 							<button>Show contracts</button>
 						</Link>
-
 					</div>
 					<div className="info">
 						<span>
@@ -53,13 +54,26 @@ function ProfilePage() {
 						<button onClick={handleLogout}>Logout</button>
 					</div>
 					<div className="title">
-						<h1>My List</h1>
+						<h1>My Properties</h1>
 						<Link to="/add">
 							<button>Create New Property</button>
 						</Link>
 					</div>
-					<List />
-					
+
+					<Suspense fallback={<div>Loading...</div>}>
+						<Await
+							resolve={data.properties}
+							errorElement={<div>Failed to load properties</div>}
+						>
+							{(properties) => {
+								if (properties.length === 0) {
+									return <div>No properties found</div>;
+								} else {
+									return <List items={properties} />;
+								}
+							}}
+						</Await>
+					</Suspense>
 				</div>
 			</div>
 			<div className="chatContainer">
