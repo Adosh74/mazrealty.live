@@ -23,7 +23,12 @@ export const createFavorite = catchAsync(
 		});
 
 		if (favorite) {
-			return next(new AppError('Property already favorited', 400));
+			// remove favorite if already exists
+			await UserFavorite.findByIdAndDelete(favorite._id);
+			return res.status(204).json({
+				status: 'success',
+				data: null,
+			});
 		}
 
 		// +[3] create favorite
@@ -45,7 +50,15 @@ export const createFavorite = catchAsync(
 export const getFavorites = catchAsync(async (req: Request, res: Response) => {
 	const userId = (req as any).user._id;
 
-	const favorites = await UserFavorite.findUserFavorites(userId);
+	const favorites: any = await UserFavorite.findUserFavorites(userId);
+
+	// add req.protocol and req.get('host') to favorite property images
+	favorites.forEach((favorite: any) => {
+		favorite.property.images = favorite.property.images.map(
+			(image: string) =>
+				`${req.protocol}://${req.get('host')}/img/properties/${image}`
+		);
+	});
 
 	res.status(200).json({
 		status: 'success',
