@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import APIFeatures from '../utils/APIFeatures.util';
 import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
+import isPropertySaved from '../utils/checkPropertySaved.util';
 
 // *** Factory Functions
 
@@ -42,7 +43,7 @@ export const getAll = (Model: Model<any>, modelName?: string) =>
 export const getOne = (Model: Model<any>, popOptions?: any, modelName?: string) =>
 	catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 		const { id } = req.params;
-		let query = Model.findById(id);
+		let query = Model.findById(id).select('-__v -createdAt -updatedAt');
 		if (popOptions) query = query.populate(popOptions);
 		const doc = await query;
 
@@ -57,6 +58,25 @@ export const getOne = (Model: Model<any>, popOptions?: any, modelName?: string) 
 						'host'
 					)}/img/properties/${img}`;
 				}
+			});
+			if (doc.owner.photo && !doc.owner.photo.startsWith('https')) {
+				doc.owner.photo = `${req.protocol}://${req.get('host')}/img/users/${
+					doc.owner.photo
+				}`;
+			}
+			const isFav = await isPropertySaved(req, res, doc._id);
+
+			// append isFav to the response object
+			doc.isFav = isFav;
+			// create new objet from doc to avoid adding isFav to the database
+			const newDoc = { ...doc._doc, isFav };
+			// remove contract from the response object
+			delete newDoc.contract;
+			return res.status(200).json({
+				status: 'success',
+				data: {
+					data: newDoc,
+				},
 			});
 		}
 
