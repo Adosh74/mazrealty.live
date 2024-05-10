@@ -2,8 +2,12 @@ import { defer } from 'react-router-dom';
 import apiRequest from './apiRequest';
 
 export const singlePageLoader = async ({ request, params }) => {
-	const res = await apiRequest.get(`/properties/${params.id}`);
-	return res.data.data.data;
+	try {
+		const res = await apiRequest.get(`/properties/${params.id}`);
+		return res.data.data.data;
+	} catch (error) {
+		return null;
+	}
 };
 
 export const listPageLoader = async ({ request, params }) => {
@@ -14,5 +18,12 @@ export const listPageLoader = async ({ request, params }) => {
 		: apiRequest.get(`properties?${query}`);
 	return defer({
 		properties: res.then((res) => res.data.data.data),
+	});
+};
+
+export const myFavoritesLoader = async ({ request, params }) => {
+	const res = apiRequest.get('/favorites');
+	return defer({
+		favorites: res.then((res) => res.data.data.favorites),
 	});
 };
