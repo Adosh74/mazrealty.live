@@ -1,6 +1,11 @@
 import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { singlePageLoader, listPageLoader, myFavoritesLoader } from './lib/loaders';
+import {
+	singlePageLoader,
+	listPageLoader,
+	myFavoritesLoader,
+	myPropertiesLoader,
+} from './lib/loaders';
 import EditProperty from './routes/editMyProperty/editMyProperty';
 import Favourites from './routes/favourites/Favourites';
 import HomePage from './routes/homePage/homePage';
@@ -52,6 +57,7 @@ function App() {
 				{
 					path: '/profile',
 					element: <ProfilePage />,
+					loader: myPropertiesLoader,
 				},
 				{
 					path: '/profile/update',
