@@ -74,7 +74,9 @@ export const updateOneProperty = catchAsync(
 export const deleteOneProperty = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		// +[1] find property
-		const property: IPropertySchema | null = await Property.findById(req.params.id);
+		const property: IPropertySchema | null = await Property.findById(
+			req.params.id
+		).select('+owner._id');
 
 		// +[2] check if property exists
 		if (!property) {
