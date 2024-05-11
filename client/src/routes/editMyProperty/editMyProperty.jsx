@@ -1,16 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './editMyProperty.scss';
 
 function EditProperty() {
 	const [value, setValue] = useState('');
 	const [cities, setCities] = useState([]);
+	const [property, setProperty] = useState([]);
 	const [images, setImages] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
+
+	const { currentUser } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+	const params = useParams();
+
 	//get current user
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -41,14 +51,58 @@ function EditProperty() {
 	};
 
 	useEffect(() => {
+		setLoading(true);
 		async function fetchData() {
-			const res = await apiRequest.get('/cities');
+			try {
+				const citiesRes = await apiRequest.get('/cities');
 
-			setCities(res.data.data.cities);
-			setLoading(false);
+				// get id from params
+				const propertyRes = await apiRequest.get(`/properties/${params.id}`);
+
+				if (propertyRes.data.data.data.owner._id !== currentUser._id) {
+					toast.error(`You are not allowed to edit this property`, {
+						style: {
+							border: '1px solid #713200',
+							padding: '16px',
+							paddingLeft: '25px',
+							paddingRight: '25px',
+							color: '#713200',
+						},
+						iconTheme: {
+							primary: '#713200',
+							secondary: '#FFFAEE',
+						},
+					});
+					navigate('/');
+				} else {
+					setProperty(propertyRes.data.data.data);
+					setLoading(false);
+				}
+
+				setCities(citiesRes.data.data.cities);
+			} catch (error) {
+				console.log(error);
+				// error using toast
+				toast.error(`error data loading`, {
+					style: {
+						border: '1px solid #713200',
+						padding: '16px',
+						paddingLeft: '25px',
+						paddingRight: '25px',
+						color: '#713200',
+					},
+					iconTheme: {
+						primary: '#713200',
+						secondary: '#FFFAEE',
+					},
+				});
+				navigate('/');
+			} finally {
+				setLoading(false);
+			}
 		}
 		fetchData();
-	}, []);
+	}, [navigate]);
 
 	const override = {
 		display: 'block',
