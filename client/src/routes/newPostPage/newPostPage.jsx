@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import apiRequest from '../../lib/apiRequest';
 import './newPostPage.scss';
-import toast from "react-hot-toast";
-
 
 function NewPostPage() {
 	const [value, setValue] = useState('');
 	const [cities, setCities] = useState([]);
 	const [images, setImages] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
+	const navigate = useNavigate();
 	//get current user
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -22,7 +22,8 @@ function NewPostPage() {
 		if (!images) return alert('Please select at least one image for the property');
 
 		//  make images like contract
-		const img = Array.from(images);
+		// get only 7 images
+		const img = Array.from(images).slice(0, 7);
 
 		for (const oneImg of img) {
 			formData.append('images', oneImg);
@@ -35,11 +36,37 @@ function NewPostPage() {
 		console.log(input);
 		try {
 			const res = await apiRequest.post('/properties', formData);
-            toast.success('Created Successfully');
-			setError('');
+
+			navigate(`/property/${res.data.data.property._id}`);
+			toast.success('Created Successfully', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#3ddb55',
+				},
+				iconTheme: {
+					primary: '#3ddb55',
+					secondary: '#FFFAEE',
+				},
+			});
 		} catch (error) {
-			console.log(error);
-			setError(error.response.data.message);
+			toast.error(`${error.response.data.message}`, {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -185,7 +212,6 @@ function NewPostPage() {
 						</div>
 
 						<button className="sendButton">Add</button>
-						{error && <p className="error">{error}</p>}
 					</form>
 				</div>
 			</div>
@@ -201,6 +227,8 @@ function NewPostPage() {
 					}}
 					type="file"
 					multiple
+					// set max images to 7
+					max={7}
 					accept="image/*"
 					onChange={(e) => setImages(e.target.files)}
 				/>
