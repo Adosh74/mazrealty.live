@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
+import ApprovedProp from '../models/approvedProp.model';
 import Property, { IPropertySchema } from '../models/property.model';
 import UserFavorite from '../models/userFavorite.model';
 import AppError from '../utils/AppError.util';
@@ -100,13 +101,27 @@ export const deleteOneProperty = catchAsync(
 			fs.unlinkSync(path.join(process.cwd(), `/public/img/properties/${img}`));
 		});
 
-		// +[5] delete property from favorites
+		// +[5] delete property contract from public/img/properties
+		if (
+			fs.existsSync(
+				path.join(process.cwd(), `/public/img/properties/${property.contract}`)
+			)
+		) {
+			fs.unlinkSync(
+				path.join(process.cwd(), `/public/img/properties/${property.contract}`)
+			);
+		}
+
+		// +[6] delete property from approved properties
+		await ApprovedProp.deleteOne({ property: property._id });
+
+		// +[7] delete property from favorites
 		await UserFavorite.deleteMany({ property: property._id });
 
-		// +[6] delete property
+		// +[8] delete property
 		await property.remove();
 
-		// +[7] send responses
+		// +[9] send responses
 		res.status(204).json({
 			status: 'success',
 			data: null,
@@ -184,9 +199,6 @@ export const addImages = catchAsync(
 		if (!property) {
 			return next(new AppError('No property found with that ID', 404));
 		}
-		console.log(property?.owner._id.toString(), (req as any).user.id);
-
-		console.log(property?.owner._id.toString() === (req as any).user.id);
 
 		if (
 			property?.owner._id.toString() !== (req as any).user.id &&
