@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
 import Property, { IPropertySchema } from '../models/property.model';
+import UserFavorite from '../models/userFavorite.model';
 import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
 import * as Factory from './handlerFactory.controller';
@@ -91,10 +92,21 @@ export const deleteOneProperty = catchAsync(
 			return next(new AppError('You are not allowed to delete this property', 403));
 		}
 
-		// +[4] delete property
+		// +[4] delete images from public/img/properties
+		property.images.forEach((img) => {
+			// if image not found in public/img/properties ignore it continue
+			if (!fs.existsSync(path.join(process.cwd(), `/public/img/properties/${img}`)))
+				return;
+			fs.unlinkSync(path.join(process.cwd(), `/public/img/properties/${img}`));
+		});
+
+		// +[5] delete property from favorites
+		await UserFavorite.deleteMany({ property: property._id });
+
+		// +[6] delete property
 		await property.remove();
 
-		// +[5] send responses
+		// +[7] send responses
 		res.status(204).json({
 			status: 'success',
 			data: null,
