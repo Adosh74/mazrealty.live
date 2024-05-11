@@ -65,6 +65,7 @@ function ProfilePage() {
 							resolve={data.properties}
 							errorElement={<div>Failed to load properties</div>}
 						>
+							
 							{(properties) => {
 								if (properties.length === 0) {
 									return <div>No properties found</div>;

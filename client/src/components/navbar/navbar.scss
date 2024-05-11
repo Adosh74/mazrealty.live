@@ -1,23 +1,39 @@
 @import "../../responsive.scss";
 
+$normal-color: black;
+$pressed-color: rgb(37, 126, 7);
+
+@keyframes linkColorChange {
+  0% {
+        background-color: #fece51;
+  }
+  100% {
+        background-color: #f8b713;
+  }
+}
+
 nav {
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  
 
   a {
+    color: $normal-color;
     transition: all 0.4s ease;
     @include sm {
       display: none;
     }
     &:hover {
       scale: 1.05;
+      color: $pressed-color;
     }
-   
+    &:active {
+  color: $pressed-color;
+}
   }
+
 
   .left {
     flex: 3;
@@ -103,7 +119,10 @@ button{
         background-color: #fece51;
         border: none;
         position: relative;
-        
+        color: black;
+          &:hover{
+              animation: linkColorChange 1s infinite; 
+          }
         .notification{
           position: absolute;
           top: -8px;
@@ -149,7 +168,7 @@ button{
     }
 
     .menu {
-      display: none;
+      display: flex;
       position: absolute;
       top: 0;
       right: -50%;
@@ -157,25 +176,26 @@ button{
       color: white;
       height: 100vh;
       max-width: 50%;
-      transition: all 1s ease;
+      transition: all 1.4s ease;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-size: 24px;
-
+z-index: 10;
       &.active {
         right: 0;
     display: flex;
+    z-index: 10;
 
       }
       @include md {
 		overflow: scroll;
-          
+          z-index: 10;
         }
 
       @include sm {
 		overflow: scroll;
-
+z-index: 10;
         a {
           
           display: initial;

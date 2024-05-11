@@ -1,0 +1,27 @@
+@keyframes Change {
+  from {
+        background-color: rgb(42, 106, 233);
+  }
+  to {
+    background-color: rgb(19, 74, 185);
+  }
+}
+
+ .button {
+
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    background-color: rgb(42, 106, 233);
+    transition: all 0.4s ease;
+    padding: 10px 30px;
+    border: white;
+    &:hover {
+      scale: 1.05;
+    animation: Change 1s infinite; 
+    }
+   
+  }
+  
+
+ 

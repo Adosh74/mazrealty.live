@@ -57,7 +57,7 @@ function Navbar() {
 					{currentUser ? (
 						<>
 						<a href="/profile">Profile</a>
-						<button onClick={() => setOpen((prev) => !prev)}>hide</button>
+						<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
 						</>
 				) : (
 					<>
@@ -65,7 +65,7 @@ function Navbar() {
 						<a href="/register" >
 							Sign up
 						</a>
-						<button onClick={() => setOpen((prev) => !prev)}>hide</button>
+						<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
 					</>
 				)}
 				</div>

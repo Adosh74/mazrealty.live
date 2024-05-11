@@ -3,14 +3,21 @@ import "./cardForLawyer.scss";
 import {Trash2,Eye,BookCheck} from "lucide-react";
 import toast from "react-hot-toast";
 
+
 function CardForLawyer({ item }) {
+
   
       const handelReject = async () => {
+        try{
         toast.success('It has been rejected',{ style: {
       borderRadius: '10px',
       background: '#333',
       color: '#fff',
     },})
+  }
+    catch (error) {
+            toast.error('Failed to rejecte property');
+        }
       }
 
       const handelAccept = async () => {
@@ -19,12 +26,12 @@ function CardForLawyer({ item }) {
 
   return (
     <div className="cardLawyer">
-      <Link to={`/${item.id}`} className="imageContainer">
+      <Link to={`/property/${item._id}`} className="imageContainer">
         <img src={item.img} alt="" />
       </Link>
       <div className="cardLeft">
         <h2 className="title">
-          <Link to={`/${item.id}`}>{item.title}</Link>
+          <Link to={`/property/${item._id}`}>{item.title}</Link>
         </h2>
         <p className="address">
           <img src="/pin.png" alt="" />

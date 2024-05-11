@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-
+import "./uploadWidget.scss"
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext();
 
@@ -51,7 +51,7 @@ function UploadWidget({ uwConfig, setPublicId, setPhoto }) {
 		<CloudinaryScriptContext.Provider value={{ loaded }}>
 			<button
 				id="upload_widget"
-				className="cloudinary-button"
+				className="button"
 				onClick={initializeCloudinaryWidget}
 			>
 				Upload

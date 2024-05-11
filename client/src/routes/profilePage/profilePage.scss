@@ -1,5 +1,16 @@
 @import '../../responsive.scss';
 
+@keyframes linkColorChange {
+  0% {
+        background-color: #fece51;
+
+  }
+  100% {
+			background-color: #d1a026;
+
+  }
+}
+
 .profilePage {
 	display: flex;
 	height: 100%;
@@ -39,6 +50,9 @@
 					background-color: #fece51;
 					cursor: pointer;
 					border: none;
+					  &:hover {
+						animation: linkColorChange 1s infinite; 
+                      }
 				}
 			}
 
@@ -61,6 +75,9 @@
 					padding: 10px 20px;
 					cursor: pointer;
 					border-radius: 5px;
+					&:hover {
+					background-color: rgb(2, 102, 102);     
+					}
 				}
 
 				img {

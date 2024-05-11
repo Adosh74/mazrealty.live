@@ -7,6 +7,8 @@ import Slider from '../../components/slider/Slider';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './singlePage.scss';
+import { Link } from 'react-router-dom';
+
 
 function SinglePage() {
 	const property = useLoaderData();
@@ -90,9 +92,40 @@ function SinglePage() {
 			}
 		}
 	};
+
+
+
+	 const deleteProperty = async () => {
+        try {
+            const res = await apiRequest.delete(`/properties/${property._id}`);
+            if (res.status === 204) {
+                toast.success('The property has been deleted', {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                });
+                navigate('/profile');
+            } else {
+                toast.error('Failed to delete property');
+            }
+        } catch (error) {
+			console.log(error)
+            toast.error('Something went wrong');
+        }
+    };
 	return (
 		<div className="singlePage">
+				{console.log(property)}
 			<div className="details">
+				<div className="ownerButtons">
+						<button  onClick={deleteProperty} className='deleteProperty'>Delete property</button>
+						<Link to={`/edit/property/${property._id}`}>
+							<button className='editProperty'>Edit property</button>
+						</Link>
+					
+				</div>
 				<div className="wrapper">
 					<Slider images={property.images} />
 					<div className="info">
@@ -113,7 +146,10 @@ function SinglePage() {
 								<img src={property.owner.photo} alt="" />
 								<span>{property.owner.name}</span>
 							</div>
+							
 						</div>
+
+
 						<div
 							className="bottom"
 							dangerouslySetInnerHTML={{

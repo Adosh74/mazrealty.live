@@ -29,6 +29,8 @@
 		flex: 2;
 		height: 100%;
 		background-color: #fcf5f3;
+		position: relative;
+                 z-index: 1;
 
 		@include md {
 			display: flex;

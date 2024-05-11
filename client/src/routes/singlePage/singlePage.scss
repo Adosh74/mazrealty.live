@@ -1,4 +1,28 @@
 @import '../../responsive.scss';
+@keyframes colorRed {
+  from {
+        background-color: #e96262;
+
+  }
+  to {
+    	background-color: #d53333;
+
+  }
+}
+
+@keyframes colorYellow {
+  from {
+        	background-color: #fece51;
+
+
+  }
+  to {
+        background-color: #dfaa23;
+
+
+  }
+}
+
 .pageNotFound {
 	display: flex;
 	flex-direction: column;
@@ -34,6 +58,33 @@
 		flex: 3;
 		height: 100%;
 		overflow-y: scroll;
+		.ownerButtons {
+			margin-bottom: 20px;
+			margin-right: 40px;
+			display: flex;
+			align-items: center;
+            justify-content: flex-end;
+				.deleteProperty{
+					padding: 12px 24px;
+					background-color: #e96262;
+					cursor: pointer;
+					border: none;
+					margin-right: 70px;
+			
+					  &:hover {
+					animation: colorRed 1s infinite; 
+                      }
+				}
+				.editProperty{
+				    padding: 12px 24px;
+					background-color: #fece51;
+					cursor: pointer;
+					border: none;
+					  &:hover {
+					animation: colorYellow 1s infinite; 
+                      }
+				}
+				}
 
 		@include md {
 			flex: none;
@@ -113,6 +164,12 @@
 						}
 					}
 				}
+
+				
+				
+
+				
+			
 				.bottom {
 					margin-top: 50px;
 					color: #555;
@@ -210,6 +267,8 @@
 			.mapContainer {
 				width: 100%;
 				height: 200px;
+				 position: relative;
+                 z-index: 1;
 			}
 
 			.buttons {
