@@ -17,7 +17,7 @@
       
   .textContainer {
     flex: 3;
-
+    z-index: 10;
     .wrapper {
       padding-right: 100px;
       display: flex;
@@ -78,6 +78,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 1; 
 
     @include md {
       display: none;
