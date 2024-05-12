@@ -2,19 +2,19 @@ import DOMPurify from 'dompurify';
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Map from '../../components/map/Map';
 import Slider from '../../components/slider/Slider';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './singlePage.scss';
-import { Link } from 'react-router-dom';
-
 
 function SinglePage() {
 	const property = useLoaderData();
 	const [fav, setFav] = useState(property ? property.isFav : false);
 	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
+	console.log(property);
 	if (!property) {
 		return (
 			<div className="pageNotFound">
@@ -93,39 +93,41 @@ function SinglePage() {
 		}
 	};
 
-
-
-	 const deleteProperty = async () => {
-        try {
-            const res = await apiRequest.delete(`/properties/${property._id}`);
-            if (res.status === 204) {
-                toast.success('The property has been deleted', {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
-                navigate('/profile');
-            } else {
-                toast.error('Failed to delete property');
-            }
-        } catch (error) {
-			console.log(error)
-            toast.error('Something went wrong');
-        }
-    };
+	const deleteProperty = async () => {
+		try {
+			const res = await apiRequest.delete(`/properties/${property._id}`);
+			if (res.status === 204) {
+				toast.success('The property has been deleted', {
+					style: {
+						borderRadius: '10px',
+						background: '#333',
+						color: '#fff',
+					},
+				});
+				navigate('/profile');
+			} else {
+				toast.error('Failed to delete property');
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error('Something went wrong');
+		}
+	};
 	return (
 		<div className="singlePage">
-				{console.log(property)}
 			<div className="details">
-				<div className="ownerButtons">
-						<button  onClick={deleteProperty} className='deleteProperty'>Delete property</button>
-						<Link to={`/edit/property/${property._id}`}>
-							<button className='editProperty'>Edit property</button>
-						</Link>
-					
-				</div>
+				{(currentUser && currentUser._id === property.owner._id) ||
+					(currentUser && currentUser.role === 'admin' && (
+						<div className="ownerButtons">
+							<button onClick={deleteProperty} className="deleteProperty">
+								Delete property
+							</button>
+							<Link to={`/edit/property/${property._id}`}>
+								<button className="editProperty">Edit property</button>
+							</Link>
+						</div>
+					))}
+
 				<div className="wrapper">
 					<Slider images={property.images} />
 					<div className="info">
@@ -143,12 +145,13 @@ function SinglePage() {
 								<div className="price">$ {property.price}</div>
 							</div>
 							<div className="user">
-								<img src={property.owner.photo} alt="" />
+								<img
+									src={property.owner.photo || '/default.jpg'}
+									alt=""
+								/>
 								<span>{property.owner.name}</span>
 							</div>
-							
 						</div>
-
 
 						<div
 							className="bottom"
