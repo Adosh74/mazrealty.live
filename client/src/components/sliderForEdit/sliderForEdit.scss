@@ -1,0 +1,111 @@
+@import '../../responsive.scss';
+
+.sliderForEdit {
+	width: 100%;
+	height: 350px;
+	display: flex;
+	gap: 20px;
+    text-align: center;
+	
+
+	@include sm {
+		height: 280px;
+	}
+
+	.fullSlider {
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		background-color: black;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		z-index: 9999;
+
+		.arrow {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			img {
+				width: 50px;
+
+				@include md {
+					width: 30px;
+				}
+
+				@include sm {
+					width: 20px;
+				}
+
+				&.right {
+					transform: rotate(180deg);
+				}
+			}
+		}
+		.imgContainer {
+			// show full image not cropped
+			flex: 1.3;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			color: white;
+			font-size: 36px;
+			font-weight: bold;
+			padding: 50px;
+			cursor: pointer;
+		}
+	}
+
+
+
+	.bigImage {
+ display: flex;
+    flex-direction: column; /* Display images in a column */
+    gap: 20px; /* Adjust as needed for spacing between images */
+    max-height: 350px; /* Set a maximum height for the container */
+    padding: 10px 0; /* Optional: Add padding to the top and bottom */
+    align-items: center; /* Align images to the center horizontally */
+
+    .remove{
+		cursor: pointer;
+          background-color:  rgb(135, 25, 25);
+          color: white;
+          border-radius: 50%;
+          width: 40px;
+		  padding: 6px;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+		  &:hover{
+          background-color: red;
+		  }
+	}
+	
+	img {
+    width: 60%; 
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 10px; 
+    cursor: pointer; 
+
+	}
+		@include sm {
+			flex: 2;
+		}
+	}
+
+}

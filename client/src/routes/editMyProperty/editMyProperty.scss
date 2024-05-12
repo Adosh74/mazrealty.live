@@ -1,11 +1,23 @@
-.newPostPage {
+@import '../../responsive.scss';
+.editProperty {
   height: 100%;
   display: flex;
 
   .formContainer {
     flex: 3;
     overflow: scroll;
-
+            h1 {
+                font-weight: 400;
+                color: #fece51;
+                background-color: antiquewhite;
+                width: fit-content;
+                border-radius: 15px;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                padding-left: 90px;
+                padding-right: 90px;
+                margin-bottom: 30px;
+            }
     .wrapper {
       margin: 30px 50px 100px 0px;
 
@@ -57,20 +69,56 @@
     }
   }
 
-  .sideContainer {
+  .sideRight {
     flex: 2;
     background-color: #fcf5f3;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    justify-content: center;
+    overflow-y: scroll;
+    padding-bottom: 25em;
+          input {
+            background-color: rgb(188, 188, 188);
+						cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+
+            @include md {
+              padding: 2px;
+              width: 50%;
+            }
+          }							
 
     img {
-      width: 50%;
+      width: 60%;
       height: 180px;
       object-fit: cover;
       border-radius: 5px;
     }
+
+
+    .contract{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
+
+    .images{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
+
+
   }
 }

@@ -7,6 +7,9 @@ import { ClipLoader } from 'react-spinners';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './editMyProperty.scss';
+import { Link } from 'react-router-dom';
+import SliderForEdit from '../../components/sliderForEdit/SliderForEdit';
+
 
 function EditProperty() {
 	const [value, setValue] = useState('');
@@ -15,6 +18,8 @@ function EditProperty() {
 	const [images, setImages] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
+	const [contractImage, setContractImage] = useState(null);
+
 
 	const { currentUser } = useContext(AuthContext);
 
@@ -22,40 +27,12 @@ function EditProperty() {
 	const params = useParams();
 
 	//get current user
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-
-		formData.append('description', value);
-		if (!images) return alert('Please select at least one image for the property');
-
-		//  make images like contract
-		const img = Array.from(images);
-
-		for (const oneImg of img) {
-			formData.append('images', oneImg);
-		}
-		// formData.append('images', ...img);
-		const input = Object.fromEntries(formData);
-		const cityId = cities.find((city) => city.city_name_en === input.city)._id;
-		formData.delete('city');
-		formData.append('city', cityId);
-		console.log(input);
-		try {
-			const res = await apiRequest.post('/properties', formData);
-			setError('');
-		} catch (error) {
-			console.log(error);
-			setError(error.response.data.message);
-		}
-	};
-
 	useEffect(() => {
 		setLoading(true);
 		async function fetchData() {
 			try {
 				const citiesRes = await apiRequest.get('/cities');
-
+               
 				// get id from params
 				const propertyRes = await apiRequest.get(`/properties/${params.id}`);
 
@@ -132,34 +109,83 @@ function EditProperty() {
 				</div>
 			</div>
 		);
+
+		const handleSubmit = async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+
+		formData.append('description', value);
+		if (!images) return alert('Please select at least one image for the property');
+
+		//  make images like contract
+		const img = Array.from(images);
+
+		for (const oneImg of img) {
+			formData.append('images', oneImg);
+		}
+		// formData.append('images', ...img);
+		const input = Object.fromEntries(formData);
+		const cityId = cities.find((city) => city.city_name_en === input.city)._id;
+		formData.delete('city');
+		formData.append('city', cityId);
+		console.log(input);
+
+		//  ////////////////////////////////////////////////////////////////
+		setImages(property.images)
+		//  ////////////////////////////////////////////////////////////////
+
+		try {
+			const res = await apiRequest.patch(`/properties/${property._id}`, formData);
+			if (res.status === 200) {
+                toast.success('The property has been updated', {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                });
+            } else {
+                toast.error('Failed to update property');
+            }
+			setError('');
+		} catch (error) {
+			console.log(error);
+			setError(error.response.data.message);
+            toast.error('Something went wrong');
+		}
+	};
+
 	return (
-		<div className="newPostPage">
+		<div className="editProperty">
 			<div className="formContainer">
-				<h1>Add New Property</h1>
+				{console.log("{images}",images)}
+				{console.log("property{{{images}}}",property.images)}
+
+				<h1>Edit Property</h1>
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
 						<div className="item">
 							<label htmlFor="name">Title</label>
-							<input id="name" name="name" type="text" required />
+							<input id="name" name="name" type="text" required defaultValue={property.name} />
 						</div>
 						<div className="item">
 							<label htmlFor="price">Price</label>
-							<input id="price" name="price" type="number" required />
+							<input id="price" name="price" type="number" required  defaultValue={property.price}/>
 						</div>
 						<div className="item">
 							<label htmlFor="address">Address</label>
-							<input id="address" name="address" type="text" required />
+							<input id="address" name="address" type="text" required defaultValue={property.address}/>
 						</div>
 						<div className="item description">
 							<label htmlFor="description">Description</label>
-							<ReactQuill theme="snow" onChange={setValue} value={value} />
+							<ReactQuill theme="snow" onChange={setValue} defaultValue={property.description}/>
 						</div>
 						<div className="item">
 							<label htmlFor="city">City</label>
 							{cities.length > 0 && (
-								<select name="city">
+								<select name="city" defaultValue={property.city._id}>
 									{cities.map((city) => (
-										<option key={city._id} value={city.id}>
+										<option key={city._id} value={city._id}>
 											{city.city_name_en}
 										</option>
 									))}
@@ -174,6 +200,7 @@ function EditProperty() {
 								name="bedrooms"
 								type="number"
 								required
+							defaultValue={property.bedrooms}
 							/>
 						</div>
 						<div className="item">
@@ -184,20 +211,21 @@ function EditProperty() {
 								name="bathrooms"
 								type="number"
 								required
+							defaultValue={property.bathrooms}
 							/>
 						</div>
 						<div className="item">
 							<label htmlFor="latitude">Latitude</label>
-							<input id="latitude" name="latitude" type="text" />
+							<input id="latitude" name="latitude" type="text" defaultValue={property.latitude}/>
 						</div>
 						<div className="item">
 							<label htmlFor="longitude">Longitude</label>
-							<input id="longitude" name="longitude" type="text" />
+							<input id="longitude" name="longitude" type="text" defaultValue={property.longitude} />
 						</div>
 						<div className="item">
 							<label htmlFor="transaction">Transaction Type</label>
-							<select name="transaction">
-								<option value="rent" defaultChecked>
+							<select name="transaction" defaultValue={property.transaction}>
+								<option value="rent" >
 									Rent
 								</option>
 								<option value="sale">Sale</option>
@@ -205,7 +233,7 @@ function EditProperty() {
 						</div>
 						<div className="item">
 							<label htmlFor="type">Property Type</label>
-							<select name="type">
+							<select name="type" defaultValue={property.type}>
 								<option value="apartment">Apartment</option>
 								<option value="villa">Villa</option>
 								<option value="office">Office</option>
@@ -214,49 +242,40 @@ function EditProperty() {
 						</div>
 						<div className="item">
 							<label htmlFor="area">Total area size (Sq. M.)</label>
-							<input min={0} id="area" name="area" type="number" required />
+							<input min={0} id="area" name="area" type="number" required defaultValue={property.area}/>
 						</div>
 						{/* add level */}
 						<div className="item">
 							<label htmlFor="level">Level</label>
-							<input id="level" name="level" type="number" required />
+							<input id="level" name="level" type="number" required defaultValue={property.level}/>
 						</div>
 						{/* add Furnished that yes or no */}
 						<div className="item">
 							<label htmlFor="furnished">Furnished</label>
-							<select name="furnished">
+							<select name="furnished" defaultValue={property.Furnished}>
 								<option value="true">Yes</option>
 								<option value="false">No</option>
 							</select>
 						</div>
 						{/* add contract field accept file type pdf or image */}
-						<div className="item">
-							<label htmlFor="contract">Contract</label>
-							<input type="file" name="contract" accept=".pdf, image/*" />
-						</div>
+						
 
 						<button className="sendButton">Add</button>
 						{error && <p className="error">{error}</p>}
 					</form>
 				</div>
 			</div>
-			<div className="sideContainer">
-				{/* take multiple images from user */}
-				<input
-					// pretty style for input file
-					style={{
-						border: '1px solid #ccc',
-						padding: '10px',
-						borderRadius: '5px',
-						cursor: 'pointer',
-					}}
-					type="file"
-					multiple
-					accept="image/*"
-					onChange={(e) => setImages(e.target.files)}
-				/>
-				{/* display selected images */}
+			<div className="sideRight">
+				
+				<div className="images">
 
+					     <input
+						type="file"
+						multiple
+						accept="image/*"
+						onChange={(e) => setImages(e.target.files)}
+				    />
+					
 				{images &&
 					images.length > 0 &&
 					Array.from(images).map((image, index) => (
@@ -266,6 +285,13 @@ function EditProperty() {
 							alt="property"
 						/>
 					))}
+
+					<SliderForEdit images={property.images}  />
+					
+					
+				
+						</div>
+
 			</div>
 		</div>
 	);
