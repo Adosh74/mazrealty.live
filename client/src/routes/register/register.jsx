@@ -57,7 +57,6 @@ function Register() {
 				},
 			});
 		} catch (error) {
-			setError(error.response.data.message);
 			toast.error(`${error.response.data.message}`, {
 				style: {
 					border: '1px solid #713200',
@@ -71,6 +70,8 @@ function Register() {
 					secondary: '#FFFAEE',
 				},
 			});
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
