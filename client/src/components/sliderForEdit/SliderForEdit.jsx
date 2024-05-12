@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import './sliderForEdit.scss';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import apiRequest from '../../lib/apiRequest';
+import './sliderForEdit.scss';
 
-
-function Slider({ images  }) {
+function Slider({ images, propertyId }) {
 	const [imageIndex, setImageIndex] = useState(null);
+	const navigate = useNavigate();
 
 	const changeSlide = (direction) => {
 		if (direction === 'left') {
@@ -22,26 +24,29 @@ function Slider({ images  }) {
 		}
 	};
 
-		 const deletePhoto = async () => {
-        try {
-            // const res = await apiRequest.delete(`/properties/delete-image/${}`);
-            if (res.status === 200) {
-                toast.success('The property has been deleted', {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
-                navigate('/profile');
-            } else {
-                toast.error('Failed to delete property');
-            }
-        } catch (error) {
-			console.log(error)
-            toast.error('Something went wrong');
-        }
-    };
+	const deletePhoto = async (img) => {
+		const imgName = img.split('properties/')[1];
+
+		try {
+			await apiRequest.patch(`/properties/delete-image/${propertyId}`, {
+				image: imgName,
+			});
+			toast.success('The image has been deleted', {
+				style: {
+					borderRadius: '10px',
+					background: '#333',
+					color: '#fff',
+				},
+			});
+			// rerender edit property page
+			// navigate(`/edit/property/${propertyId}`);
+			// navigate not working, so I used window.location.reload()
+			window.location.reload();
+		} catch (error) {
+			console.log(error);
+			toast.error('Something went wrong');
+		}
+	};
 
 	return (
 		<div className="sliderForEdit">
@@ -62,8 +67,7 @@ function Slider({ images  }) {
 				</div>
 			)}
 			<div className="bigImage">
-
-					{/* {images &&
+				{/* {images &&
 					images.length > 0 &&
 					Array.from(images).map((image, index) => (
 						<img
@@ -73,26 +77,28 @@ function Slider({ images  }) {
 						/>
 					))} */}
 
-				{images.slice(0).map((image, index) => (
-					<>
-					{console.log(image)}
-							<div onClick={deletePhoto} className="remove">X</div>
-					<img 
-						src={image}
-						alt=""
-						key={index}
-						onClick={() => setImageIndex(index)}
-						// show only 3 images in small images
-						style={{ display: index < 3 ? 'block' : 'none' ,paddingBottom:"60px"}}
-					/>
-					</>
+				{images.map((image, index) => (
+					<div key={index}>
+						<div onClick={() => deletePhoto(image)} className="remove">
+							X
+						</div>
+						<img
+							src={image}
+							alt=""
+							onClick={() => setImageIndex(index)}
+							// show only 3 images in small images
+							style={{
+								display: index < 3 ? 'block' : 'none',
+								paddingBottom: '60px',
+							}}
+						/>
+					</div>
 				))}
 				{images.length > 4 && (
 					<div className="moreImages">
 						<p>+{images.length - 4}</p>
 					</div>
 				)}
-			
 			</div>
 		</div>
 	);

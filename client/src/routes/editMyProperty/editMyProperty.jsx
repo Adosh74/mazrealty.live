@@ -3,13 +3,12 @@ import toast from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import SliderForEdit from '../../components/sliderForEdit/SliderForEdit';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './editMyProperty.scss';
-import { Link } from 'react-router-dom';
-import SliderForEdit from '../../components/sliderForEdit/SliderForEdit';
-
 
 function EditProperty() {
 	const [value, setValue] = useState('');
@@ -19,7 +18,6 @@ function EditProperty() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 	const [contractImage, setContractImage] = useState(null);
-
 
 	const { currentUser } = useContext(AuthContext);
 
@@ -32,7 +30,7 @@ function EditProperty() {
 		async function fetchData() {
 			try {
 				const citiesRes = await apiRequest.get('/cities');
-               
+
 				// get id from params
 				const propertyRes = await apiRequest.get(`/properties/${params.id}`);
 
@@ -79,7 +77,7 @@ function EditProperty() {
 			}
 		}
 		fetchData();
-	}, [navigate]);
+	}, [currentUser._id, navigate, params.id]);
 
 	const override = {
 		display: 'block',
@@ -110,7 +108,7 @@ function EditProperty() {
 			</div>
 		);
 
-		const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
 
@@ -131,54 +129,73 @@ function EditProperty() {
 		console.log(input);
 
 		//  ////////////////////////////////////////////////////////////////
-		setImages(property.images)
+		setImages(property.images);
 		//  ////////////////////////////////////////////////////////////////
 
 		try {
 			const res = await apiRequest.patch(`/properties/${property._id}`, formData);
 			if (res.status === 200) {
-                toast.success('The property has been updated', {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
-            } else {
-                toast.error('Failed to update property');
-            }
+				toast.success('The property has been updated', {
+					style: {
+						borderRadius: '10px',
+						background: '#333',
+						color: '#fff',
+					},
+				});
+			} else {
+				toast.error('Failed to update property');
+			}
 			setError('');
 		} catch (error) {
 			console.log(error);
 			setError(error.response.data.message);
-            toast.error('Something went wrong');
+			toast.error('Something went wrong');
 		}
 	};
 
 	return (
 		<div className="editProperty">
 			<div className="formContainer">
-				{console.log("{images}",images)}
-				{console.log("property{{{images}}}",property.images)}
-
 				<h1>Edit Property</h1>
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
 						<div className="item">
 							<label htmlFor="name">Title</label>
-							<input id="name" name="name" type="text" required defaultValue={property.name} />
+							<input
+								id="name"
+								name="name"
+								type="text"
+								required
+								defaultValue={property.name}
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="price">Price</label>
-							<input id="price" name="price" type="number" required  defaultValue={property.price}/>
+							<input
+								id="price"
+								name="price"
+								type="number"
+								required
+								defaultValue={property.price}
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="address">Address</label>
-							<input id="address" name="address" type="text" required defaultValue={property.address}/>
+							<input
+								id="address"
+								name="address"
+								type="text"
+								required
+								defaultValue={property.address}
+							/>
 						</div>
 						<div className="item description">
 							<label htmlFor="description">Description</label>
-							<ReactQuill theme="snow" onChange={setValue} defaultValue={property.description}/>
+							<ReactQuill
+								theme="snow"
+								onChange={setValue}
+								defaultValue={property.description}
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="city">City</label>
@@ -200,7 +217,7 @@ function EditProperty() {
 								name="bedrooms"
 								type="number"
 								required
-							defaultValue={property.bedrooms}
+								defaultValue={property.bedrooms}
 							/>
 						</div>
 						<div className="item">
@@ -211,23 +228,34 @@ function EditProperty() {
 								name="bathrooms"
 								type="number"
 								required
-							defaultValue={property.bathrooms}
+								defaultValue={property.bathrooms}
 							/>
 						</div>
 						<div className="item">
 							<label htmlFor="latitude">Latitude</label>
-							<input id="latitude" name="latitude" type="text" defaultValue={property.latitude}/>
+							<input
+								id="latitude"
+								name="latitude"
+								type="text"
+								defaultValue={property.latitude}
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="longitude">Longitude</label>
-							<input id="longitude" name="longitude" type="text" defaultValue={property.longitude} />
+							<input
+								id="longitude"
+								name="longitude"
+								type="text"
+								defaultValue={property.longitude}
+							/>
 						</div>
 						<div className="item">
 							<label htmlFor="transaction">Transaction Type</label>
-							<select name="transaction" defaultValue={property.transaction}>
-								<option value="rent" >
-									Rent
-								</option>
+							<select
+								name="transaction"
+								defaultValue={property.transaction}
+							>
+								<option value="rent">Rent</option>
 								<option value="sale">Sale</option>
 							</select>
 						</div>
@@ -242,12 +270,25 @@ function EditProperty() {
 						</div>
 						<div className="item">
 							<label htmlFor="area">Total area size (Sq. M.)</label>
-							<input min={0} id="area" name="area" type="number" required defaultValue={property.area}/>
+							<input
+								min={0}
+								id="area"
+								name="area"
+								type="number"
+								required
+								defaultValue={property.area}
+							/>
 						</div>
 						{/* add level */}
 						<div className="item">
 							<label htmlFor="level">Level</label>
-							<input id="level" name="level" type="number" required defaultValue={property.level}/>
+							<input
+								id="level"
+								name="level"
+								type="number"
+								required
+								defaultValue={property.level}
+							/>
 						</div>
 						{/* add Furnished that yes or no */}
 						<div className="item">
@@ -258,7 +299,6 @@ function EditProperty() {
 							</select>
 						</div>
 						{/* add contract field accept file type pdf or image */}
-						
 
 						<button className="sendButton">Add</button>
 						{error && <p className="error">{error}</p>}
@@ -266,32 +306,30 @@ function EditProperty() {
 				</div>
 			</div>
 			<div className="sideRight">
-				
 				<div className="images">
-
-					     <input
+					<input
 						type="file"
 						multiple
 						accept="image/*"
 						onChange={(e) => setImages(e.target.files)}
-				    />
-					
-				{images &&
-					images.length > 0 &&
-					Array.from(images).map((image, index) => (
-						<img
-							key={index}
-							src={URL.createObjectURL(image)}
-							alt="property"
-						/>
-					))}
+					/>
 
-					<SliderForEdit images={property.images}  />
-					
-					
-				
-						</div>
+					{images &&
+						images.length > 0 &&
+						Array.from(images).map((image, index) => (
+							<img
+								key={index}
+								src={URL.createObjectURL(image)}
+								alt="property"
+							/>
+						))}
 
+					<SliderForEdit
+						images={property.images}
+						propertyId={property._id}
+						setProperty={setProperty}
+					/>
+				</div>
 			</div>
 		</div>
 	);
