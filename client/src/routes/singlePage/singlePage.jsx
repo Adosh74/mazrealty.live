@@ -14,7 +14,6 @@ function SinglePage() {
 	const [fav, setFav] = useState(property ? property.isFav : false);
 	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
-	console.log(property);
 	if (!property) {
 		return (
 			<div className="pageNotFound">
@@ -116,17 +115,17 @@ function SinglePage() {
 	return (
 		<div className="singlePage">
 			<div className="details">
-				{(currentUser && currentUser._id === property.owner._id) ||
-					(currentUser && currentUser.role === 'admin' && (
-						<div className="ownerButtons">
-							<button onClick={deleteProperty} className="deleteProperty">
-								Delete property
-							</button>
-							<Link to={`/edit/property/${property._id}`}>
-								<button className="editProperty">Edit property</button>
-							</Link>
-						</div>
-					))}
+				{((currentUser && currentUser._id === property.owner._id) ||
+					(currentUser && currentUser.role === 'admin')) && (
+					<div className="ownerButtons">
+						<button onClick={deleteProperty} className="deleteProperty">
+							Delete property
+						</button>
+						<Link to={`/edit/property/${property._id}`}>
+							<button className="editProperty">Edit property</button>
+						</Link>
+					</div>
+				)}
 
 				<div className="wrapper">
 					<Slider images={property.images} />
