@@ -1,4 +1,4 @@
-import { Suspense, useContext } from 'react';
+import { Suspense, useContext, useEffect } from 'react';
 import { Await, Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import List from '../../components/list/List';
@@ -65,7 +65,6 @@ function ProfilePage() {
 							resolve={data.properties}
 							errorElement={<div>Failed to load properties</div>}
 						>
-							
 							{(properties) => {
 								if (properties.length === 0) {
 									return <div>No properties found</div>;
@@ -79,7 +78,20 @@ function ProfilePage() {
 			</div>
 			<div className="chatContainer">
 				<div className="wrapper">
-					<Chat />
+					<Suspense fallback={<div>Loading...</div>}>
+						<Await
+							resolve={data.chatResponse}
+							errorElement={<div>Failed to loading chats</div>}
+						>
+							{(chatResponse) => {
+								if (chatResponse.data.length === 0) {
+									return <div>No Chats Yet</div>;
+								} else {
+									return <Chat chats={chatResponse.data} />;
+								}
+							}}
+						</Await>
+					</Suspense>
 				</div>
 			</div>
 		</div>
