@@ -24,6 +24,9 @@ routes.patch(
 	userController.updateMe
 );
 
+// get user notifications
+routes.get('/notifications', userController.getUserNotificationsNumber);
+
 // *** restrict to specific roles (middleware) *** //
 routes.use(authController.restrictTo('admin'));
 routes
