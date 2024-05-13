@@ -10,7 +10,7 @@ import EditProperty from './routes/editMyProperty/editMyProperty';
 import Favourites from './routes/favourites/Favourites';
 import HomePage from './routes/homePage/homePage';
 import LawyerPage from './routes/lawyerPage/LawyerPage';
-import { Layout, RequireAuth } from './routes/layout/layout';
+import { Layout, RequireAdminOrLayer, RequireAuth } from './routes/layout/layout';
 import ListPage from './routes/listPage/listPage';
 import Login from './routes/login/login';
 import NewPostPage from './routes/newPostPage/newPostPage';
@@ -71,14 +71,21 @@ function App() {
 					path: '/edit/property/:id',
 					element: <EditProperty />,
 				},
-				{
-					path: '/lawyer',
-					element: <LawyerPage />,
-				},
+
 				{
 					path: '/favourites',
 					element: <Favourites />,
 					loader: myFavoritesLoader,
+				},
+			],
+		},
+		{
+			path: '/',
+			element: <RequireAdminOrLayer />,
+			children: [
+				{
+					path: '/lawyer',
+					element: <LawyerPage />,
 				},
 			],
 		},
