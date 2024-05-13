@@ -10,6 +10,9 @@ import isPropertySaved from '../utils/checkPropertySaved.util';
 // +[1] getAll - get all documents from a collection (Model)
 export const getAll = (Model: Model<any>, modelName?: string) =>
 	catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+		if (modelName === 'property') {
+			req.query.approved = 'true';
+		}
 		const features = new APIFeatures(Model.find(), req.query)
 			.filter()
 			.sort()
@@ -65,15 +68,13 @@ export const getOne = (Model: Model<any>, popOptions?: any, modelName?: string) 
 				}`;
 			}
 			const isFav = await isPropertySaved(req, res, doc._id);
-			doc.contract = `${req.protocol}://${req.get('host')}/img/properties/${
-				doc.contract
-			}`;
+
 			// append isFav to the response object
 			doc.isFav = isFav;
 			// create new objet from doc to avoid adding isFav to the database
 			const newDoc = { ...doc._doc, isFav };
 			// remove contract from the response object
-
+			delete newDoc.contract;
 			return res.status(200).json({
 				status: 'success',
 				data: {
