@@ -52,7 +52,6 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 		description: {
 			type: String,
 			required: [true, 'The Property must has a description'],
-			trim: true,
 			maxlength: [1200, 'The description must be at least 1200 characters'],
 		},
 		// 3
@@ -76,6 +75,9 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 				type: String,
 			},
 			whatsapp: {
+				type: String,
+			},
+			photo: {
 				type: String,
 			},
 		},
