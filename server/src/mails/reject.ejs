@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Meta tags, styles, and other header content -->
+	</head>
+	<body>
+		<!-- Main content section -->
+		<table>
+			<tr>
+				<td>
+					<h1>MAZ Realty</h1>
+					<p>Hello <%= user.name %>,</p>
+					<hr />
+					<h1>Welcome to MAZ Realty</h1>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>We regret to inform you that your property submission has been rejected due to issues with the contract.</p>
+					<p>Please review your contract and make the necessary corrections. Once the issues are resolved, you can resubmit your property for approval.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Here are the details of your property:</p>
+					<ul>
+						<li><strong>Property Name:</strong> <%= property.name %></li>
+						<li><strong>Property Type:</strong> <%= property.type %></li>
+						<li><strong>Address:</strong> <%= property.address %></li>
+						<li><strong>Price:</strong> <%= property.price %></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Thank you for your understanding.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>If you have any questions or need further assistance, please contact our support team at <a href="mailto:support@mazrealty.live">support@mazrealty.live</a>.</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
