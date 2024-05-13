@@ -88,14 +88,33 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/users/65b366caefa6532aa455e17d",
+							"raw": "{{url}}api/v1/users/662aa962cf52dc2cdceec751",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"users",
-								"65b366caefa6532aa455e17d"
+								"662aa962cf52dc2cdceec751"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/users/notifications",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"notifications"
 							]
 						}
 					},
@@ -340,6 +359,41 @@
 									"key": "page",
 									"value": "2",
 									"disabled": true
+								},
+								{
+									"key": "price[lte]",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "shop",
+									"disabled": true
+								},
+								{
+									"key": "transaction",
+									"value": "sale",
+									"disabled": true
+								},
+								{
+									"key": "city",
+									"value": "663520f9134893285cb91e0b",
+									"disabled": true
+								},
+								{
+									"key": "price[gte]",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "price[lte]",
+									"value": "1000000",
+									"disabled": true
+								},
+								{
+									"key": "bathrooms",
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -438,14 +492,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/properties/660d3c91dc1273022805abb4",
+							"raw": "{{url}}api/v1/properties/663f5ec31cd7c034142c799b",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"properties",
-								"660d3c91dc1273022805abb4"
+								"663f5ec31cd7c034142c799b"
 							]
 						}
 					},
@@ -535,16 +589,24 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/properties/6639da30d1a6cc3990b475e0",
+							"raw": "{{url}}api/v1/properties/6637db84a4288a207ce141ae",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"properties",
-								"6639da30d1a6cc3990b475e0"
+								"6637db84a4288a207ce141ae"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -578,14 +640,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/favorites/65d35055f1d0163220ea158b",
+							"raw": "{{url}}api/v1/favorites/6639dad1d1a6cc3990b475f0",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"favorites",
-								"65d35055f1d0163220ea158b"
+								"6639dad1d1a6cc3990b475f0"
 							]
 						}
 					},
@@ -696,6 +758,128 @@
 								"v1",
 								"admin",
 								"approved-properties"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "chats",
+			"item": [
+				{
+					"name": "get my chats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/chats",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create chat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiverId\": \"6639b770cb09ee107cca8e30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/v1/chats",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one chat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/chats/663f309ef3290a20441d508c",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"chats",
+								"663f309ef3290a20441d508c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read chat",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/chats/read/id",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"chats",
+								"read",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "messages",
+			"item": [
+				{
+					"name": "send message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"fourth message\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/v1/messages/663f309ef3290a20441d508c",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"663f309ef3290a20441d508c"
 							]
 						}
 					},
