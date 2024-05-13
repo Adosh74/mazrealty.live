@@ -324,12 +324,13 @@ function EditProperty() {
 							/>
 						))}
 
-					<SliderForEdit
+
+				</div>
+									<SliderForEdit
 						images={property.images}
 						propertyId={property._id}
-						setProperty={setProperty}
+						
 					/>
-				</div>
 			</div>
 		</div>
 	);

@@ -1,18 +1,9 @@
 @import '../../responsive.scss';
 
-.sliderForEdit {
-	width: 100%;
-	height: 350px;
-	display: flex;
-	gap: 20px;
-    text-align: center;
-	
+.image-gallery-container {
+  
 
-	@include sm {
-		height: 280px;
-	}
-
-	.fullSlider {
+  	.fullSlider {
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
@@ -68,44 +59,52 @@
 			cursor: pointer;
 		}
 	}
+	.image-gallery {
 
-
-
-	.bigImage {
- display: flex;
-    flex-direction: column; /* Display images in a column */
-    gap: 20px; /* Adjust as needed for spacing between images */
-    max-height: 350px; /* Set a maximum height for the container */
-    padding: 10px 0; /* Optional: Add padding to the top and bottom */
-    align-items: center; /* Align images to the center horizontally */
-
-    .remove{
-		cursor: pointer;
-          background-color:  rgb(135, 25, 25);
-          color: white;
-          border-radius: 50%;
-          width: 40px;
-		  padding: 6px;
-          height: auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-		  &:hover{
-          background-color: red;
-		  }
-	}
-	
-	img {
-    width: 60%; 
-    max-width: 100%; 
-    height: auto; 
-    border-radius: 10px; 
-    cursor: pointer; 
-
-	}
-		@include sm {
-			flex: 2;
-		}
-	}
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  grid-gap: 10px;
+  justify-items: center;
 }
+
+.image-wrapper {
+  position: relative;
+  display: inline-block; /* Ensure the wrapper doesn't take up extra space */
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.delete-btn {
+  position: absolute;
+  padding: 8px;
+  border-radius: 15px;
+  border-top-left-radius: 0px; 
+  border-bottom-left-radius: 0px; 
+  background-color: rgb(137, 27, 27);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  &:hover{
+  background-color: red;
+  transition: 0.4s ease;
+  }
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

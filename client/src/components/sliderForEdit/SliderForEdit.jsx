@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import apiRequest from '../../lib/apiRequest';
 import './sliderForEdit.scss';
 
-function Slider({ images, propertyId }) {
+function SliderForEdit({ images, propertyId }) {
 	const [imageIndex, setImageIndex] = useState(null);
 	const navigate = useNavigate();
+	const [galleryImages, setGalleryImages] = useState(images);
 
 	const changeSlide = (direction) => {
 		if (direction === 'left') {
@@ -24,7 +25,7 @@ function Slider({ images, propertyId }) {
 		}
 	};
 
-	const deletePhoto = async (img) => {
+	const deleteImage = async (img,index ) => {
 		const imgName = img.split('properties/')[1];
 
 		try {
@@ -41,7 +42,10 @@ function Slider({ images, propertyId }) {
 			// rerender edit property page
 			// navigate(`/edit/property/${propertyId}`);
 			// navigate not working, so I used window.location.reload()
-			window.location.reload();
+			// window.location.reload();
+			const updatedImages = [...galleryImages];
+            updatedImages.splice(index, 1);
+            setGalleryImages(updatedImages);
 		} catch (error) {
 			console.log(error);
 			toast.error('Something went wrong');
@@ -49,7 +53,7 @@ function Slider({ images, propertyId }) {
 	};
 
 	return (
-		<div className="sliderForEdit">
+		<div className="image-gallery-container">
 			{imageIndex !== null && (
 				<div className="fullSlider">
 					<div className="arrow" onClick={() => changeSlide('left')}>
@@ -66,42 +70,20 @@ function Slider({ images, propertyId }) {
 					</div>
 				</div>
 			)}
-			<div className="bigImage">
-				{/* {images &&
-					images.length > 0 &&
-					Array.from(images).map((image, index) => (
-						<img
-							key={index}
-							src={URL.createObjectURL(image)}
-							alt="property"
-						/>
-					))} */}
-
-				{images.map((image, index) => (
-					<div key={index}>
-						<div onClick={() => deletePhoto(image)} className="remove">
-							X
-						</div>
-						<img
-							src={image}
-							alt=""
-							onClick={() => setImageIndex(index)}
-							// show only 3 images in small images
-							style={{
-								display: index < 3 ? 'block' : 'none',
-								paddingBottom: '60px',
-							}}
-						/>
-					</div>
-				))}
-				{images.length > 4 && (
-					<div className="moreImages">
-						<p>+{images.length - 4}</p>
-					</div>
-				)}
-			</div>
+ <div className="image-gallery-container">
+      <div className="image-gallery">
+        {galleryImages.map((imageUrl, index) => (
+          <div key={index} className="image-wrapper">
+            <img src={imageUrl} alt={`Image ${index}`} onClick={() => setImageIndex(index )}
+						// show only 3 images in small images
+					/>
+            <button className="delete-btn" onClick={() => deleteImage(imageUrl,index)}>X</button>
+          </div>
+        ))}
+      </div>
+    </div>
 		</div>
 	);
 }
 
-export default Slider;
+export default SliderForEdit;
