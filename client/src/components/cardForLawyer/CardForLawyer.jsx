@@ -37,9 +37,8 @@ function CardForLawyer({ item }) {
 					secondary: '#FFFAEE',
 				},
 			});
-
-			// rerender the component after the property has been rejected
-			navigate('/lawyer', { replace: true });
+			// reload the page after the property has been rejected
+			window.location.reload();
 		} catch (error) {
 			console.log(error);
 			toast.error('Failed to reject property', {
