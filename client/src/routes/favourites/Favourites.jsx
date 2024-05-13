@@ -19,7 +19,6 @@ function Favourites() {
 							errorElement={<div>Failed to load properties</div>}
 						>
 							{(favorites) => {
-								console.log(favorites);
 								if (favorites.length === 0) {
 									return <h1>No properties found</h1>;
 								} else {
