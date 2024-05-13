@@ -36,6 +36,7 @@ export interface IPropertySchema extends Document {
 	city: ICity;
 	Furnished: boolean;
 	level: number;
+	type: string;
 	find: (query: any) => any;
 }
 
