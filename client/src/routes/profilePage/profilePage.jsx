@@ -32,10 +32,12 @@ function ProfilePage() {
 						<Link to="/profile/update">
 							<button>Update Profile</button>
 						</Link>
-
-						<Link to="/lawyer">
-							<button>Show contracts</button>
-						</Link>
+						{(currentUser.role === 'lawyer' ||
+							currentUser.role === 'admin') && (
+							<Link to="/lawyer">
+								<button>Show contracts</button>
+							</Link>
+						)}
 					</div>
 					<div className="info">
 						<span>
