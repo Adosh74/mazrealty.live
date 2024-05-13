@@ -8,5 +8,6 @@ router.use(authController.protect, authController.restrictTo('lawyer', 'admin'))
 
 router.get('/not-approved', lawyerController.getNotApproved);
 router.patch('/approve-property/:propertyId', lawyerController.approveProperty);
+router.delete('/reject-property/:propertyId', lawyerController.rejectProperty);
 
 export default router;
