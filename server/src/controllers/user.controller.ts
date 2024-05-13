@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import { LOGGER } from '../logging';
+import Chat from '../models/chat.model';
 import Property from '../models/property.model';
 import User from '../models/user.model';
+import catchAsync from '../utils/catchAsync.util';
 import filterObj from '../utils/filterObj.util';
 import * as Factory from './handlerFactory.controller';
 
@@ -92,3 +94,18 @@ export const updateMe = async (req: Request, res: Response, next: NextFunction) 
 		},
 	});
 };
+
+// *** getUserNotifications - get user notifications
+
+export const getUserNotificationsNumber = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		const userId = (req as any).user.id;
+		// get chats where the user not in seenBy array
+		const chats = await Chat.count({
+			usersIDs: userId,
+			seenBy: { $ne: userId },
+		});
+
+		res.status(200).json(chats);
+	}
+);
