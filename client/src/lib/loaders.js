@@ -30,7 +30,9 @@ export const myFavoritesLoader = async ({ request, params }) => {
 
 export const myPropertiesLoader = async ({ request, params }) => {
 	const res = apiRequest.get('/properties/my-properties');
+	const chatRes = apiRequest.get('/chats');
 	return defer({
 		properties: res.then((res) => res.data.data.properties),
+		chatResponse: chatRes,
 	});
 };
