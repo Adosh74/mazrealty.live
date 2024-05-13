@@ -2,11 +2,16 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import baseURL from '../../lib/baseURL';
+import useNotificationStore from '../../lib/notificationStore';
 import './navbar.scss';
 
 function Navbar() {
 	const [open, setOpen] = useState(false);
 	const { currentUser } = useContext(AuthContext);
+	const fetch = useNotificationStore((state) => state.fetch);
+	const number = useNotificationStore((state) => state.number);
+
+	if (currentUser) fetch();
 
 	return (
 		<nav>
@@ -18,7 +23,7 @@ function Navbar() {
 				<a href="/">Home</a>
 				<a href="/">About</a>
 				<a href="/">Contact</a>
-				{currentUser  &&<a href="/favourites">Favourites</a>}
+				{currentUser && <a href="/favourites">Favourites</a>}
 			</div>
 			<div className="right">
 				{currentUser ? (
@@ -29,7 +34,7 @@ function Navbar() {
 						/>
 						<span>{currentUser.name.split(' ')[0]}</span>
 						<Link to="/profile" className="profile">
-							<div className="notification">3</div>
+							{number > 0 && <div className="notification">{number}</div>}
 							<span>Profile</span>
 						</Link>
 					</div>
@@ -52,22 +57,20 @@ function Navbar() {
 					<a href="/">Home</a>
 					<a href="/">About</a>
 					<a href="/">Contact</a>
-				{currentUser  &&<a href="/favourites">Favourites</a>}
-				
+					{currentUser && <a href="/favourites">Favourites</a>}
+
 					{currentUser ? (
 						<>
-						<a href="/profile">Profile</a>
-						<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
+							<a href="/profile">Profile</a>
+							<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
 						</>
-				) : (
-					<>
-						<a href="/login">Sign in</a>
-						<a href="/register" >
-							Sign up
-						</a>
-						<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
-					</>
-				)}
+					) : (
+						<>
+							<a href="/login">Sign in</a>
+							<a href="/register">Sign up</a>
+							<button onClick={() => setOpen((prev) => !prev)}>Hide</button>
+						</>
+					)}
 				</div>
 			</div>
 		</nav>
