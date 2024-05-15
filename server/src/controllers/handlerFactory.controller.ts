@@ -10,9 +10,6 @@ import isPropertySaved from '../utils/checkPropertySaved.util';
 // +[1] getAll - get all documents from a collection (Model)
 export const getAll = (Model: Model<any>, modelName?: string) =>
 	catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-		if (modelName === 'property') {
-			req.query.approved = 'true';
-		}
 		const features = new APIFeatures(Model.find(), req.query)
 			.filter()
 			.sort()
