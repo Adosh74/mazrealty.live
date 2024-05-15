@@ -1,8 +1,7 @@
 @import '../../responsive.scss';
 
 .image-gallery-container {
-  
-
+ 
   	.fullSlider {
 		position: absolute;
 		width: 100vw;
@@ -20,6 +19,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+            cursor: pointer;
 
 			img {
 				width: 50px;
@@ -59,39 +59,61 @@
 			cursor: pointer;
 		}
 	}
-	.image-gallery {
-
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
-  grid-gap: 10px;
-  justify-items: center;
+  	.image-gallery {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center; 
+  padding: 10px; 
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
+  overflow-y: auto;
+  max-height: 50vh; 
+  max-width: 80vh;
+  background-color: rgb(202, 174, 174);
+margin-bottom: 10px;
 }
 
 .image-wrapper {
   position: relative;
-  display: inline-block; /* Ensure the wrapper doesn't take up extra space */
-}
+  width: calc(50% - 10px); 
+  padding: 10px;
+  min-width: 20vh;
+  min-height: auto;
+  margin-bottom: 10px; 
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.05); 
+    }
+    img {
+      min-height: 200px;
+	  max-height: 200px;
+      width: auto;
+      cursor: pointer;
+      display: block; 
+      border-radius: inherit; 
+      
+    }
 
-.image-wrapper img {
-  max-width: 100%;
-  height: auto;
-  cursor: pointer;
-}
-
-.delete-btn {
-  position: absolute;
-  padding: 8px;
-  border-radius: 15px;
-  border-top-left-radius: 0px; 
-  border-bottom-left-radius: 0px; 
-  background-color: rgb(137, 27, 27);
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  &:hover{
-  background-color: red;
-  transition: 0.4s ease;
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 6px;
+      background-color: rgba(0, 0, 0, 0.5); 
+      color: white;
+      border: none;
+      border-radius: 50%; 
+      cursor: pointer;
+      transition: background-color 0.3s ease; 
+      &:hover {
+        background-color: rgba(255, 0, 0, 0.7); 
+      }
+    }}
+	@media (max-width: 600px) {
+  .image-wrapper {
+    width: calc(50% - 10px); 
   }
 }
 }

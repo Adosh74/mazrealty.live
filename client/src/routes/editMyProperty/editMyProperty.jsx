@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import SliderForEdit from '../../components/sliderForEdit/SliderForEdit';
 import { AuthContext } from '../../context/authContext';
@@ -14,10 +13,9 @@ function EditProperty() {
 	const [value, setValue] = useState('');
 	const [cities, setCities] = useState([]);
 	const [property, setProperty] = useState([]);
-	const [images, setImages] = useState(null);
+	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
-	const [contractImage, setContractImage] = useState(null);
 
 	const { currentUser } = useContext(AuthContext);
 
@@ -129,7 +127,7 @@ function EditProperty() {
 		console.log(input);
 
 		//  ////////////////////////////////////////////////////////////////
-		setImages(property.images);
+		// setImages(property.images);
 		//  ////////////////////////////////////////////////////////////////
 
 		try {
@@ -152,6 +150,30 @@ function EditProperty() {
 			toast.error('Something went wrong');
 		}
 	};
+       
+    const handleImageChange = (e) => {
+		let count = (7-property.images.length);
+    			if((e.target.files.length+property.images.length )> 7){
+			toast.error(`Maxmam files is ${count}`, {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+			     
+                 e.target.value = null; 
+				setImages(null)	}
+				else{
+			 setImages(e.target.files)
+					}
+    };
 
 	return (
 		<div className="editProperty">
@@ -290,7 +312,6 @@ function EditProperty() {
 								defaultValue={property.level}
 							/>
 						</div>
-						{/* add Furnished that yes or no */}
 						<div className="item">
 							<label htmlFor="furnished">Furnished</label>
 							<select name="furnished" defaultValue={property.Furnished}>
@@ -298,39 +319,40 @@ function EditProperty() {
 								<option value="false">No</option>
 							</select>
 						</div>
-						{/* add contract field accept file type pdf or image */}
-
-						<button className="sendButton">Add</button>
+						<button className="sendButton">Edit</button>
 						{error && <p className="error">{error}</p>}
 					</form>
 				</div>
 			</div>
 			<div className="sideRight">
-				<div className="images">
-					<input
+				<div className="top" >
+				<input
 						type="file"
 						multiple
 						accept="image/*"
-						onChange={(e) => setImages(e.target.files)}
+						onChange={handleImageChange}
 					/>
-
-					{images &&
-						images.length > 0 &&
-						Array.from(images).map((image, index) => (
+				<div className="selected-images" >
+					
+						 {images &&
+						(images.length+property.images.length) <= 7 &&
+						Array.from(images).map((image, index) => (	
+							
 							<img
-								key={index}
+							   key={index}
 								src={URL.createObjectURL(image)}
 								alt="property"
+								style={{minHeight:"40vh",maxHeight:"40vh"}}
 							/>
-						))}
+						))}	
 
-
-				</div>
-									<SliderForEdit
-						images={property.images}
-						propertyId={property._id}
 						
-					/>
+				</div>
+				</div>
+				<div className="Buttom" >
+				<h1>Existing pictures</h1>		
+				<SliderForEdit images={property.images} propertyId={property._id}/>	
+			   </div>
 			</div>
 		</div>
 	);

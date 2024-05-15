@@ -108,6 +108,29 @@ function NewPostPage() {
 				</div>
 			</div>
 		);
+		const handleImages = (e) =>{
+			if(e.target.files.length > 7){
+			toast.error("Maxmam files is 7 ", {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+			     
+                 e.target.value = null; 
+				setImages(null)	}
+				else{
+			 setImages(e.target.files)
+					}
+
+		}
 	return (
 		<div className="newPostPage">
 			<div className="formContainer">
@@ -128,7 +151,7 @@ function NewPostPage() {
 						</div>
 						<div className="item description">
 							<label htmlFor="description">Description</label>
-							<ReactQuill theme="snow" onChange={setValue} value={value} />
+							<ReactQuill  theme="snow" onChange={setValue} value={value} />
 						</div>
 						<div className="item">
 							<label htmlFor="city">City</label>
@@ -218,24 +241,17 @@ function NewPostPage() {
 			<div className="sideContainer">
 				{/* take multiple images from user */}
 				<input
-					// pretty style for input file
-					style={{
-						border: '1px solid #ccc',
-						padding: '10px',
-						borderRadius: '5px',
-						cursor: 'pointer',
-					}}
 					type="file"
 					multiple
 					// set max images to 7
 					max={7}
 					accept="image/*"
-					onChange={(e) => setImages(e.target.files)}
+					onChange={handleImages}
 				/>
 				{/* display selected images */}
-
+               <div className="imageContainer">
 				{images &&
-					images.length > 0 &&
+					images.length <= 7 &&
 					Array.from(images).map((image, index) => (
 						<img
 							key={index}
@@ -243,6 +259,7 @@ function NewPostPage() {
 							alt="property"
 						/>
 					))}
+					</div>
 			</div>
 		</div>
 	);

@@ -17,7 +17,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+margin-bottom: 10px;
+   box-shadow: 5px 5px 5px 0px rgba(189, 188, 188, 0.5);
 
   a {
     color: $normal-color;
