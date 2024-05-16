@@ -36,6 +36,7 @@
 		"pino-pretty": "^10.3.1",
 		"pm2": "^5.3.1",
 		"sharp": "^0.33.3",
+		"socket.io": "^4.7.5",
 		"validator": "^13.11.0"
 	},
 	"devDependencies": {
@@ -53,6 +54,7 @@
 		"@types/multer": "^1.4.11",
 		"@types/nodemailer": "^6.4.14",
 		"@types/sharp": "^0.32.0",
+		"@types/socket.io": "^3.0.2",
 		"@types/validator": "^13.11.8",
 		"@typescript-eslint/eslint-plugin": "^5.59.8",
 		"@typescript-eslint/parser": "^5.59.8",
