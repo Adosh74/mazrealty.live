@@ -10,7 +10,7 @@ export const SocketContextProvider = ({ children }) => {
 	const [socket, setsocket] = useState(null);
 
 	useEffect(() => {
-		setsocket(io('http://localhost:4000/'));
+		setsocket(io('http://localhost:3001/'));
 	}, []);
 
 	useEffect(() => {
