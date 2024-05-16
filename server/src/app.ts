@@ -71,11 +71,7 @@ app.use(globalErrorHandler);
 
 // create http server
 const server = http.createServer(app);
-const io = new Server(server, {
-	cors: {
-		origin: 'http://localhost:5173',
-	},
-});
+const io = new Server(server);
 
 /// *** socket.io *** ///
 // array to store all connected users
