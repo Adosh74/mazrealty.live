@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { app as server } from './app';
+import server from './app';
 import './database/mongo';
 //import './database/redis';
 import { LOGGER } from './logging';
