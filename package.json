@@ -10,7 +10,8 @@
 		"build:client": "cd client && npm i && npm run build",
 		"build:server": "cd server && npm i && npm run build",
 		"build": "concurrently \"npm run build:client\" \"npm run build:server\"",
-		"start": "cd server && npm start"
+		"copy:env": "node handleDeployment.js",
+		"start": "npm run copy:env && cd server && npm start"
 	},
 	"devDependencies": {
 		"@jridgewell/gen-mapping": "^0.3.5",
