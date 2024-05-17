@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import http from 'http';
 import morgan from 'morgan';
+import path from 'path';
 import { Server } from 'socket.io';
 import globalErrorHandler from './controllers/error.controller';
 import { LOGGER } from './logging';
@@ -18,6 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // serve static files
 app.use(express.static('public'));
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../../client/dist')));
+}
 
 // parse cookies
 app.use(cookieParser());
@@ -63,11 +68,17 @@ app.get('/healthz', (req, res) => {
 app.use('/api/v1', routes);
 
 // handle undefined routes
-app.all('*', (req, res, next) => {
-	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
-});
+// app.all('*', (req, res, next) => {
+// 	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+// });
 
 app.use(globalErrorHandler);
+
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', (req, res) =>
+		res.sendFile(path.join(__dirname, '../../client/dist/index.html'))
+	);
+}
 
 // create http server
 const server = http.createServer(app);
