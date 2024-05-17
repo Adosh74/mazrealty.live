@@ -6,7 +6,8 @@
 	"scripts": {
 		"start:dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
 		"build": "tsc",
-		"start": "pm2 delete mazrealty; pm2 start --name mazrealty dist/server.js -i 0 --no-autorestart",
+		"start": "node dist/server.js",
+		"start:prod": "pm2 delete mazrealty; pm2 start --name mazrealty dist/server.js -i 0",
 		"import:cities": "ts-node ./src/database/importCitiesData.ts --import",
 		"delete:cities": "ts-node ./src/database/importCitiesData.ts --delete",
 		"import:properties": "ts-node ./src/database/importPropertiesData.ts --import",

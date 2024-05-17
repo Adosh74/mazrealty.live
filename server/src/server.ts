@@ -8,7 +8,7 @@ dotenv.config({ path: `${process.cwd()}/.env` });
 
 const { NODE_ENV } = process.env;
 
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 server.listen(PORT, () => {
 	LOGGER.info(`Server running in ${NODE_ENV} mode on port ${PORT}`);
