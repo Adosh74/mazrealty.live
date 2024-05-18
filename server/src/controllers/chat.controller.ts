@@ -38,7 +38,10 @@ export const getMyChats = catchAsync(
 			})
 		);
 
-		res.status(200).json(newChatsObj);
+		res.status(200).json({
+			status: 'success',
+			data: newChatsObj,
+		});
 	}
 );
 
@@ -73,7 +76,10 @@ export const getOneChat = catchAsync(
 
 		await chat.save();
 
-		res.status(200).json(chat);
+		res.status(200).json({
+			status: 'success',
+			data: chat,
+		});
 	}
 );
 
@@ -103,7 +109,10 @@ export const addChat = catchAsync(
 			usersIDs: [senderId, receiverId],
 		});
 
-		res.status(201).json(chat);
+		res.status(201).json({
+			status: 'success',
+			data: chat,
+		});
 	}
 );
 
@@ -129,6 +138,9 @@ export const readChat = catchAsync(
 			await chat.save();
 		}
 
-		res.status(200).json(chat);
+		res.status(200).json({
+			status: 'success',
+			data: chat,
+		});
 	}
 );
