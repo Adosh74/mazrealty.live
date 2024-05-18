@@ -54,6 +54,18 @@ We'll use a basic client/server architecture, where a single server is deployed 
 
 - `GET /api/v1/cities/` - Get all cities
 
+**socket events:**
+
+`newUser` - when is connected and authenticated (pass the userId)
+
+`sendMessage` - when a user sends a message (
+  pass the object having {
+  **receiverId**: receiverId from response,
+  **data**: all response
+}
+  
+)
+
 ## Schema
 
 **users:**
