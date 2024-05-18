@@ -22,10 +22,10 @@ function Chat({ chats }) {
 	const handleOpenChat = async (chatId, receiver) => {
 		try {
 			const res = await apiRequest.get(`/chats/${chatId}`);
-			if (res.data.seenBy.includes(currentUser._id)) {
+			if (res.data.data.seenBy.includes(currentUser._id)) {
 				decrease();
 			}
-			setChat({ ...res.data, receiver });
+			setChat({ ...res.data.data, receiver });
 		} catch (error) {
 			toast.error('error load chat', {
 				style: {
@@ -54,11 +54,11 @@ function Chat({ chats }) {
 			const res = await apiRequest.post(`/messages/${chat._id}`, {
 				text,
 			});
-			setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
+			setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data.data] }));
 			e.target.reset();
 			socket.emit('sendMessage', {
 				receiverId: chat.receiver._id,
-				data: res.data,
+				data: res.data.data,
 			});
 		} catch (error) {
 			console.log(error);
