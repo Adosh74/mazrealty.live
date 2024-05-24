@@ -21,12 +21,13 @@ function Chat({ chats }) {
 
 	const handleOpenChat = async (chatId, receiver) => {
 		try {
-			const res = await apiRequest.get(`/chats/${chatId}`);
+			const res = await apiRequest.get(`/chats/${receiver._id}`);
 			if (res.data.seenBy.includes(currentUser._id)) {
 				decrease();
 			}
 			setChat({ ...res.data, receiver });
 		} catch (error) {
+			console.log(error);
 			toast.error('error load chat', {
 				style: {
 					border: '1px solid #713200',
@@ -51,8 +52,9 @@ function Chat({ chats }) {
 		if (!text) return;
 
 		try {
-			const res = await apiRequest.post(`/messages/${chat._id}`, {
+			const res = await apiRequest.post('/messages/', {
 				text,
+				to: chat.receiver._id,
 			});
 			setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
 			e.target.reset();
