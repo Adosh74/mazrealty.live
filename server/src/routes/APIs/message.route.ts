@@ -7,6 +7,6 @@ const router = Router();
 // protect all message routes
 router.use(protect);
 
-router.post('/:chatId', addMessage);
+router.post('/', addMessage);
 
 export default router;

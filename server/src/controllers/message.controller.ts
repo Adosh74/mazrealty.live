@@ -6,13 +6,18 @@ import catchAsync from '../utils/catchAsync.util';
 export const addMessage = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const userId = (req as any).user._id;
-		const { chatId } = req.params;
-		const { text } = req.body;
+		const { text, to } = req.body;
 
-		const chat = await Chat.findById(chatId);
+		// check if chat exists
+
+		let chat = await Chat.findOne({
+			usersIDs: { $all: [userId, to] },
+		});
 
 		if (!chat) {
-			return res.status(404).json({ message: 'Chat not found' });
+			chat = await Chat.create({
+				usersIDs: [userId, to],
+			});
 		}
 
 		if (!chat.usersIDs.includes(userId)) {
@@ -23,7 +28,7 @@ export const addMessage = catchAsync(
 		const message = await Message.create({
 			text,
 			userId,
-			chatId,
+			chatId: chat._id,
 		});
 
 		// update chat
