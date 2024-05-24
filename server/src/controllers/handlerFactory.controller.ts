@@ -19,14 +19,39 @@ export const getAll = (Model: Model<any>, modelName?: string) =>
 		const docs = await features.query;
 
 		if (modelName === 'property') {
-			docs.forEach((doc: any) => {
-				doc.images.forEach((img: string) => {
-					if (!img.startsWith('https')) {
-						doc.images[doc.images.indexOf(img)] = `${
-							req.protocol
-						}://${req.get('host')}/img/properties/${img}`;
+			const newDocs = await Promise.all(
+				docs.map(async (doc: any) => {
+					doc.images.forEach((img: string) => {
+						if (!img.startsWith('https')) {
+							doc.images[doc.images.indexOf(img)] = `${
+								req.protocol
+							}://${req.get('host')}/img/properties/${img}`;
+						}
+					});
+					if ((req as any).user) {
+						// check if property is favorited by the user or not
+						(await isPropertySaved(req, res, doc._id))
+							? (doc.isFav = true)
+							: (doc.isFav = false);
 					}
-				});
+					doc.isFav = doc.isFav || false;
+					return {
+						...doc._doc,
+						isFav: doc.isFav,
+					};
+				})
+			);
+			// newDocs = docs.map((doc: any) => {
+			// 	const newDoc = { ...doc._doc, isFav: doc.isFav };
+			// 	delete newDoc.contract;
+			// 	return newDoc;
+			// });
+			return res.status(200).json({
+				status: 'success',
+				results: docs.length,
+				data: {
+					data: newDocs,
+				},
 			});
 		}
 
@@ -64,7 +89,11 @@ export const getOne = (Model: Model<any>, popOptions?: any, modelName?: string) 
 					doc.owner.photo
 				}`;
 			}
-			const isFav = await isPropertySaved(req, res, doc._id);
+			let isFav = false;
+
+			if ((req as any).user) {
+				isFav = await isPropertySaved(req, res, doc._id);
+			}
 
 			// append isFav to the response object
 			doc.isFav = isFav;
