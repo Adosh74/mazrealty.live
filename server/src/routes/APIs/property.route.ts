@@ -1,10 +1,12 @@
 import { Router } from 'express';
+import authCheck from '../../middleware/authCheck.middleware';
 import upload from '../../middleware/upload.middleware';
 import * as authController from './../../controllers/auth.controller';
 import * as propertyController from './../../controllers/property.controller';
 
 const routes = Router();
 
+routes.use(authCheck);
 routes
 	.route('/')
 	.get(propertyController.getAllProperty)
