@@ -33,9 +33,6 @@ export const addMessage = catchAsync(
 
 		await chat.save();
 
-		res.status(201).json({
-			status: 'success',
-			data: message,
-		});
+		res.status(201).json(message);
 	}
 );
