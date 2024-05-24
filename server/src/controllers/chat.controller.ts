@@ -58,7 +58,12 @@ export const getOneChat = catchAsync(
 		const userId = (req as any).user._id;
 
 		if (!chat) {
-			return res.status(404).json({ message: 'Chat not found' });
+			// create chat
+			const newChat = await Chat.create({
+				usersIDs: [userId, to],
+			});
+
+			return res.status(200).json(newChat);
 		}
 
 		if (!chat.usersIDs.includes(userId)) {
