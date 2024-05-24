@@ -44,12 +44,16 @@ export const getMyChats = catchAsync(
 
 export const getOneChat = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const chatId = req.params.id;
+		const to = req.params.id;
 
-		const chat = await Chat.findById(chatId).select('-__v -updatedAt').populate({
-			path: 'messages',
-			select: '-__v -updatedAt',
-		});
+		const chat = await Chat.findOne({
+			usersIDs: { $all: [(req as any).user._id, to] },
+		})
+			.select('-__v -updatedAt')
+			.populate({
+				path: 'messages',
+				select: '-__v -updatedAt',
+			});
 
 		const userId = (req as any).user._id;
 
@@ -62,7 +66,9 @@ export const getOneChat = catchAsync(
 		}
 
 		// get last message from messages collection where chatId is chat._id
-		const lastMessage = await Message.findOne({ chatId }).sort({ createdAt: -1 });
+		const lastMessage = await Message.findOne({ chatId: chat._id }).sort({
+			createdAt: -1,
+		});
 
 		chat.lastMessage = lastMessage?.text || '';
 
