@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import Chat, { IChat } from '../models/chat.model';
 import Message from '../models/message.model';
 import User from '../models/user.model';
+import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
 
 export const getMyChats = catchAsync(
@@ -10,9 +11,9 @@ export const getMyChats = catchAsync(
 		const userId = (req as any).user._id;
 
 		// get all chats where user id is in usersIDs array and. remove user id from usersIDs array
-		const chats: IChat[] = await Chat.find({ usersIDs: userId }).select(
-			'-__v -updatedAt'
-		);
+		const chats: IChat[] = await Chat.find({ usersIDs: userId })
+			.select('-__v -updatedAt')
+			.select('-__v -updatedAt -messages');
 
 		// promise all to get all receiver name and photo from users collection to new object
 		const newChatsObj = await Promise.all(
@@ -45,6 +46,14 @@ export const getMyChats = catchAsync(
 export const getOneChat = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const to = req.params.id;
+
+		if (!to) {
+			return next(new AppError('to is required', 400));
+		}
+
+		if (to === (req as any).user._id) {
+			return next(new AppError('you can not get chat with your self', 400));
+		}
 
 		const chat = await Chat.findOne({
 			usersIDs: { $all: [(req as any).user._id, to] },
@@ -92,6 +101,14 @@ export const addChat = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const senderId = (req as any).user._id;
 		const { receiverId } = req.body;
+
+		if (!receiverId) {
+			return next(new AppError('receiverId is required', 400));
+		}
+
+		if(senderId === receiverId) {
+			return next(new AppError('you can not chat with your self', 400));
+		}
 
 		// check if receiver in users
 		const receiverExists = receiverId ? await User.findById(receiverId) : null;
