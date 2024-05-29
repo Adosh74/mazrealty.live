@@ -174,10 +174,17 @@ export const deleteImage = catchAsync(
 
 		const images = property.images.filter((image) => image !== req.body.image);
 
-		// delete image from public/properties
-		fs.unlinkSync(
-			path.join(process.cwd(), `public/img/properties/${req.body.image}`)
-		);
+		// check if image exists in /public/properties
+		if (
+			fs.existsSync(
+				path.join(process.cwd(), `public/img/properties/${req.body.image}`)
+			)
+		) {
+			// delete image from public/properties
+			fs.unlinkSync(
+				path.join(process.cwd(), `public/img/properties/${req.body.image}`)
+			);
+		}
 
 		property.images = images as [string];
 		await property.save();
