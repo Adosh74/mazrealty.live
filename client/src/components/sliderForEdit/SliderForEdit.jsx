@@ -26,8 +26,8 @@ function SliderForEdit({ images, propertyId }) {
 	};
 
 	const deleteImage = async (img,index ) => {
+		if (window.confirm("Are you sure you want to delete this Photo?")) {
 		const imgName = img.split('properties/')[1];
-
 		try {
 			await apiRequest.patch(`/properties/delete-image/${propertyId}`, {
 				image: imgName,
@@ -47,6 +47,7 @@ function SliderForEdit({ images, propertyId }) {
 			console.log(error);
 			toast.error('Something went wrong');
 		}
+	}
 	};
 
 	return (

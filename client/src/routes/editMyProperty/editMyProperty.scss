@@ -71,8 +71,17 @@
           border: none;
           background-color: teal;
           color: white;
-          font-weight: bold;
+          font-weight: 300;
+          font-size: 25px;
+          // padding: 0px 135px;
           cursor: pointer;
+				&:hover{
+				    animation: ColorChangee 0.8s infinite; 
+				}
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
         }
       }
     }
