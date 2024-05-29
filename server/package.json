@@ -11,7 +11,8 @@
 		"import:cities": "ts-node ./src/database/importCitiesData.ts --import",
 		"delete:cities": "ts-node ./src/database/importCitiesData.ts --delete",
 		"import:properties": "ts-node ./src/database/importPropertiesData.ts --import",
-		"delete:properties": "ts-node ./src/database/importPropertiesData.ts --delete"
+		"delete:properties": "ts-node ./src/database/importPropertiesData.ts --delete",
+		"create:properties": "ts-node ./src/database/createPropertiesData.ts"
 	},
 	"repository": {
 		"type": "git",
