@@ -25,8 +25,9 @@ function SliderForEdit({ images, propertyId }) {
 		}
 	};
 
-	const deleteImage = async (img,index ) => {
-		const imgName = img.split('properties/')[1];
+	const deleteImage = async (img, index) => {
+		// if image has properties in the name
+		const imgName = img.includes('properties') ? img.split('properties/')[1] : img;
 
 		try {
 			await apiRequest.patch(`/properties/delete-image/${propertyId}`, {
@@ -40,8 +41,8 @@ function SliderForEdit({ images, propertyId }) {
 				},
 			});
 			const updatedImages = [...galleryImages];
-            updatedImages.splice(index, 1);
-            setGalleryImages(updatedImages);
+			updatedImages.splice(index, 1);
+			setGalleryImages(updatedImages);
 			// window.location.reload();
 		} catch (error) {
 			console.log(error);
@@ -67,18 +68,26 @@ function SliderForEdit({ images, propertyId }) {
 					</div>
 				</div>
 			)}
-		{galleryImages.length >0 &&
-      <div className="image-gallery">
-       {galleryImages.map((imageUrl, index) => (
-          <div key={index} className="image-wrapper">
-            <img src={imageUrl} alt={`Image ${index}`} onClick={() => setImageIndex(index )}
+			{galleryImages.length > 0 && (
+				<div className="image-gallery">
+					{galleryImages.map((imageUrl, index) => (
+						<div key={index} className="image-wrapper">
+							<img
+								src={imageUrl}
+								alt={`Image ${index}`}
+								onClick={() => setImageIndex(index)}
 							/>
-            <button className="delete-btn" onClick={() => deleteImage(imageUrl,index)}>X</button>
-          </div>
-        ))}
-      </div>}
-    </div>
-	
+							<button
+								className="delete-btn"
+								onClick={() => deleteImage(imageUrl, index)}
+							>
+								X
+							</button>
+						</div>
+					))}
+				</div>
+			)}
+		</div>
 	);
 }
 
