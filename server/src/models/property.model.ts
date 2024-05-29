@@ -168,12 +168,14 @@ export const propertySchema: Schema<IPropertySchema> = new Schema(
 			type: String,
 			trim: true,
 			maxlength: [255, 'The latitude must be at least 255 characters'],
+			default: '30.06263',
 		},
 		// 16
 		longitude: {
 			type: String,
 			trim: true,
 			maxlength: [255, 'The longitude must be at least 255 characters'],
+			default: '31.24967',
 		},
 	},
 	{
