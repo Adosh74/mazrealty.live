@@ -54,10 +54,11 @@ export const getFavorites = catchAsync(async (req: Request, res: Response) => {
 
 	// add req.protocol and req.get('host') to favorite property images
 	favorites.forEach((favorite: any) => {
-		favorite.property.images = favorite.property.images.map(
-			(image: string) =>
-				`${req.protocol}://${req.get('host')}/img/properties/${image}`
-		);
+		favorite.property.images = favorite.property.images.map((image: string) => {
+			if (!image.startsWith('http'))
+				return `${req.protocol}://${req.get('host')}/img/properties/${image}`;
+			return image;
+		});
 	});
 
 	res.status(200).json({
