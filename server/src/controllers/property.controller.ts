@@ -4,6 +4,7 @@ import path from 'path';
 import ApprovedProp from '../models/approvedProp.model';
 import Property, { IPropertySchema } from '../models/property.model';
 import UserFavorite from '../models/userFavorite.model';
+import APIFeatures from '../utils/APIFeatures.util';
 import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
 import * as Factory from './handlerFactory.controller';
@@ -133,7 +134,11 @@ export const deleteOneProperty = catchAsync(
 export const getMyProperties = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const userId = (req as any).user.id;
-		const properties = await Property.find({ 'owner._id': userId });
+		const features = new APIFeatures(
+			Property.find({ 'owner._id': userId }),
+			req.query
+		).paginate();
+		const properties = await features.query;
 
 		properties.forEach((doc: any) => {
 			doc.images.forEach((img: string) => {
