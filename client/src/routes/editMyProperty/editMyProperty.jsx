@@ -16,9 +16,6 @@ function EditProperty() {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
-    const [loadingInfo, setLoadingInfo] = useState(false);
-    const [informationChanged, setInformationChanged] = useState(false);
-
 
 	const { currentUser } = useContext(AuthContext);
 
@@ -129,8 +126,11 @@ function EditProperty() {
 		formData.append('city', cityId);
 		console.log(input);
 
+		//  ////////////////////////////////////////////////////////////////
+		// setImages(property.images);
+		//  ////////////////////////////////////////////////////////////////
+
 		try {
-			setLoadingInfo(true);
 			const res = await apiRequest.patch(`/properties/${property._id}`, formData);
 			if (res.status === 200) {
 				toast.success('The property has been updated', {
@@ -149,15 +149,11 @@ function EditProperty() {
 			setError(error.response.data.message);
 			toast.error('Something went wrong');
 		}
-		 finally {
-            setLoadingInfo(false);
-        }
 	};
-       
-    const handleImageChange = (e) => {
-		let count = (7-property.images.length);
-    			if((e.target.files.length+property.images.length )> 7){
 
+	const handleImageChange = (e) => {
+		let count = 7 - property.images.length;
+		if (e.target.files.length + property.images.length > 7) {
 			toast.error(`Maxmam files is ${count}`, {
 				style: {
 					border: '1px solid #713200',
@@ -171,26 +167,20 @@ function EditProperty() {
 					secondary: '#FFFAEE',
 				},
 			});
-			     
-                 e.target.value = null; 
-				setImages(null)	}
-				else{
-			         setImages(e.target.files)
-			         setInformationChanged(true);
 
-					}
-    };
-
-    const handleInputChange = (e) => {
-        setInformationChanged(true);
-    };
+			e.target.value = null;
+			setImages(null);
+		} else {
+			setImages(e.target.files);
+		}
+	};
 
 	return (
 		<div className="editProperty">
 			<div className="formContainer">
 				<h1>Edit Property</h1>
 				<div className="wrapper">
-					<form onSubmit={handleSubmit} onChange={handleInputChange}>
+					<form onSubmit={handleSubmit}>
 						<div className="item">
 							<label htmlFor="name">Title</label>
 							<input
@@ -329,42 +319,37 @@ function EditProperty() {
 								<option value="false">No</option>
 							</select>
 						</div>
-						<button type="submit" className="sendButton" disabled={!informationChanged || loadingInfo}>
-                        {loadingInfo ? 'Updating...' : 'Edit'}
-                    </button>
+						<button className="sendButton">Edit</button>
 						{error && <p className="error">{error}</p>}
 					</form>
 				</div>
 			</div>
 			<div className="sideRight">
-				<div className="top" >
-				<input
+				<div className="top">
+					<input
 						type="file"
 						multiple
 						accept="image/*"
 						onChange={handleImageChange}
 					/>
-				<div className="selected-images" >
-					
-						 {images &&
-						(images.length+property.images.length) <= 7 &&
-						Array.from(images).map((image, index) => (	
-							
-							<img
-							   key={index}
-								src={URL.createObjectURL(image)}
-								alt="property"
-								style={{minHeight:"40vh",maxHeight:"40vh"}}
-							/>
-						))}	
+					<div className="selected-images">
+						{images &&
+							images.length + property.images.length <= 7 &&
+							Array.from(images).map((image, index) => (
+								<img
+									key={index}
+									src={URL.createObjectURL(image)}
+									alt="property"
+									style={{ minHeight: '40vh', maxHeight: '40vh' }}
+								/>
+							))}
+					</div>
+				</div>
+				<div className="Buttom">
+					<h1>Existing pictures</h1>
 
-						
+					<SliderForEdit images={property.images} propertyId={property._id} />
 				</div>
-				</div>
-				<div className="Buttom" >
-				<h1>Existing pictures</h1>		
-				<SliderForEdit images={property.images} propertyId={property._id}/>	
-			   </div>
 			</div>
 		</div>
 	);

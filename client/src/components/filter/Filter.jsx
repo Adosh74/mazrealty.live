@@ -43,6 +43,7 @@ function Filter() {
 				newQuery[key] = query[key];
 			}
 		}
+		newQuery.page = 1;
 		console.log(newQuery);
 		setSearchParams(newQuery);
 	};
