@@ -16,6 +16,9 @@ function EditProperty() {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
+    const [loadingInfo, setLoadingInfo] = useState(false);
+    const [informationChanged, setInformationChanged] = useState(false);
+
 
 	const { currentUser } = useContext(AuthContext);
 
@@ -126,11 +129,8 @@ function EditProperty() {
 		formData.append('city', cityId);
 		console.log(input);
 
-		//  ////////////////////////////////////////////////////////////////
-		// setImages(property.images);
-		//  ////////////////////////////////////////////////////////////////
-
 		try {
+			setLoadingInfo(true);
 			const res = await apiRequest.patch(`/properties/${property._id}`, formData);
 			if (res.status === 200) {
 				toast.success('The property has been updated', {
@@ -149,11 +149,15 @@ function EditProperty() {
 			setError(error.response.data.message);
 			toast.error('Something went wrong');
 		}
+		 finally {
+            setLoadingInfo(false);
+        }
 	};
        
     const handleImageChange = (e) => {
 		let count = (7-property.images.length);
     			if((e.target.files.length+property.images.length )> 7){
+
 			toast.error(`Maxmam files is ${count}`, {
 				style: {
 					border: '1px solid #713200',
@@ -171,8 +175,14 @@ function EditProperty() {
                  e.target.value = null; 
 				setImages(null)	}
 				else{
-			 setImages(e.target.files)
+			         setImages(e.target.files)
+			         setInformationChanged(true);
+
 					}
+    };
+
+    const handleInputChange = (e) => {
+        setInformationChanged(true);
     };
 
 	return (
@@ -180,7 +190,7 @@ function EditProperty() {
 			<div className="formContainer">
 				<h1>Edit Property</h1>
 				<div className="wrapper">
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit} onChange={handleInputChange}>
 						<div className="item">
 							<label htmlFor="name">Title</label>
 							<input
@@ -319,7 +329,9 @@ function EditProperty() {
 								<option value="false">No</option>
 							</select>
 						</div>
-						<button className="sendButton">Edit</button>
+						<button type="submit" className="sendButton" disabled={!informationChanged || loadingInfo}>
+                        {loadingInfo ? 'Updating...' : 'Edit'}
+                    </button>
 						{error && <p className="error">{error}</p>}
 					</form>
 				</div>

@@ -93,23 +93,25 @@ function SinglePage() {
 	};
 
 	const deleteProperty = async () => {
-		try {
-			const res = await apiRequest.delete(`/properties/${property._id}`);
-			if (res.status === 204) {
-				toast.success('The property has been deleted', {
-					style: {
-						borderRadius: '10px',
-						background: '#333',
-						color: '#fff',
-					},
-				});
-				navigate('/profile');
-			} else {
-				toast.error('Failed to delete property');
+		if (window.confirm("Are you sure you want to delete this property?")) {
+			try {
+				const res = await apiRequest.delete(`/properties/${property._id}`);
+				if (res.status === 204) {
+					toast.success('The property has been deleted', {
+						style: {
+							borderRadius: '10px',
+							background: '#333',
+							color: '#fff',
+						},
+					});
+					navigate('/profile');
+				} else {
+					toast.error('Failed to delete property');
+				}
+			} catch (error) {
+				console.log(error);
+				toast.error('Something went wrong');
 			}
-		} catch (error) {
-			console.log(error);
-			toast.error('Something went wrong');
 		}
 	};
 	return (
