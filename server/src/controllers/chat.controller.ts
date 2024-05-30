@@ -13,7 +13,8 @@ export const getMyChats = catchAsync(
 		// get all chats where user id is in usersIDs array and. remove user id from usersIDs array
 		const chats: IChat[] = await Chat.find({ usersIDs: userId })
 			.select('-__v -updatedAt')
-			.select('-__v -updatedAt -messages');
+			.select('-__v -updatedAt -messages')
+			.sort({ updatedAt: -1 });
 
 		// promise all to get all receiver name and photo from users collection to new object
 		const newChatsObj = await Promise.all(
@@ -106,7 +107,7 @@ export const addChat = catchAsync(
 			return next(new AppError('receiverId is required', 400));
 		}
 
-		if(senderId === receiverId) {
+		if (senderId === receiverId) {
 			return next(new AppError('you can not chat with your self', 400));
 		}
 
