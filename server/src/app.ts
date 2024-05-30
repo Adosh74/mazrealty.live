@@ -13,7 +13,7 @@ import AppError from './utils/AppError.util';
 const app = express();
 
 // *** middleware *** //
-// parse application/json and url-encoded forms
+// parse application/json and url-encoded forms....
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
