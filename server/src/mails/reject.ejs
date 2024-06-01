@@ -1,46 +1,133 @@
 <!doctype html>
 <html>
-	<head>
-		<!-- Meta tags, styles, and other header content -->
-	</head>
-	<body>
-		<!-- Main content section -->
-		<table>
-			<tr>
-				<td>
-					<h1>MAZ Realty</h1>
-					<p>Hello <%= user.name %>,</p>
-					<hr />
-					<h1>Welcome to MAZ Realty</h1>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>We regret to inform you that your property submission has been rejected due to issues with the contract.</p>
-					<p>Please review your contract and make the necessary corrections. Once the issues are resolved, you can resubmit your property for approval.</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>Here are the details of your property:</p>
-					<ul>
-						<li><strong>Property Name:</strong> <%= property.name %></li>
-						<li><strong>Property Type:</strong> <%= property.type %></li>
-						<li><strong>Address:</strong> <%= property.address %></li>
-						<li><strong>Price:</strong> <%= property.price %></li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>Thank you for your understanding.</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>If you have any questions or need further assistance, please contact our support team at <a href="mailto:support@mazrealty.live">support@mazrealty.live</a>.</p>
-				</td>
-			</tr>
-		</table>
-	</body>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Property Contract Verification Issue - MAZ Realty" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Property Contract Verification Issue</title>
+    <style>
+        html, body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            width: 100% !important;
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        img {
+            display: block;
+            border: none;
+            max-width: 100%;
+            -ms-interpolation-mode: bicubic;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body bgcolor="#F8F8F8" width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background: #f8f8f8;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF" style="padding: 0; margin: 0; width: 100%; background: #ffffff">
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#F8F8F8" style="padding: 0; margin: 0; width: 100%; background: #f8f8f8">
+        <tr>
+            <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="500" style="max-width: 500px;">
+                    <tr>
+                        <td height="50" style="height: 50px">
+                            <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h1>MAZ Realty</h1>
+                            <p style="font-family: Arial, Helvetica; font-size: 25px; color: #010e28; margin: 0; padding: 0; font-weight: normal;">
+                                Hello <%= user.name %>,
+                            </p>
+                            <hr />
+                            <h1 style="font-family: Arial, Helvetica; font-size: 35px; color: #010e28; margin: 0; padding: 0; font-weight: normal;">
+                                Property Contract Verification Issue
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="10" style="height: 10px">
+                            <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family: Arial, Helvetica; font-size: 14px; color: #5b6987; margin: 0; padding: 0; line-height: 30px;">
+                                We have reviewed the contract for the property you wanted to check and unfortunately, there are some issues with it.
+                            </p>
+                            <p style="font-family: Arial, Helvetica; font-size: 14px; color: #5b6987; margin: 0; padding: 0; line-height: 30px;">
+                                 Once the issues are resolved, we will inform you.
+                            </p>
+                        </td>
+                    </tr>
+					<tr>
+						<td>
+							<p>Here are the details of the property:</p>
+							<ul>
+								<li><strong>Property Name:</strong> <%= property.name %></li>
+								<li><strong>Property Type:</strong> <%= property.type %></li>
+								<li><strong>Address:</strong> <%= property.address %></li>
+								<li><strong>Price:</strong> <%= property.price %></li>
+							</ul>
+						</td>
+					</tr>
+                    <tr>
+                        <td height="20" style="height: 20px">
+                            <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family: Arial, Helvetica; font-size: 25px; color: #010e28; margin: 0; padding: 0; line-height: 30px; text-align: left;">
+                                Thank you for your understanding!
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50" style="height: 50px">
+                            <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family: Arial, Helvetica; font-size: 20px; color: #5b6987; margin: 0; padding: 0; line-height: 30px;">
+                                We're here to help
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="10" style="height: 10px">
+                            <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-family: Arial, Helvetica; font-size: 14px; color: #5b6987; margin: 0; margin-bottom: 10px; padding: 0; line-height: 20px; text-align: left;">
+                                Our award-winning customer support team is available 24/7. If you have any questions, please visit <a style="color: #010e28; text-decoration: underline" href="mailto:support@mazrealty.live">support@mazrealty.live</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="40" style="height: 40px">
+                <img src="https://moiseshp.github.io/email-templates-for-developers/storage/transparent.png" width="1" height="1" border="0" style="display: block; border: none" />
+            </td>
+        </tr>
+    </table>
+</body>
 </html>
