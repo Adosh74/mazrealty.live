@@ -81,6 +81,7 @@ function SearchBar() {
 					placeholder="Max Price"
 					onChange={handleChange}
 				/>
+				
 				<Link to={`/list${queryStr}`}>
 					<button>
 						<img src="/search.png" alt="" />

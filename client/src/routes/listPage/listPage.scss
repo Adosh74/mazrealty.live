@@ -31,6 +31,7 @@
 		background-color: #fcf5f3;
 		position: relative;
                  z-index: 1;
+				 padding-bottom: 10px;
 
 		@include md {
 			display: flex;

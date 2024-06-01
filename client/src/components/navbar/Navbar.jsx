@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/authContext';
 import baseURL from '../../lib/baseURL';
 import useNotificationStore from '../../lib/notificationStore';
 import './navbar.scss';
+import { BookHeart } from 'lucide-react';
 
 function Navbar() {
 	const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ function Navbar() {
 				<a href="/">Home</a>
 				<a href="/">About</a>
 				<a href="/">Contact</a>
-				{currentUser && <a href="/favourites">Favourites</a>}
+				{currentUser && <a href="/favourites" > Favourites<BookHeart /></a>}
 			</div>
 			<div className="right">
 				{currentUser ? (

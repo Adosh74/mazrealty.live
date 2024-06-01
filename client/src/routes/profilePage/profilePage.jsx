@@ -6,6 +6,8 @@ import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import baseURL from '../../lib/baseURL';
 import './profilePage.scss';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 
 function ProfilePage() {
 	const navigate = useNavigate();
@@ -62,7 +64,12 @@ function ProfilePage() {
 						</Link>
 					</div>
 
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={    
+					  	<Box sx={{ width: 1100 }}>
+						  <Skeleton />
+						  <Skeleton animation="wave" />
+						  <Skeleton  />
+                        </Box>}>
 						<Await
 							resolve={data.properties}
 							errorElement={<div>Failed to load properties</div>}
@@ -80,7 +87,12 @@ function ProfilePage() {
 			</div>
 			<div className="chatContainer">
 				<div className="wrapper">
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={ 
+					  <Box sx={{ width: 700 }}>
+						<Skeleton />
+						<Skeleton animation="wave" />
+						<Skeleton  />
+                      </Box>}>
 						<Await
 							resolve={data.chatResponse}
 							errorElement={<div>Failed to loading chats</div>}

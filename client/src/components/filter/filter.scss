@@ -50,10 +50,11 @@
 			border: none;
 			cursor: pointer;
 			background-color: #fece51;
-
+	  		transition: all 0.7s ease;
 			&:hover{
 			background-color: #f1bb31;
 			}
+
 			img {
 				width: 24px;
 				height: 24px;

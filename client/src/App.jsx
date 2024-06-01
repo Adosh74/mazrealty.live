@@ -19,6 +19,7 @@ import ProfilePage from './routes/profilePage/profilePage';
 import ProfileUpdatePage from './routes/profileUpdatePage/profileUpdatePage';
 import Register from './routes/register/register';
 import SinglePage from './routes/singlePage/singlePage';
+import SuccessBook from './routes/successBook/successBook';
 
 function App() {
 	const router = createBrowserRouter([
@@ -76,6 +77,10 @@ function App() {
 					path: '/favourites',
 					element: <Favourites />,
 					loader: myFavoritesLoader,
+				},
+				{
+					path: '/success-book',
+					element: <SuccessBook/>,
 				},
 			],
 		},

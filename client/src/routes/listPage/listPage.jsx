@@ -6,6 +6,8 @@ import Map from '../../components/map/Map';
 import './listPage.scss';
 import { ArrowBigUpDash ,ArrowBigDownDash } from 'lucide-react';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 
 function ListPage() {
 	// get properties from loader
@@ -43,9 +45,11 @@ function ListPage() {
 					<Filter />
 					<Suspense
 						fallback={
-							<div className="loading">
-								<h1>Loading...</h1>
-							</div>
+							<Box sx={{ width: 1100 }}>
+								<Skeleton />
+								<Skeleton animation="wave" />
+								<Skeleton  />
+                           </Box>
 						}
 					>
 						<Await
@@ -92,9 +96,11 @@ function ListPage() {
 			<div className="mapContainer">
 				<Suspense
 					fallback={
-						<div className="loading">
-							<h1>Loading...</h1>
-						</div>
+                            <Box sx={{ width: 700 }}>
+								<Skeleton />
+								<Skeleton animation="wave" />
+								<Skeleton  />
+                            </Box>
 					}
 				>
 					<Await

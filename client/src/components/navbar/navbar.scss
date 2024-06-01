@@ -21,6 +21,8 @@ margin-bottom: 10px;
    box-shadow: 5px 5px 5px 0px rgba(189, 188, 188, 0.5);
 
   a {
+    display: flex;
+    text-align: center;
     color: $normal-color;
     transition: all 0.4s ease;
     @include sm {
