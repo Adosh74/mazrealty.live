@@ -6,8 +6,8 @@ const router = Router();
 
 router.use(authController.protect, authController.restrictTo('lawyer', 'admin'));
 
-router.get('/not-approved', lawyerController.getNotApproved);
-router.patch('/approve-property/:propertyId', lawyerController.approveProperty);
-router.delete('/reject-property/:propertyId', lawyerController.rejectProperty);
+router.get('/not-approved', lawyerController.getNotRespondedBookings);
+router.patch('/approve-property/:bookingId', lawyerController.verifiedContract);
+router.patch('/reject-property/:bookingId', lawyerController.invalidContract);
 
 export default router;
