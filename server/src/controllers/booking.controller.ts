@@ -140,7 +140,7 @@ export const createBookingCheckout = catchAsync(
 			},
 		};
 
-		await ejs.renderFile(path.join(process.cwd(), 'mails/request-check.ejs'), data);
+		await ejs.renderFile(path.join(__dirname, '../../mails/request-check.ejs'), data);
 
 		await sendMail({
 			email: currentUser.email as string,
