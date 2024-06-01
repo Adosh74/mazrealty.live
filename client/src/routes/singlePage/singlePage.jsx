@@ -1,4 +1,7 @@
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import DOMPurify from 'dompurify';
+import { Phone, MessageCircle, Trash2, FilePenLine } from 'lucide-react';
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
@@ -8,9 +11,6 @@ import Slider from '../../components/slider/Slider';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './singlePage.scss';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import { Phone,MessageCircle,Trash2,FilePenLine  } from 'lucide-react';
 
 function SinglePage() {
 	const property = useLoaderData();
@@ -96,7 +96,7 @@ function SinglePage() {
 	};
 
 	const deleteProperty = async () => {
-		if (window.confirm("Are you sure you want to delete this property?")) {
+		if (window.confirm('Are you sure you want to delete this property?')) {
 			try {
 				const res = await apiRequest.delete(`/properties/${property._id}`);
 				if (res.status === 204) {
@@ -117,6 +117,48 @@ function SinglePage() {
 			}
 		}
 	};
+
+	const handleCheckContract = async () => {
+		if (!currentUser) {
+			toast.error('You need to login first', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+			setTimeout(() => {
+				navigate('/login');
+			}, 2000);
+		} else {
+			try {
+				const res = await apiRequest(
+					`/bookings/checkout-session/${property._id}`
+				);
+				console.log(res.data);
+				// redirect to checkout page with session id
+				console.log(res.data.session.url);
+				window.location.href = res.data.session.url;
+			} catch (error) {
+				toast.error('Something went wrong', {
+					style: {
+						border: '1px solid #713200',
+						padding: '16px',
+						paddingLeft: '25px',
+						paddingRight: '25px',
+						color: '#713200',
+					},
+				});
+			}
+		}
+	};
+
 	return (
 		<div className="singlePage">
 			<div className="details">
@@ -127,7 +169,10 @@ function SinglePage() {
 							Delete property &nbsp; <Trash2 />
 						</button>
 						<Link to={`/edit/property/${property._id}`}>
-							<button className="editProperty">Edit property &nbsp;<FilePenLine /></button>
+							<button className="editProperty">
+								Edit property &nbsp;
+								<FilePenLine />
+							</button>
 						</Link>
 					</div>
 				)}
@@ -149,21 +194,35 @@ function SinglePage() {
 								<div className="price">$ {property.price}</div>
 							</div>
 							<div>
-							<div className="user">
-								<img
-									src={property.owner.photo || '/default.jpg'}
-									alt=""
-								/>
-								<span>{property.owner.name}</span>
-							<ButtonGroup variant="outlined" aria-label="Basic button group">
-                               <Button  color='success'> <MessageCircle /></Button>
-							   <Button  color='inherit'><Phone /></Button>
-                            </ButtonGroup>
+								<div className="user">
+									<img
+										src={property.owner.photo || '/default.jpg'}
+										alt=""
+									/>
+									<span>{property.owner.name}</span>
+									<ButtonGroup
+										variant="outlined"
+										aria-label="Basic button group"
+									>
+										<Button color="success">
+											{' '}
+											<MessageCircle />
+										</Button>
+										<Button color="inherit">
+											<Phone />
+										</Button>
+									</ButtonGroup>
+								</div>
+								<div className="check-contract">
+									<Button
+										variant="outlined"
+										color="error"
+										onClick={handleCheckContract}
+									>
+										CHECK CONTRACT
+									</Button>
+								</div>
 							</div>
-							<div className="check-contract">
-				         	  <Link to={"/"}><Button variant="outlined" color="error">CHECK CONTRACT</Button></Link>  
-                          </div>
-						  </div>
 						</div>
 						<div
 							className="bottom"
@@ -233,7 +292,6 @@ function SinglePage() {
 							<img src="/save.png" alt="" />
 							{fav ? 'Property Saved' : 'Save the Property'}
 						</button>
-						
 					</div>
 				</div>
 			</div>
