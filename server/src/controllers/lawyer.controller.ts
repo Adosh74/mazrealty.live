@@ -11,13 +11,13 @@ import sendMail from '../utils/mail';
 export const getNotRespondedBookings = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		// get all booking that not responded
-		const notRespondedBookings = await Booking.find({ responded: false })
+		const notRespondedBookings = (await Booking.find({ responded: false })
 			.populate({
 				path: 'property',
 			})
 			.sort({
 				createdAt: 1,
-			});
+			})) as any;
 
 		// update images and contract url
 		notRespondedBookings.forEach((booking: any) => {
@@ -29,9 +29,9 @@ export const getNotRespondedBookings = catchAsync(
 
 			booking.property.images.forEach((image: string) => {
 				if (!image.startsWith('http')) {
-					image = `${req.protocol}://${req.get(
-						'host'
-					)}/img/properties/${image}`;
+					notRespondedBookings[booking].property.images[image] = `${
+						req.protocol
+					}://${req.get('host')}/img/properties/${image}`;
 				}
 			});
 		});
