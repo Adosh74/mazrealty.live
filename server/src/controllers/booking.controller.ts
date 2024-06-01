@@ -32,8 +32,8 @@ export const getCheckoutSession = catchAsync(
 		}
 
 		property.images.forEach((image) => {
-			if (!image.startsWith('http')) {
-				image = `${req.protocol}://${req.get('host')}/${image}`;
+			if (!image.startsWith('https')) {
+				image = `${req.protocol}://${req.get('host')}/img/properties/${image}`;
 			}
 		});
 
