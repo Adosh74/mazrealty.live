@@ -23,7 +23,7 @@ function CardForLawyer({ item, bookId }) {
 
 	const handelReject = async (propertyId) => {
 		try {
-			await apiRequest.delete(`lawyers/reject-property/${bookId}`);
+			await apiRequest.patch(`/lawyers/reject-property/${bookId}`);
 			toast.success('Feedback sent to the user ✔', {
 				style: {
 					border: '1px solid #713200',
