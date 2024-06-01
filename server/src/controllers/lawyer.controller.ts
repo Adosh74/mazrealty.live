@@ -72,7 +72,7 @@ export const verifiedContract = catchAsync(
 			},
 		};
 
-		await ejs.renderFile(path.join(process.cwd(), 'src/mails/approved.ejs'), data);
+		await ejs.renderFile(path.join(process.cwd(), 'mails/approved.ejs'), data);
 
 		await sendMail({
 			email: booking.user.email as string,
@@ -118,7 +118,7 @@ export const invalidContract = catchAsync(
 			},
 		};
 
-		await ejs.renderFile(path.join(process.cwd(), 'src/mails/reject.ejs'), data);
+		await ejs.renderFile(path.join(process.cwd(), 'mails/reject.ejs'), data);
 
 		await sendMail({
 			email: booking.user.email as string,

@@ -80,7 +80,7 @@ export const signup = catchAsync(
 		const data = { user: { name: newUser.name.split(' ')[0] } };
 
 		// +[4] render email template
-		await ejs.renderFile(path.join(__dirname, '../mails/welcome.ejs'), data);
+		await ejs.renderFile(path.join(__dirname, '../../mails/welcome.ejs'), data);
 
 		await sendMail({
 			email: newUser.email,
