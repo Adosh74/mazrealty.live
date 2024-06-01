@@ -8,6 +8,9 @@ import Slider from '../../components/slider/Slider';
 import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import './singlePage.scss';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { Phone,MessageCircle,Trash2,FilePenLine  } from 'lucide-react';
 
 function SinglePage() {
 	const property = useLoaderData();
@@ -121,10 +124,10 @@ function SinglePage() {
 					(currentUser && currentUser.role === 'admin')) && (
 					<div className="ownerButtons">
 						<button onClick={deleteProperty} className="deleteProperty">
-							Delete property
+							Delete property &nbsp; <Trash2 />
 						</button>
 						<Link to={`/edit/property/${property._id}`}>
-							<button className="editProperty">Edit property</button>
+							<button className="editProperty">Edit property &nbsp;<FilePenLine /></button>
 						</Link>
 					</div>
 				)}
@@ -145,15 +148,23 @@ function SinglePage() {
 								</div>
 								<div className="price">$ {property.price}</div>
 							</div>
+							<div>
 							<div className="user">
 								<img
 									src={property.owner.photo || '/default.jpg'}
 									alt=""
 								/>
 								<span>{property.owner.name}</span>
+							<ButtonGroup variant="outlined" aria-label="Basic button group">
+                               <Button  color='success'> <MessageCircle /></Button>
+							   <Button  color='inherit'><Phone /></Button>
+                            </ButtonGroup>
 							</div>
+							<div className="check-contract">
+				         	  <Link to={"/"}><Button variant="outlined" color="error">CHECK CONTRACT</Button></Link>  
+                          </div>
+						  </div>
 						</div>
-
 						<div
 							className="bottom"
 							dangerouslySetInnerHTML={{
@@ -222,6 +233,7 @@ function SinglePage() {
 							<img src="/save.png" alt="" />
 							{fav ? 'Property Saved' : 'Save the Property'}
 						</button>
+						
 					</div>
 				</div>
 			</div>

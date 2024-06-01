@@ -4,6 +4,8 @@ import Card from '../../components/card/Card';
 import Filter from '../../components/filter/Filter';
 import Map from '../../components/map/Map';
 import './listPage.scss';
+import { ArrowBigUpDash ,ArrowBigDownDash } from 'lucide-react';
+import Button from '@mui/material/Button';
 
 function ListPage() {
 	// get properties from loader
@@ -68,18 +70,16 @@ function ListPage() {
 											))}
 											<div className="pagination">
 												{params.get('page') > 1 && (
-													<button onClick={prevPage}>
-														Prev
-													</button>
+													<Button variant="outlined" color='info' onClick={prevPage}><ArrowBigUpDash /></Button>
 												)}
 												<p>{params.get('page') || 1}</p>
 												{properties.length === 20 && (
 													<>
-														<button onClick={nexPage}>
-															Next
-														</button>
+														<Button variant="contained" color='info' onClick={nexPage}><ArrowBigDownDash /></Button>
+														
 													</>
 												)}
+
 											</div>
 										</>
 									);

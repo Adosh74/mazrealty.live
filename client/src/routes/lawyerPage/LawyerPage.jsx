@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import CardForLawyer from '../../components/cardForLawyer/CardForLawyer';
 import apiRequest from '../../lib/apiRequest';
-import { listData } from '../../lib/dummydata';
 import './LawyerPage.scss';
 
 function LawyerPage() {

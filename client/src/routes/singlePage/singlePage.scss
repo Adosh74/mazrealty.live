@@ -1,296 +1,322 @@
 @import '../../responsive.scss';
-@keyframes colorRed {
-  from {
-        background-color: #e96262;
 
+$color-red: #e96262;
+$color-dark-red: #d53333;
+$color-yellow: #7abb54;
+$color-dark-yellow: #15871c;
+$background-light-yellow: rgba(254, 205, 81, 0.209);
+$background-light-red: rgba(254, 205, 81, 0.438);
+$text-gray: #555;
+$text-light-gray: #888;
+
+@keyframes colorChangeRed {
+  from {
+    background-color: $color-red;
   }
   to {
-    	background-color: #d53333;
-
+    background-color: $color-dark-red;
   }
 }
 
-@keyframes colorYellow {
+@keyframes colorChangeYellow {
   from {
-        	background-color: #fece51;
-
-
+    background-color: $color-yellow;
   }
   to {
-        background-color: #dfaa23;
-
-
+    background-color: $color-dark-yellow;
   }
 }
 
 .pageNotFound {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 
-	h1 {
-		font-size: 2rem;
-		margin-bottom: 5rem;
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 5rem;
 
-		span {
-			color: red;
-		}
-	}
+    span {
+      color: red;
+    }
+  }
 
-	p {
-		font-size: 1.2rem;
-		color: #777;
-	}
+  p {
+    font-size: 1.2rem;
+    color: #777;
+  }
 }
 
 .singlePage {
-	display: flex;
-	height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 
-	@include md {
-		flex-direction: column;
-		overflow: scroll;
-	}
+  @include md {
+    overflow: auto;
+  }
 
-	.details {
-		flex: 3;
-		height: 100%;
-		overflow-y: scroll;
-		.ownerButtons {
-			margin-bottom: 20px;
-			margin-right: 40px;
-			display: flex;
-			align-items: center;
-            justify-content: flex-end;
-				.deleteProperty{
-					padding: 12px 24px;
-					background-color: #e96262;
-					cursor: pointer;
-					border: none;
-					margin-right: 70px;
-			
-					  &:hover {
-					animation: colorRed 1s infinite; 
-                      }
-				}
-				.editProperty{
-				    padding: 12px 24px;
-					background-color: #fece51;
-					cursor: pointer;
-					border: none;
-					  &:hover {
-					animation: colorYellow 1s infinite; 
-                      }
-				}
-				}
+  .details {
+    flex: 3;
+    overflow-y: auto;
+    height: auto;
+    padding-bottom: 20px;
+    
+    .ownerButtons {
+      margin-bottom: 20px;
+      margin-right: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
 
-		@include md {
-			flex: none;
-			height: max-content;
-			margin-bottom: 50px;
-		}
+      .deleteProperty {
+        display: flex;
+        align-items: center;
+        padding: 12px 24px;
+        background-color: $color-red;
+        cursor: pointer;
+        border: none;
+        margin-right: 70px;
 
-		.wrapper {
-			padding-right: 50px;
+        &:hover {
+          animation: colorChangeRed 1s infinite;
+        }
+      }
 
-			@include lg {
-				padding-right: 20px;
-			}
-			@include md {
-				padding-right: 0px;
-			}
+      .editProperty {
+        display: flex;
+        align-items: center;
+        padding: 12px 24px;
+        background-color: $color-yellow;
+        cursor: pointer;
+        border: none;
 
-			.info {
-				margin-top: 50px;
-				.top {
-					display: flex;
-					justify-content: space-between;
+        &:hover {
+          animation: colorChangeYellow 1s infinite;
+        }
+      }
+    }
 
-					@include sm {
-						flex-direction: column;
-						gap: 20px;
-					}
+    @include md {
+      flex: none;
+      height: auto;
+      margin-bottom: 50px;
+    }
 
-					.post {
-						display: flex;
-						flex-direction: column;
-						gap: 20px;
-						h1 {
-							font-weight: 400;
-						}
-						.address {
-							display: flex;
-							gap: 5px;
-							align-items: center;
-							color: #888;
-							font-size: 14px;
+    .wrapper {
+      padding-right: 50px;
 
-							img {
-								width: 16px;
-								height: 16px;
-							}
-						}
-						.price {
-							padding: 5px;
-							background-color: rgba(254, 205, 81, 0.438);
-							border-radius: 5px;
-							width: max-content;
-							font-size: 20px;
-							font-weight: 300;
-						}
-					}
-					.user {
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-						justify-content: center;
-						gap: 20px;
-						padding: 0px 50px;
-						border-radius: 10px;
-						background-color: rgba(254, 205, 81, 0.209);
-						font-weight: 600;
+      @include lg {
+        padding-right: 20px;
+      }
 
-						@include sm {
-							padding: 20px 50px;
-						}
+      @include md {
+        padding-right: 0px;
+      }
 
-						img {
-							width: 50px;
-							height: 50px;
-							border-radius: 50%;
-							object-fit: cover;
-						}
-					}
-				}
+      .info {
+        margin-top: 50px;
 
-				
-				
+        .top {
+          display: flex;
+          justify-content: space-between;
 
-				
-			
-				.bottom {
-					margin-top: 50px;
-					color: #555;
-					line-height: 20px;
-				}
-			}
-		}
-	}
-	.features {
-		flex: 2;
-		background-color: #fcf5f3;
-		height: 100%;
-		overflow-y: scroll;
+          @include sm {
+            flex-direction: column;
+            gap: 20px;
+          }
 
-		@include md {
-			flex: none;
-			height: max-content;
-			margin-bottom: 50px;
-		}
+          .post {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
 
-		.wrapper {
-			padding: 0px 20px;
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
+            h1 {
+              font-weight: 400;
+            }
 
-			@include md {
-				padding: 20px;
-			}
+            .address {
+              display: flex;
+              gap: 5px;
+              align-items: center;
+              color: $text-light-gray;
+              font-size: 14px;
 
-			img {
-				width: 24px;
-				height: 24px;
-			}
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
 
-			.title {
-				font-weight: bold;
-				font-size: 18px;
-				margin-bottom: 10px;
-			}
+            .price {
+              padding: 5px;
+              background-color: $background-light-red;
+              border-radius: 5px;
+              width: max-content;
+              font-size: 20px;
+              font-weight: 300;
+            }
+          }
 
-			.feature {
-				display: flex;
-				align-items: center;
-				gap: 10px;
+          .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 50px;
+            border-radius: 10px;
+            background-color: $background-light-yellow;
+            font-weight: 600;
 
-				img {
-					background-color: rgba(254, 205, 81, 0.209);
-				}
+            @include sm {
+              padding: 20px 50px;
+            }
 
-				.featureText {
-					span {
-						font-weight: bold;
-					}
-					p {
-						font-size: 14px;
-					}
-				}
-			}
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
 
-			.listVertical {
-				display: flex;
-				flex-direction: column;
-				gap: 20px;
-				padding: 20px 10px;
-				background-color: white;
-				border-radius: 10px;
-			}
-			.listHorizontal {
-				display: flex;
-				justify-content: space-between;
-				padding: 20px 10px;
-				background-color: white;
-				border-radius: 10px;
-			}
+          .check-contract {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+          }
+        }
 
-			.sizes {
-				display: flex;
-				justify-content: space-between;
+        .bottom {
+          margin-top: 50px;
+          color: $text-gray;
+          line-height: 20px;
+          overflow: auto;
+          max-height: 300px; 
+        }
+      }
+    }
+  }
 
-				@include lg {
-					font-size: 12px;
-				}
+  .features {
+    flex: 2;
+    background-color: #fcf5f3;
+    overflow-y: auto;
+    height: auto;
+    padding-bottom: 20px;
+    @include md {
+      flex: none;
+      height: auto;
+      margin-bottom: 50px;
+    }
 
-				.size {
-					display: flex;
-					align-items: center;
-					gap: 10px;
-					background-color: white;
-					padding: 10px;
-					border-radius: 5px;
-				}
-			}
+    .wrapper {
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
-			.mapContainer {
-				width: 100%;
-				height: 200px;
-				 position: relative;
-                 z-index: 1;
-			}
+      @include md {
+        padding: 20px;
+      }
 
-			.buttons {
-				display: flex;
-				justify-content: space-between;
+      img {
+        width: 24px;
+        height: 24px;
+      }
 
-				button {
-					padding: 20px;
-					display: flex;
-					align-items: center;
-					gap: 5px;
-					background-color: white;
-					border: 1px solid #fece51;
-					border-radius: 5px;
-					cursor: pointer;
+      .title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
 
-					img {
-						width: 16px;
-						height: 16px;
-					}
-				}
-			}
-		}
-	}
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          background-color: $background-light-yellow;
+        }
+
+        .featureText {
+          span {
+            font-weight: bold;
+          }
+
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .listVertical {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 10px;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .listHorizontal {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 10px;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .sizes {
+        display: flex;
+        justify-content: space-between;
+
+        @include lg {
+          font-size: 12px;
+        }
+
+        .size {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background-color: white;
+          padding: 10px;
+          border-radius: 5px;
+        }
+      }
+
+      .mapContainer {
+        width: 100%;
+        height: 400px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background-color: white;
+          border: 1px solid $color-yellow;
+          border-radius: 5px;
+          cursor: pointer;
+
+          img {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
 }

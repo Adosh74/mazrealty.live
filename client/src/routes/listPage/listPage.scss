@@ -37,3 +37,16 @@
 		}
 	}
 }
+
+.pagination{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	p{
+		font-size: larger;
+		font-weight: 600;
+		margin: 10px;
+		color: rgb(69, 69, 233);
+	}
+}
