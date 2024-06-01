@@ -27,9 +27,9 @@ export const getNotRespondedBookings = catchAsync(
 				)}/img/properties/${booking.property.contract}`;
 			}
 
-			booking.property.images.forEach((image: string) => {
+			booking.property.images.forEach((image: string, index: number) => {
 				if (!image.startsWith('http')) {
-					notRespondedBookings[booking].property.images[image] = `${
+					notRespondedBookings[booking].property.images[index] = `${
 						req.protocol
 					}://${req.get('host')}/img/properties/${image}`;
 				}
