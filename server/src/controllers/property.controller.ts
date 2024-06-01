@@ -137,7 +137,9 @@ export const getMyProperties = catchAsync(
 		const features = new APIFeatures(
 			Property.find({ 'owner._id': userId }),
 			req.query
-		).paginate();
+		)
+			.sort()
+			.paginate();
 		const properties = await features.query;
 
 		properties.forEach((doc: any) => {
