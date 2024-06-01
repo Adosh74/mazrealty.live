@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import adminRoutes from './APIs/admin.route';
 import authRoutes from './APIs/auth.route';
+import bookingRoute from './APIs/booking.route';
 import chatRoutes from './APIs/chat.route';
 import cityRoutes from './APIs/city.route';
 import lawyerRoutes from './APIs/lawyer.route';
@@ -22,5 +23,6 @@ routes.use('/lawyers', lawyerRoutes);
 routes.use('/admin', adminRoutes);
 routes.use('/chats', chatRoutes);
 routes.use('/messages', messageRoutes);
+routes.use('/bookings', bookingRoute);
 
 export default routes;
