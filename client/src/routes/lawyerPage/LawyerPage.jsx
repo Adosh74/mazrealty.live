@@ -11,7 +11,7 @@ function LawyerPage() {
 		const getProperties = async () => {
 			try {
 				const res = await apiRequest.get('/lawyers/not-approved');
-				setProperties(res.data.data.propertyNotApproved);
+				setProperties(res.data.data.notRespondedBookings);
 			} catch (error) {
 				console.log(error);
 				toast.error(`${error.response.data.message}`, {
@@ -32,11 +32,23 @@ function LawyerPage() {
 		getProperties();
 	}, []);
 
+	if (properties.length === 0) {
+		return (
+			<div className="profilePage">
+				<h1>No properties to review contract for now!</h1>
+			</div>
+		);
+	}
+
 	return (
 		<div className="profilePage">
 			<div className="list">
 				{properties.map((item) => (
-					<CardForLawyer key={item._id} item={item} />
+					<CardForLawyer
+						key={item._id}
+						item={item.property}
+						bookId={item._id}
+					/>
 				))}
 			</div>
 		</div>

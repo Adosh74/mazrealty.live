@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import apiRequest from '../../lib/apiRequest';
 import './cardForLawyer.scss';
 
-function CardForLawyer({ item }) {
+function CardForLawyer({ item, bookId }) {
 	const navigate = useNavigate();
 
 	// render the component after the property has been rejected
@@ -23,8 +23,8 @@ function CardForLawyer({ item }) {
 
 	const handelReject = async (propertyId) => {
 		try {
-			await apiRequest.delete(`lawyers/reject-property/${propertyId}`);
-			toast.success('The property has been rejected ✔', {
+			await apiRequest.delete(`lawyers/reject-property/${bookId}`);
+			toast.success('Feedback sent to the user ✔', {
 				style: {
 					border: '1px solid #713200',
 					padding: '16px',
@@ -38,7 +38,7 @@ function CardForLawyer({ item }) {
 				},
 			});
 			// reload the page after the property has been rejected
-			window.location.reload();
+			navigate(`/property/${propertyId}`);
 		} catch (error) {
 			console.log(error);
 			toast.error('Failed to reject property', {
@@ -59,8 +59,8 @@ function CardForLawyer({ item }) {
 
 	const handelAccept = async (propertyId) => {
 		try {
-			await apiRequest.patch(`/lawyers/approve-property/${propertyId}`);
-			toast.success('The property has been accepted ✔', {
+			await apiRequest.patch(`/lawyers/approve-property/${bookId}`);
+			toast.success('Feedback sent to the user ✔', {
 				style: {
 					border: '1px solid #713200',
 					padding: '16px',
