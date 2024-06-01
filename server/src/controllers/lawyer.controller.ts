@@ -2,114 +2,136 @@ import ejs from 'ejs';
 import { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import ApprovedProp from '../models/approvedProp.model';
+import Booking from '../models/booking.model';
 import Property from '../models/property.model';
 import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
 import sendMail from '../utils/mail';
 
-export const getNotApproved = catchAsync(
+export const getNotRespondedBookings = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const propertyNotApproved = await Property.find({ approved: false });
+		// get all booking that not responded
+		const notRespondedBookings = await Booking.find({ responded: false })
+			.populate({
+				path: 'property',
+			})
+			.sort({
+				createdAt: 1,
+			});
 
-		propertyNotApproved.forEach((property) => {
-			property.contract = `${req.protocol}://${req.get('host')}/img/properties/${
-				property.contract
-			}`;
-			property.images.forEach((img: any) => {
-				if (!img.startsWith('https')) {
-					property.images[property.images.indexOf(img)] = `${
-						req.protocol
-					}://${req.get('host')}/img/properties/${img}`;
+		// update images and contract url
+		notRespondedBookings.forEach((booking: any) => {
+			if (!booking.property.contract.startsWith('http')) {
+				booking.property.contract = `${req.protocol}://${req.get(
+					'host'
+				)}/img/properties/${booking.property.contract}`;
+			}
+
+			booking.property.images.forEach((image: string) => {
+				if (!image.startsWith('http')) {
+					image = `${req.protocol}://${req.get(
+						'host'
+					)}/img/properties/${image}`;
 				}
 			});
 		});
 
 		res.status(200).json({
 			status: 'success',
-			result: propertyNotApproved.length,
-			data: { propertyNotApproved },
+			result: notRespondedBookings.length,
+			data: { notRespondedBookings },
 		});
 	}
 );
 
-export const approveProperty = catchAsync(
+export const verifiedContract = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const { propertyId } = req.params;
+		const { bookingId } = req.params;
 
-		const property = await Property.findByIdAndUpdate(
-			propertyId,
-			{ approved: true },
-			{ new: true }
-		);
+		const booking = (await Booking.findById(bookingId)
+			.populate({
+				path: 'property',
+			})
+			.populate({
+				path: 'user',
+			})) as any;
 
-		if (!property) {
-			return next(new AppError('Property not found', 404));
+		if (!booking) {
+			return next(new AppError('Booking not found', 404));
 		}
 
-		await ApprovedProp.create({
-			lawyer: (req as any).user._id,
-			// eslint-disable-next-line prettier/prettier
-			property: propertyId,
-		});
+		booking.responded = true;
+		await booking.save();
 
 		// const data = {
-		// 	user: { name: property.owner.name },
+		// 	user: { name: booking.user.name },
 		// 	property: {
-		// 		name: property.name,
-		// 		type: property.type,
-		// 		address: property.address,
-		// 		price: property.price,
+		// 		name: booking.property.name,
+		// 		type: booking.property.type,
+		// 		address: booking.property.address,
+		// 		price: booking.property.price,
+		// 		url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
 		// 	},
 		// };
 
 		// await ejs.renderFile(path.join(process.cwd(), 'src/mails/approved.ejs'), data);
 
 		// await sendMail({
-		// 	email: property.owner.email as string,
-		// 	subject: 'Property Approved 🚀✔',
+		// 	email: booking.user.email as string,
+		// 	subject: 'Property Contract is Verified ✔',
 		// 	template: 'approved.ejs',
 		// 	data,
 		// });
 
 		res.status(200).json({
 			status: 'success',
-			data: { property },
+			data: { booking },
 		});
 	}
 );
 
-export const rejectProperty = catchAsync(
+export const invalidContract = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const { propertyId } = req.params;
+		const { bookingId } = req.params;
 
-		const property = await Property.findByIdAndDelete(propertyId);
+		const booking = (await Booking.findById(bookingId)
+			.populate({
+				path: 'property',
+			})
+			.populate({
+				path: 'user',
+			})) as any;
 
-		if (!property) {
-			return next(new AppError('Property not found', 404));
+		if (!booking) {
+			return next(new AppError('Booking not found', 404));
 		}
 
+		booking.responded = true;
+		await booking.save();
+
 		// const data = {
-		// 	user: { name: property.owner.name },
+		// 	user: { name: booking.user.name },
 		// 	property: {
-		// 		name: property.name,
-		// 		type: property.type,
-		// 		address: property.address,
-		// 		price: property.price,
+		// 		name: booking.property.name,
+		// 		type: booking.property.type,
+		// 		address: booking.property.address,
+		// 		price: booking.property.price,
+		// 		url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
 		// 	},
 		// };
 
 		// await ejs.renderFile(path.join(process.cwd(), 'src/mails/reject.ejs'), data);
 
 		// await sendMail({
-		// 	email: property.owner.email as string,
-		// 	subject: 'Property Rejected 🚫❌',
+		// 	email: booking.user.email as string,
+		// 	subject: 'Property Contract is Invalid  🚫',
 		// 	template: 'reject.ejs',
 		// 	data,
 		// });
 
-		res.status(204).json({
+		res.status(200).json({
 			status: 'success',
-			data: null,
+			data: { booking },
 		});
 	}
 );
