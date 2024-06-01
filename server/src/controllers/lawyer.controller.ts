@@ -20,7 +20,7 @@ export const getNotRespondedBookings = catchAsync(
 			})) as any;
 
 		// update images and contract url
-		notRespondedBookings.forEach((booking: any) => {
+		notRespondedBookings.forEach((booking: any, bookIndex: number) => {
 			if (!booking.property.contract.startsWith('http')) {
 				booking.property.contract = `${req.protocol}://${req.get(
 					'host'
@@ -29,7 +29,7 @@ export const getNotRespondedBookings = catchAsync(
 
 			booking.property.images.forEach((image: string, index: number) => {
 				if (!image.startsWith('http')) {
-					notRespondedBookings[booking].property.images[index] = `${
+					notRespondedBookings[bookIndex].property.images[index] = `${
 						req.protocol
 					}://${req.get('host')}/img/properties/${image}`;
 				}
