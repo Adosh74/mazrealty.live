@@ -3,7 +3,8 @@
 		"_postman_id": "68e02742-a609-4f6e-bd9b-a04e690c967e",
 		"name": "mazrealty.live",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22825654"
+		"_exporter_id": "22825654",
+		"_collection_link": "https://www.postman.com/lively-astronaut-351758/workspace/mazrealty-live/collection/22825654-68e02742-a609-4f6e-bd9b-a04e690c967e?source=collection_link"
 	},
 	"item": [
 		{
@@ -455,7 +456,7 @@
 								},
 								{
 									"key": "city",
-									"value": "6603cdb48cc36a22dc4eb012",
+									"value": "663520f9134893285cb91e2b",
 									"type": "text"
 								},
 								{
@@ -469,6 +470,11 @@
 								{
 									"key": "level",
 									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "contract",
+									"value": "dsas",
 									"type": "text"
 								}
 							]
@@ -720,12 +726,12 @@
 					"response": []
 				},
 				{
-					"name": "approveProp",
+					"name": "verified contact",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/lawyers/approve-property/66069f41c6ea0e09149b8212",
+							"raw": "{{url}}api/v1/lawyers/approve-property/665aeb132f1e8d2ca01eb689",
 							"host": [
 								"{{url}}api"
 							],
@@ -733,7 +739,27 @@
 								"v1",
 								"lawyers",
 								"approve-property",
-								"66069f41c6ea0e09149b8212"
+								"665aeb132f1e8d2ca01eb689"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invalid contract",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/lawyers/reject-property/665a679b44b35c29dc3e6e8a",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"lawyers",
+								"reject-property",
+								"665a679b44b35c29dc3e6e8a"
 							]
 						}
 					},
@@ -819,14 +845,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/v1/chats/663f309ef3290a20441d508c",
+							"raw": "{{url}}api/v1/chats/663f2f310eed0c0408cf4c1d",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"chats",
-								"663f309ef3290a20441d508c"
+								"663f2f310eed0c0408cf4c1d"
 							]
 						}
 					},
@@ -864,7 +890,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"fourth message\"\r\n}",
+							"raw": "{\r\n    \"text\": \"test chat after deleting data\",\r\n    \"to\": \"6639b770cb09ee107cca8e30\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -872,14 +898,39 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}api/v1/messages/663f309ef3290a20441d508c",
+							"raw": "{{url}}api/v1/messages/",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
 								"v1",
 								"messages",
-								"663f309ef3290a20441d508c"
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bookings",
+			"item": [
+				{
+					"name": "get checkout session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/v1/bookings/checkout-session/665772ccafbc8a014cf6679d",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"v1",
+								"bookings",
+								"checkout-session",
+								"665772ccafbc8a014cf6679d"
 							]
 						}
 					},
