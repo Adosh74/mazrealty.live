@@ -37,7 +37,7 @@ export const getNotRespondedBookings = catchAsync(
 		res.status(200).json({
 			status: 'success',
 			result: notRespondedBookings.length,
-			data:  notRespondedBookings ,
+			data: { notRespondedBookings },
 		});
 	}
 );

@@ -11,7 +11,7 @@ function LawyerPage() {
 		const getProperties = async () => {
 			try {
 				const res = await apiRequest.get('/lawyers/not-approved');
-				setProperties(res.data.data);
+				setProperties(res.data.data.notRespondedBookings);
 			} catch (error) {
 				console.log(error);
 				toast.error(`${error.response.data.message}`, {
