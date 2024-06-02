@@ -61,25 +61,25 @@ export const verifiedContract = catchAsync(
 		booking.responded = true;
 		await booking.save();
 
-		const data = {
-			user: { name: booking.user.name },
-			property: {
-				name: booking.property.name,
-				type: booking.property.type,
-				address: booking.property.address,
-				price: booking.property.price,
-				url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
-			},
-		};
+		// const data = {
+		// 	user: { name: booking.user.name },
+		// 	property: {
+		// 		name: booking.property.name,
+		// 		type: booking.property.type,
+		// 		address: booking.property.address,
+		// 		price: booking.property.price,
+		// 		url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
+		// 	},
+		// };
 
-		await ejs.renderFile(path.join(__dirname, '../../mails/approved.ejs'), data);
+		// await ejs.renderFile(path.join(__dirname, '../../mails/approved.ejs'), data);
 
-		await sendMail({
-			email: booking.user.email as string,
-			subject: 'Property Contract is Verified ✔',
-			template: 'approved.ejs',
-			data,
-		});
+		// await sendMail({
+		// 	email: booking.user.email as string,
+		// 	subject: 'Property Contract is Verified ✔',
+		// 	template: 'approved.ejs',
+		// 	data,
+		// });
 
 		res.status(200).json({
 			status: 'success',
@@ -107,25 +107,25 @@ export const invalidContract = catchAsync(
 		booking.responded = true;
 		await booking.save();
 
-		const data = {
-			user: { name: booking.user.name },
-			property: {
-				name: booking.property.name,
-				type: booking.property.type,
-				address: booking.property.address,
-				price: booking.property.price,
-				url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
-			},
-		};
+		// const data = {
+		// 	user: { name: booking.user.name },
+		// 	property: {
+		// 		name: booking.property.name,
+		// 		type: booking.property.type,
+		// 		address: booking.property.address,
+		// 		price: booking.property.price,
+		// 		url: `https://mazrealty-live.onrender.com/property/${booking.property._id}`,
+		// 	},
+		// };
 
-		await ejs.renderFile(path.join(__dirname, '../../mails/reject.ejs'), data);
+		// await ejs.renderFile(path.join(__dirname, '../../mails/reject.ejs'), data);
 
-		await sendMail({
-			email: booking.user.email as string,
-			subject: 'Property Contract is Invalid  🚫',
-			template: 'reject.ejs',
-			data,
-		});
+		// await sendMail({
+		// 	email: booking.user.email as string,
+		// 	subject: 'Property Contract is Invalid  🚫',
+		// 	template: 'reject.ejs',
+		// 	data,
+		// });
 
 		res.status(200).json({
 			status: 'success',
