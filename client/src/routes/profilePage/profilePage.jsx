@@ -1,4 +1,7 @@
-import { Suspense, useContext, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import { SmilePlus, RefreshCwOff } from 'lucide-react';
+import { Suspense, useContext } from 'react';
 import { Await, Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import List from '../../components/list/List';
@@ -6,8 +9,6 @@ import { AuthContext } from '../../context/authContext';
 import apiRequest from '../../lib/apiRequest';
 import baseURL from '../../lib/baseURL';
 import './profilePage.scss';
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
 
 function ProfilePage() {
 	const navigate = useNavigate();
@@ -64,19 +65,32 @@ function ProfilePage() {
 						</Link>
 					</div>
 
-					<Suspense fallback={    
-					  	<Box sx={{ width: 1100 }}>
-						  <Skeleton />
-						  <Skeleton animation="wave" />
-						  <Skeleton  />
-                        </Box>}>
+					<Suspense
+						fallback={
+							<Box sx={{ width: 1100 }}>
+								<Skeleton />
+								<Skeleton animation="wave" />
+								<Skeleton />
+							</Box>
+						}
+					>
 						<Await
 							resolve={data.properties}
-							errorElement={<div>Failed to load properties</div>}
+							errorElement={
+								<div className="error-message">
+									<p>Error loading properties &nbsp;</p>
+									<RefreshCwOff />
+								</div>
+							}
 						>
 							{(properties) => {
 								if (properties.length === 0) {
-									return <div>No properties found</div>;
+									return (
+										<div className="no-properties">
+											<p>No properties found &nbsp;</p>
+											<SmilePlus />
+										</div>
+									);
 								} else {
 									return <List items={properties} />;
 								}
@@ -87,19 +101,32 @@ function ProfilePage() {
 			</div>
 			<div className="chatContainer">
 				<div className="wrapper">
-					<Suspense fallback={ 
-					  <Box sx={{ width: 700 }}>
-						<Skeleton />
-						<Skeleton animation="wave" />
-						<Skeleton  />
-                      </Box>}>
+					<Suspense
+						fallback={
+							<Box sx={{ width: 700 }}>
+								<Skeleton />
+								<Skeleton animation="wave" />
+								<Skeleton />
+							</Box>
+						}
+					>
 						<Await
 							resolve={data.chatResponse}
-							errorElement={<div>Failed to loading chats</div>}
+							errorElement={
+								<div className="error-message">
+									<p>Failed to loading chats &nbsp;</p>
+									<RefreshCwOff />
+								</div>
+							}
 						>
 							{(chatResponse) => {
 								if (chatResponse.data.length === 0) {
-									return <div>No Chats Yet</div>;
+									return (
+										<div className="no-chats">
+											<p>No Chats Yet &nbsp;</p>
+											<SmilePlus />
+										</div>
+									);
 								} else {
 									return <Chat chats={chatResponse.data} />;
 								}

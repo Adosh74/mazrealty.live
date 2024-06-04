@@ -1,210 +1,203 @@
-@import "../../responsive.scss";
+@import '../../responsive.scss';
 
 $normal-color: black;
 $pressed-color: rgb(37, 126, 7);
 
 @keyframes linkColorChange {
-  0% {
-        background-color: #fece51;
-  }
-  100% {
-        background-color: #f8b713;
-  }
+	0% {
+		background-color: #fece51;
+	}
+	100% {
+		background-color: #f8b713;
+	}
 }
 
 nav {
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-margin-bottom: 10px;
-   box-shadow: 5px 5px 5px 0px rgba(189, 188, 188, 0.5);
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	box-shadow: 5px 5px 5px 0px rgba(189, 188, 188, 0.5);
 
-  a {
-    display: flex;
-    text-align: center;
-    color: $normal-color;
-    transition: all 0.4s ease;
-    @include sm {
-      display: none;
-    }
-    &:hover {
-      scale: 1.05;
-      color: $pressed-color;
-    }
-    &:active {
-  color: $pressed-color;
-}
-  }
+	a {
+		display: flex;
+		text-align: center;
+		color: $normal-color;
+		transition: all 0.4s ease;
+		@include sm {
+			display: none;
+		}
+		&:hover {
+			scale: 1.05;
+			color: $pressed-color;
+		}
+		&:active {
+			color: $pressed-color;
+		}
+	}
 
+	.left {
+		flex: 3;
+		display: flex;
+		align-items: center;
+		gap: 50px;
 
-  .left {
-    flex: 3;
-    display: flex;
-    align-items: center;
-    gap: 50px;
+		.logo {
+			font-weight: bold;
+			font-size: 20px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+			img {
+				width: 60px;
+			}
 
-      img {
-        width: 60px;
-      }
+			span {
+				@include md {
+					display: none;
+				}
 
-      span {
-        @include md {
-          display: none;
-        }
+				@include sm {
+					display: initial;
+				}
+			}
+		}
+	}
+	.right {
+		flex: 2;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		background-color: #fcf5f3;
+		height: 100%;
 
-        @include sm {
-          display: initial;
-        }
-      }
-    }
-  }
-  .right {
-    flex: 2;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    background-color: #fcf5f3;
-    height: 100%;
+		@include md {
+			background-color: transparent;
+		}
 
-    @include md {
-      background-color: transparent;
-    }
+		button {
+			cursor: pointer;
+			font-weight: 600;
+			border-radius: 8px;
+			padding: 5px 15px;
+			background-color: #d8aa35;
 
-button{
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 5px 15px;
-  background-color: #d8aa35;
+			&:hover {
+				background-color: #fece51;
+			}
+		}
 
+		a {
+			padding: 12px 24px;
+			margin: 20px;
+		}
 
-  &:hover {
-  background-color: #fece51;
-            
-            }
-}
+		.user {
+			display: flex;
+			align-items: center;
+			font-weight: bold;
 
-    a {
-      padding: 12px 24px;
-      margin: 20px;
-    }
+			img {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				object-fit: cover;
+				margin-right: 20px;
+			}
 
-    .user{
-      display: flex;
-      align-items: center;
-      font-weight: bold;
+			span {
+				@include sm {
+					display: none;
+				}
+			}
 
-      img{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 20px;
-      }
+			.profile {
+				cursor: pointer;
+				padding: 12px 24px;
+				// background-color: #fece51;
+				background-color: #d8aa35;
+				border: none;
+				position: relative;
+				color: black;
+				&:hover {
+					animation: linkColorChange 1s infinite;
+				}
+				.notification {
+					position: absolute;
+					top: -8px;
+					right: -8px;
+					background-color: red;
+					color: white;
+					border-radius: 50%;
+					width: 26px;
+					height: 26px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
 
-      span{
-        @include sm{
-          display: none;
-        }
-      }
+		.register {
+			height: auto;
+			background-color: #fece51;
+			overflow: hidden;
+		}
 
-      .profile{
-        cursor: pointer;
-        padding: 12px 24px;
-        background-color: #fece51;
-        border: none;
-        position: relative;
-        color: black;
-          &:hover{
-              animation: linkColorChange 1s infinite; 
-          }
-        .notification{
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background-color: red;
-          color: white;
-          border-radius: 50%;
-          width: 26px;
-          height: 26px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+		.menuIcon {
+			display: none;
+			z-index: 999;
+			img {
+				width: 36px;
+				height: 36px;
+				cursor: pointer;
+			}
 
-      }
-    }
+			@include sm {
+				display: inline;
+			}
+			@include lg {
+				display: inline;
+			}
+			@include md {
+				display: inline;
+			}
+		}
 
-    .register {
-      height: auto;
-      background-color: #fece51;
-      overflow: hidden;
-    }
+		.menu {
+			display: flex;
+			position: absolute;
+			top: 0;
+			right: -50%;
+			background-color: rgb(2, 42, 10);
+			color: white;
+			height: 100vh;
+			max-width: 50%;
+			transition: all 1.4s ease;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			z-index: 10;
+			&.active {
+				right: 0;
+				display: flex;
+				z-index: 10;
+			}
+			@include md {
+				overflow: scroll;
+				z-index: 10;
+			}
 
-    .menuIcon {
-      display: none;
-      z-index: 999;
-      img {
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        
-      }
-
-      @include sm {
-        display: inline;
-      }
-      @include lg {
-        display: inline;
-      }
-      @include md {
-        display: inline;
-      }
-    }
-
-    .menu {
-      display: flex;
-      position: absolute;
-      top: 0;
-      right: -50%;
-      background-color: rgb(2, 42, 10);
-      color: white;
-      height: 100vh;
-      max-width: 50%;
-      transition: all 1.4s ease;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-z-index: 10;
-      &.active {
-        right: 0;
-    display: flex;
-    z-index: 10;
-
-      }
-      @include md {
-		overflow: scroll;
-          z-index: 10;
-        }
-
-      @include sm {
-		overflow: scroll;
-z-index: 10;
-        a {
-          
-          display: initial;
-        }
-
-      }
-    }
-  }
+			@include sm {
+				overflow: scroll;
+				z-index: 10;
+				a {
+					display: initial;
+				}
+			}
+		}
+	}
 }

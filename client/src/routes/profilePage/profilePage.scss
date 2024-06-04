@@ -1,28 +1,27 @@
 @import '../../responsive.scss';
 
 @keyframes linkColorChange {
-  0% {
-        background-color: #fece51;
-
-  }
-  100% {
-			background-color: #d1a026;
-
-  }
+	0% {
+		background-color: #fece51;
+	}
+	100% {
+		background-color: #d1a026;
+	}
 }
 
 .profilePage {
 	display: flex;
 	height: 100%;
+	overflow-y: auto;
 
 	@include md {
 		flex-direction: column;
-		overflow: scroll;
+		overflow: auto;
 	}
 
 	.details {
 		flex: 3;
-		overflow-y: scroll;
+		overflow-y: auto;
 		padding-bottom: 50px;
 
 		@include md {
@@ -42,12 +41,11 @@
 				justify-content: space-between;
 				h1 {
 					font-weight: 400;
-					font-style:oblique;
+					font-style: oblique;
 					color: #eeb8aab7;
 					background-color: #fcf5f3;
 					padding: 5px 30px;
 					border-radius: 10px;
-
 				}
 
 				button {
@@ -55,9 +53,9 @@
 					background-color: #fece51;
 					cursor: pointer;
 					border: none;
-					  &:hover {
-						animation: linkColorChange 1s infinite; 
-                      }
+					&:hover {
+						animation: linkColorChange 1s infinite;
+					}
 				}
 			}
 
@@ -81,7 +79,7 @@
 					cursor: pointer;
 					border-radius: 5px;
 					&:hover {
-					background-color: rgb(2, 102, 102);     
+						background-color: rgb(2, 102, 102);
 					}
 				}
 

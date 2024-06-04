@@ -2,21 +2,134 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import DOMPurify from 'dompurify';
 import { Phone, MessageCircle, Trash2, FilePenLine } from 'lucide-react';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 import Map from '../../components/map/Map';
 import Slider from '../../components/slider/Slider';
 import { AuthContext } from '../../context/authContext';
+import { SocketContext } from '../../context/socketContext';
 import apiRequest from '../../lib/apiRequest';
 import './singlePage.scss';
 
 function SinglePage() {
+	const [chat, setChat] = useState(null);
 	const property = useLoaderData();
 	const [fav, setFav] = useState(property ? property.isFav : false);
 	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
+
+	/////////////////////////////////////////////////////////////////////////////////
+	const { socket } = useContext(SocketContext);
+	const messageEndRef = useRef();
+	const [chatColor, setChatColor] = useState(null);
+
+	useEffect(() => {
+		messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+	}, [chat]);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+		const text = formData.get('text');
+		if (!text) return;
+
+		try {
+			const res = await apiRequest.post('/messages/', {
+				text,
+				to: property.owner._id,
+			});
+			setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
+			e.target.reset();
+			socket.emit('sendMessage', {
+				receiverId: chat.receiver._id,
+				data: res.data,
+			});
+		} catch (error) {
+			console.log(error);
+			toast.error('error send message', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+		}
+	};
+
+	const handleOpenChat = async (chatId, receiver) => {
+		try {
+			const res = await apiRequest.get(`/chats/${receiver._id}`);
+			console.log(res.data);
+			console.log(receiver._id);
+			setChat({ ...res.data, receiver });
+			setChatColor(true);
+		} catch (error) {
+			console.log(error);
+			toast.error('error load chat', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+		}
+	};
+
+	useEffect(() => {
+		const read = async () => {
+			try {
+				await apiRequest.patch('/chats/read/' + chat._id);
+			} catch (err) {
+				console.log(err);
+				toast.error('error read message', {
+					style: {
+						border: '1px solid #713200',
+						padding: '16px',
+						paddingLeft: '25px',
+						paddingRight: '25px',
+						color: '#713200',
+					},
+					iconTheme: {
+						primary: '#713200',
+						secondary: '#FFFAEE',
+					},
+				});
+			}
+		};
+
+		if (chat && socket) {
+			socket.on('getMessage', (data) => {
+				if (chat._id === data.chatId) {
+					setChat((prev) => ({
+						...prev,
+						messages: [...prev.messages, data],
+					}));
+					read();
+				}
+			});
+		}
+		return () => {
+			socket.off('getMessage');
+		};
+	}, [chat, socket]);
+	/////////////////////////////////////////////////////////////////////////////////
+
 	if (!property) {
 		return (
 			<div className="pageNotFound">
@@ -274,15 +387,87 @@ function SinglePage() {
 							<span>{property.bathrooms} bathroom</span>
 						</div>
 					</div>
-					<p className="title">Location</p>
-					<div className="mapContainer">
-						<Map items={[property]} />
-					</div>
-					<div className="buttons">
-						<button>
-							<img src="/chat.png" alt="" />
-							Send a Message
-						</button>
+					{!chat && (
+						<>
+							<p className="title">Location</p>
+							<div className="mapContainer">
+								<Map items={[property]} />
+							</div>
+						</>
+					)}
+					{/* //////////////////////////////////////////////////////////////// */}
+					{chat && (
+						<div className="chatBox">
+							<div className="top">
+								<div className="user">
+									<img
+										src={property.owner.photo || '/default.jpg'}
+										alt="user photo"
+									/>
+									{property.owner.name}
+								</div>
+								<span
+									className="close"
+									onClick={() => {
+										setChat(null);
+										setChatColor(false);
+									}}
+								>
+									X
+								</span>
+							</div>
+							<div className="center">
+								{chat.messages.map((message) => (
+									<div
+										className="chatMessage"
+										style={{
+											alignSelf:
+												message.userId === currentUser._id
+													? 'flex-end'
+													: 'flex-start',
+											textAlign:
+												message.userId === currentUser._id
+													? 'right'
+													: 'left',
+										}}
+										key={message._id}
+									>
+										<p>{message.text}</p>
+										<span>{format(message.createdAt)}</span>
+									</div>
+								))}
+								<div ref={messageEndRef}></div>
+							</div>
+							<form className="bottom" onSubmit={handleSubmit}>
+								<textarea name="text"></textarea>
+								<button>Send</button>
+							</form>
+						</div>
+					)}
+					{/* //////////////////////////////////////////////////////////////// */}
+
+					<div
+						className="buttons"
+						style={{
+							justifyContent:
+								property.owner._id === currentUser._id
+									? 'flex-end'
+									: 'space-between',
+						}}
+					>
+						{!(property.owner._id === currentUser._id) && (
+							<button
+								onClick={() =>
+									handleOpenChat(currentUser._id, property.owner)
+								}
+								style={{
+									backgroundColor: chatColor ? '#8bc8da' : 'white',
+								}}
+							>
+								<img src="/chat.png" alt="" />
+								Send a Message
+							</button>
+						)}
 						<button
 							onClick={handleSave}
 							style={{

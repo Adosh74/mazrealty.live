@@ -1,3 +1,6 @@
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import { SmilePlus, RefreshCwOff } from 'lucide-react';
 import { Suspense } from 'react';
 import { Await, useLoaderData } from 'react-router-dom';
 import Card from '../../components/card/Card';
@@ -13,14 +16,32 @@ function Favourites() {
 					<div className="title">
 						<h1>Saved List</h1>
 					</div>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense
+						fallback={
+							<Box sx={{ width: 1000 }}>
+								<Skeleton />
+								<Skeleton animation="wave" />
+								<Skeleton />
+							</Box>
+						}
+					>
 						<Await
 							resolve={data.favorites}
-							errorElement={<div>Failed to load properties</div>}
+							errorElement={
+								<div className="error-message">
+									<p>Error loading properties &nbsp;</p>
+									<RefreshCwOff />
+								</div>
+							}
 						>
 							{(favorites) => {
 								if (favorites.length === 0) {
-									return <h1>No properties found</h1>;
+									return (
+										<div className="no-properties">
+											<p>No properties found &nbsp;</p>
+											<SmilePlus />
+										</div>
+									);
 								} else {
 									return favorites.map((favorite) => (
 										<Card
@@ -37,15 +58,14 @@ function Favourites() {
 			<div className="rightPage">
 				<Suspense
 					fallback={
-						<div className="loading">
-							<h1>Loading...</h1>
-						</div>
+						<Box sx={{ width: 600 }}>
+							<Skeleton />
+							<Skeleton animation="wave" />
+							<Skeleton />
+						</Box>
 					}
 				>
-					<Await
-						resolve={data.favorites}
-						errorElement={<p>Failed to load properties</p>}
-					>
+					<Await resolve={data.favorites} errorElement={<></>}>
 						{(favorites) => {
 							const properties = favorites.map(
 								(favorite) => favorite.property

@@ -10,313 +10,404 @@ $text-gray: #555;
 $text-light-gray: #888;
 
 @keyframes colorChangeRed {
-  from {
-    background-color: $color-red;
-  }
-  to {
-    background-color: $color-dark-red;
-  }
+	from {
+		background-color: $color-red;
+	}
+	to {
+		background-color: $color-dark-red;
+	}
 }
 
 @keyframes colorChangeYellow {
-  from {
-    background-color: $color-yellow;
-  }
-  to {
-    background-color: $color-dark-yellow;
-  }
+	from {
+		background-color: $color-yellow;
+	}
+	to {
+		background-color: $color-dark-yellow;
+	}
 }
 
 .pageNotFound {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
 
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 5rem;
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 5rem;
 
-    span {
-      color: red;
-    }
-  }
+		span {
+			color: red;
+		}
+	}
 
-  p {
-    font-size: 1.2rem;
-    color: #777;
-  }
+	p {
+		font-size: 1.2rem;
+		color: #777;
+	}
 }
 
 .singlePage {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
 
-  @include md {
-    overflow: auto;
-  }
+	@include md {
+		overflow: auto;
+	}
 
-  .details {
-    flex: 3;
-    overflow-y: auto;
-    height: auto;
-    padding-bottom: 20px;
-    
-    .ownerButtons {
-      margin-bottom: 20px;
-      margin-right: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+	.details {
+		flex: 3;
+		overflow-y: auto;
+		height: auto;
+		padding-bottom: 20px;
 
-      .deleteProperty {
-        display: flex;
-        align-items: center;
-        padding: 12px 24px;
-        background-color: $color-red;
-        cursor: pointer;
-        border: none;
-        margin-right: 70px;
+		.ownerButtons {
+			margin-bottom: 20px;
+			margin-right: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
 
-        &:hover {
-          animation: colorChangeRed 1s infinite;
-        }
-      }
+			.deleteProperty {
+				display: flex;
+				align-items: center;
+				padding: 12px 24px;
+				background-color: $color-red;
+				cursor: pointer;
+				border: none;
+				margin-right: 70px;
 
-      .editProperty {
-        display: flex;
-        align-items: center;
-        padding: 12px 24px;
-        background-color: $color-yellow;
-        cursor: pointer;
-        border: none;
+				&:hover {
+					animation: colorChangeRed 1s infinite;
+				}
+			}
 
-        &:hover {
-          animation: colorChangeYellow 1s infinite;
-        }
-      }
-    }
+			.editProperty {
+				display: flex;
+				align-items: center;
+				padding: 12px 24px;
+				background-color: $color-yellow;
+				cursor: pointer;
+				border: none;
 
-    @include md {
-      flex: none;
-      height: auto;
-      margin-bottom: 50px;
-    }
+				&:hover {
+					animation: colorChangeYellow 1s infinite;
+				}
+			}
+		}
 
-    .wrapper {
-      padding-right: 50px;
+		@include md {
+			flex: none;
+			height: auto;
+			margin-bottom: 50px;
+		}
 
-      @include lg {
-        padding-right: 20px;
-      }
+		.wrapper {
+			padding-right: 50px;
 
-      @include md {
-        padding-right: 0px;
-      }
+			@include lg {
+				padding-right: 20px;
+			}
 
-      .info {
-        margin-top: 50px;
+			@include md {
+				padding-right: 0px;
+			}
 
-        .top {
-          display: flex;
-          justify-content: space-between;
+			.info {
+				margin-top: 50px;
 
-          @include sm {
-            flex-direction: column;
-            gap: 20px;
-          }
+				.top {
+					display: flex;
+					justify-content: space-between;
 
-          .post {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+					@include sm {
+						flex-direction: column;
+						gap: 20px;
+					}
 
-            h1 {
-              font-weight: 400;
-            }
+					.post {
+						display: flex;
+						flex-direction: column;
+						gap: 20px;
 
-            .address {
-              display: flex;
-              gap: 5px;
-              align-items: center;
-              color: $text-light-gray;
-              font-size: 14px;
+						h1 {
+							font-weight: 400;
+						}
 
-              img {
-                width: 16px;
-                height: 16px;
-              }
-            }
+						.address {
+							display: flex;
+							gap: 5px;
+							align-items: center;
+							color: $text-light-gray;
+							font-size: 14px;
 
-            .price {
-              padding: 5px;
-              background-color: $background-light-red;
-              border-radius: 5px;
-              width: max-content;
-              font-size: 20px;
-              font-weight: 300;
-            }
-          }
+							img {
+								width: 16px;
+								height: 16px;
+							}
+						}
 
-          .user {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px 50px;
-            border-radius: 10px;
-            background-color: $background-light-yellow;
-            font-weight: 600;
+						.price {
+							padding: 5px;
+							background-color: $background-light-red;
+							border-radius: 5px;
+							width: max-content;
+							font-size: 20px;
+							font-weight: 300;
+						}
+					}
 
-            @include sm {
-              padding: 20px 50px;
-            }
+					.user {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						gap: 20px;
+						padding: 20px 50px;
+						border-radius: 10px;
+						background-color: $background-light-yellow;
+						font-weight: 600;
 
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-              object-fit: cover;
-            }
-          }
+						@include sm {
+							padding: 20px 50px;
+						}
 
-          .check-contract {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 30px;
-          }
-        }
+						img {
+							width: 50px;
+							height: 50px;
+							border-radius: 50%;
+							object-fit: cover;
+						}
+					}
 
-        .bottom {
-          margin-top: 50px;
-          color: $text-gray;
-          line-height: 20px;
-          overflow: auto;
-          max-height: 300px; 
-        }
-      }
-    }
-  }
+					.check-contract {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						margin-top: 30px;
+					}
+				}
 
-  .features {
-    flex: 2;
-    background-color: #fcf5f3;
-    overflow-y: auto;
-    height: auto;
-    padding-bottom: 20px;
-    @include md {
-      flex: none;
-      height: auto;
-      margin-bottom: 50px;
-    }
+				.bottom {
+					margin-top: 50px;
+					color: $text-gray;
+					line-height: 20px;
+					overflow: auto;
+					max-height: 300px;
+				}
+			}
+		}
+	}
 
-    .wrapper {
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+	.features {
+		flex: 2;
+		background-color: #fcf5f3;
+		overflow-y: auto;
+		height: auto;
+		padding-bottom: 20px;
+		@include md {
+			flex: none;
+			height: auto;
+			margin-bottom: 50px;
+		}
 
-      @include md {
-        padding: 20px;
-      }
+		.wrapper {
+			padding: 0 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
 
-      img {
-        width: 24px;
-        height: 24px;
-      }
+			@include md {
+				padding: 20px;
+			}
 
-      .title {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
+			img {
+				width: 24px;
+				height: 24px;
+			}
 
-      .feature {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+			.title {
+				font-weight: bold;
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
 
-        img {
-          background-color: $background-light-yellow;
-        }
+			.feature {
+				display: flex;
+				align-items: center;
+				gap: 10px;
 
-        .featureText {
-          span {
-            font-weight: bold;
-          }
+				img {
+					background-color: $background-light-yellow;
+				}
 
-          p {
-            font-size: 14px;
-          }
-        }
-      }
+				.featureText {
+					span {
+						font-weight: bold;
+					}
 
-      .listVertical {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px 10px;
-        background-color: white;
-        border-radius: 10px;
-      }
+					p {
+						font-size: 14px;
+					}
+				}
+			}
 
-      .listHorizontal {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 10px;
-        background-color: white;
-        border-radius: 10px;
-      }
+			.listVertical {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				padding: 20px 10px;
+				background-color: white;
+				border-radius: 10px;
+			}
 
-      .sizes {
-        display: flex;
-        justify-content: space-between;
+			.listHorizontal {
+				display: flex;
+				justify-content: space-between;
+				padding: 20px 10px;
+				background-color: white;
+				border-radius: 10px;
+			}
 
-        @include lg {
-          font-size: 12px;
-        }
+			.sizes {
+				display: flex;
+				justify-content: space-between;
 
-        .size {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background-color: white;
-          padding: 10px;
-          border-radius: 5px;
-        }
-      }
+				@include lg {
+					font-size: 12px;
+				}
 
-      .mapContainer {
-        width: 100%;
-        height: 400px;
-        position: relative;
-        z-index: 1;
-      }
+				.size {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					background-color: white;
+					padding: 10px;
+					border-radius: 5px;
+				}
+			}
 
-      .buttons {
-        display: flex;
-        justify-content: space-between;
+			.mapContainer {
+				width: 100%;
+				height: 400px;
+				position: relative;
+				z-index: 1;
+			}
 
-        button {
-          padding: 20px;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          background-color: white;
-          border: 1px solid $color-yellow;
-          border-radius: 5px;
-          cursor: pointer;
+			.buttons {
+				display: flex;
+				justify-content: space-between;
 
-          img {
-            width: 16px;
-            height: 16px;
-          }
-        }
-      }
-    }
-  }
+				button {
+					padding: 20px;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					background-color: white;
+					border: 1px solid $color-yellow;
+					border-radius: 5px;
+					cursor: pointer;
+
+					img {
+						width: 16px;
+						height: 16px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.chatBox {
+	flex: 1;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	.top {
+		background-color: #f7c14b85;
+		padding: 20px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.user {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+
+			img {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+		}
+		.close {
+			cursor: pointer;
+		}
+	}
+	.center {
+		height: 350px;
+		overflow: auto;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		.chatMessage {
+			width: 50%;
+
+			&.own {
+				align-self: flex-end;
+				text-align: right;
+			}
+
+			span {
+				font-size: 12px;
+				background-color: #f7c14b39;
+				padding: 2px;
+				border-radius: 5px;
+			}
+		}
+	}
+	.bottom {
+		border: 2px solid #f7c14b85;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		textarea {
+			flex: 3;
+			height: 100%;
+			border: white;
+			padding: 20px;
+			background-color: rgb(249, 247, 236);
+			font-size: larger;
+			overflow-y: auto;
+			&.active {
+				background-color: black;
+				color: white;
+			}
+		}
+
+		button {
+			flex: 1;
+			background-color: #f7c14b85;
+			height: 100%;
+			border: none;
+			cursor: pointer;
+			color: rgb(206, 111, 43);
+			font-size: larger;
+			font-weight: 500;
+			transition: all 0.4s ease;
+			&:hover {
+				background-color: #f7c14baf;
+			}
+		}
+	}
 }

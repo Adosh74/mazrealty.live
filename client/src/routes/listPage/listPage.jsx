@@ -1,13 +1,13 @@
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
+import { ArrowBigUpDash, ArrowBigDownDash, RefreshCwOff, SmilePlus } from 'lucide-react';
 import { Suspense, useRef, useState } from 'react';
 import { Await, useLoaderData, useSearchParams } from 'react-router-dom';
 import Card from '../../components/card/Card';
 import Filter from '../../components/filter/Filter';
 import Map from '../../components/map/Map';
 import './listPage.scss';
-import { ArrowBigUpDash ,ArrowBigDownDash } from 'lucide-react';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
 
 function ListPage() {
 	// get properties from loader
@@ -48,17 +48,27 @@ function ListPage() {
 							<Box sx={{ width: 1100 }}>
 								<Skeleton />
 								<Skeleton animation="wave" />
-								<Skeleton  />
-                           </Box>
+								<Skeleton />
+							</Box>
 						}
 					>
 						<Await
 							resolve={data.properties}
-							errorElement={<p>Error loading properties</p>}
+							errorElement={
+								<div className="error-message">
+									<p>Error loading properties &nbsp;</p>
+									<RefreshCwOff />
+								</div>
+							}
 						>
 							{(properties) => {
 								if (properties.length === 0) {
-									return <h1>No properties found</h1>;
+									return (
+										<div className="no-properties">
+											<p>No properties found &nbsp;</p>
+											<SmilePlus />
+										</div>
+									);
 								} else {
 									// return properties.map((property) => (
 									// 	<Card key={property._id} item={property} />
@@ -74,16 +84,26 @@ function ListPage() {
 											))}
 											<div className="pagination">
 												{params.get('page') > 1 && (
-													<Button variant="outlined" color='info' onClick={prevPage}><ArrowBigUpDash /></Button>
+													<Button
+														variant="outlined"
+														color="info"
+														onClick={prevPage}
+													>
+														<ArrowBigUpDash />
+													</Button>
 												)}
 												<p>{params.get('page') || 1}</p>
 												{properties.length === 20 && (
 													<>
-														<Button variant="contained" color='info' onClick={nexPage}><ArrowBigDownDash /></Button>
-														
+														<Button
+															variant="contained"
+															color="info"
+															onClick={nexPage}
+														>
+															<ArrowBigDownDash />
+														</Button>
 													</>
 												)}
-
 											</div>
 										</>
 									);
@@ -96,16 +116,21 @@ function ListPage() {
 			<div className="mapContainer">
 				<Suspense
 					fallback={
-                            <Box sx={{ width: 700 }}>
-								<Skeleton />
-								<Skeleton animation="wave" />
-								<Skeleton  />
-                            </Box>
+						<Box sx={{ width: 700 }}>
+							<Skeleton />
+							<Skeleton animation="wave" />
+							<Skeleton />
+						</Box>
 					}
 				>
 					<Await
 						resolve={data.properties}
-						errorElement={<p>Error loading properties</p>}
+						errorElement={
+							<div className="error-message">
+								<p>Error loading properties &nbsp;</p>
+								<RefreshCwOff />
+							</div>
+						}
 					>
 						{(properties) => <Map items={properties} />}
 					</Await>

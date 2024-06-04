@@ -1,16 +1,28 @@
+import { BadgeCheck } from 'lucide-react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 import './card.scss';
 
 function Card({ item }) {
+	const { currentUser } = useContext(AuthContext);
+
 	return (
 		<div className="card">
 			<Link to={`/property/${item._id}`} className="imageContainer">
 				<img src={item.images[0]} alt="" />
 			</Link>
 			<div className="textContainer">
-				<h2 className="title">
-					<Link to={`/property/${item._id}`}>{item.name}</Link>
-				</h2>
+				<div className="top">
+					<h2 className="title">
+						<Link to={`/property/${item._id}`}>{item.name}</Link>
+					</h2>
+					{item.owner._id === currentUser._id && (
+						<div className="mark">
+							<BadgeCheck />
+						</div>
+					)}
+				</div>
 				<p className="address">
 					<img src="/pin.png" alt="" />
 					<span>{item.city.city_name_en}</span>

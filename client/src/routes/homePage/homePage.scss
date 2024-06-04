@@ -73,13 +73,14 @@
 
   .imgContainer {
     margin-top: 20px;
-    height: 100vh;
+    height: 100%;
     flex: 2;
     background-color: #fcf5f3;
     position: relative;
     display: flex;
     align-items: center;
     z-index: 1; 
+    
 
     @include md {
       display: none;

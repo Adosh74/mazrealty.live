@@ -1,58 +1,58 @@
 .filter {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-
+	gap: 20px;
+	background-color: antiquewhite;
+	border-radius: 10px;
+	padding: 5px;
 	h1 {
 		font-weight: 300;
 		font-size: 24px;
 	}
 
-	.item {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-
-		label {
-			font-size: 10px;
-		}
-
-		input,
-		select {
-			width: 100px;
-			padding: 10px;
-			border: 1px solid #e0e0e0;
-			border-radius: 5px;
-			font-size: 14px;
-		}
-	}
-
-	.top {
-		.item {
-			display: flex;
-			gap: 10px;
-
-			input {
-				width: 200px;
-			}
-		}
-	}
-
 	.bottom {
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
-		gap: 20px;
+		.item {
+			width: calc(20% - 10px);
+			margin: 5px 5px;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			background-color: #fffdfd;
+			border: 1px solid #ccc;
+			border-radius: 5px;
 
+			label {
+				font-size: 15px;
+				font-weight: 600;
+				display: flex;
+				justify-content: center;
+				color: rgb(112, 69, 11);
+				margin-bottom: 5px;
+			}
+
+			input,
+			select {
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #e0e0e0;
+				border-radius: 5px;
+				font-size: 14px;
+				background-color: rgb(248, 243, 236);
+			}
+		}
 		button {
-			width: 100px;
+			grid-column: span 5;
+			width: 100%;
 			padding: 10px;
 			border: none;
 			cursor: pointer;
 			background-color: #fece51;
-	  		transition: all 0.7s ease;
-			&:hover{
-			background-color: #f1bb31;
+			transition: all 0.7s ease;
+			border-radius: 10px;
+			&:hover {
+				background-color: #f1bb31;
 			}
 
 			img {

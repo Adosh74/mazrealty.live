@@ -4,15 +4,14 @@
 	display: flex;
 	height: 100%;
 
-
 	@include md {
 		flex-direction: column;
-		overflow: scroll;
+		overflow: auto;
 	}
 
 	.details {
 		flex: 3;
-		overflow-y: scroll;
+		overflow-y: auto;
 		padding-bottom: 50px;
 
 		@include md {
@@ -20,42 +19,46 @@
 			height: max-content;
 		}
 
-        .title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            h1 {
-                font-weight: 300;
-                color: #fece51;
-                background-color: antiquewhite;
-                width: fit-content;
-                border-radius: 15px;
-                padding-top: 8px;
-                padding-bottom: 8px;
-                padding-left: 100px;
-                padding-right: 100px;
-                margin-bottom: 30px;
-            }
-        }
-
-        
-    }		
+		.title {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			h1 {
+				font-weight: 300;
+				color: #fece51;
+				background-color: antiquewhite;
+				width: fit-content;
+				border-radius: 15px;
+				padding-top: 8px;
+				padding-bottom: 8px;
+				padding-left: 100px;
+				padding-right: 100px;
+				margin-bottom: 30px;
+			}
+		}
+	}
 
 	.rightPage {
-        margin-top: 10px;
+		margin-top: 10px;
 		flex: 2;
 		background-color: #fcf5f3;
 		height: 100%;
-				 position: relative;
-                 z-index: 1;
+		position: relative;
+		z-index: 1;
 		@include md {
 			flex: none;
 			height: max-content;
 		}
-
-		
 	}
 }
 
-
-
+.error-message {
+	color: red;
+	display: flex;
+	justify-content: center;
+	padding: 5px;
+	background: rgb(229, 155, 155);
+	border-radius: 10px;
+	border: solid 1px rgb(161, 7, 7);
+	margin: 5px;
+}
