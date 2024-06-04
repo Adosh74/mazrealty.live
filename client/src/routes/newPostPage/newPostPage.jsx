@@ -9,6 +9,7 @@ import './newPostPage.scss';
 
 function NewPostPage() {
 	const [value, setValue] = useState('');
+	const [addButton, setAddButton] = useState(false);
 	const [cities, setCities] = useState([]);
 	const [images, setImages] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -34,9 +35,10 @@ function NewPostPage() {
 		formData.delete('city');
 		formData.append('city', cityId);
 		console.log(input);
+		setAddButton(true);
 		try {
+			setAddButton(true);
 			const res = await apiRequest.post('/properties', formData);
-
 			navigate(`/property/${res.data.data.property._id}`);
 			toast.success('Created Successfully', {
 				style: {
@@ -108,9 +110,9 @@ function NewPostPage() {
 				</div>
 			</div>
 		);
-		const handleImages = (e) =>{
-			if(e.target.files.length > 7){
-			toast.error("Maxmam files is 7 ", {
+	const handleImages = (e) => {
+		if (e.target.files.length > 7) {
+			toast.error('Maxmam files is 7 ', {
 				style: {
 					border: '1px solid #713200',
 					padding: '16px',
@@ -123,14 +125,13 @@ function NewPostPage() {
 					secondary: '#FFFAEE',
 				},
 			});
-			     
-                 e.target.value = null; 
-				setImages(null)	}
-				else{
-			 setImages(e.target.files)
-					}
 
+			e.target.value = null;
+			setImages(null);
+		} else {
+			setImages(e.target.files);
 		}
+	};
 	return (
 		<div className="newPostPage">
 			<div className="formContainer">
@@ -151,7 +152,7 @@ function NewPostPage() {
 						</div>
 						<div className="item description">
 							<label htmlFor="description">Description</label>
-							<ReactQuill  theme="snow" onChange={setValue} value={value} />
+							<ReactQuill theme="snow" onChange={setValue} value={value} />
 						</div>
 						<div className="item">
 							<label htmlFor="city">City</label>
@@ -234,7 +235,9 @@ function NewPostPage() {
 							<input type="file" name="contract" accept=".pdf, image/*" />
 						</div>
 
-						<button className="sendButton">Add</button>
+						<button className="sendButton" disabled={addButton}>
+							Add
+						</button>
 					</form>
 				</div>
 			</div>
@@ -249,17 +252,17 @@ function NewPostPage() {
 					onChange={handleImages}
 				/>
 				{/* display selected images */}
-               <div className="imageContainer">
-				{images &&
-					images.length <= 7 &&
-					Array.from(images).map((image, index) => (
-						<img
-							key={index}
-							src={URL.createObjectURL(image)}
-							alt="property"
-						/>
-					))}
-					</div>
+				<div className="imageContainer">
+					{images &&
+						images.length <= 7 &&
+						Array.from(images).map((image, index) => (
+							<img
+								key={index}
+								src={URL.createObjectURL(image)}
+								alt="property"
+							/>
+						))}
+				</div>
 			</div>
 		</div>
 	);

@@ -34,7 +34,7 @@ function LawyerPage() {
 
 	if (properties.length === 0) {
 		return (
-			<div className="message">
+			<div className="empty">
 				<p>No properties to review contract for now! &nbsp;</p>
 			</div>
 		);
