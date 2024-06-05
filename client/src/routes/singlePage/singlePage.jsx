@@ -317,24 +317,48 @@ function SinglePage() {
 										variant="outlined"
 										aria-label="Basic button group"
 									>
-										<Button color="success">
+										<Button
+											onClick={() => {
+												// move to other page
+												// https://wa.me/2${property.owner.phone}
+												console.log(`2${property.owner.phone}`);
+												window.open(
+													`https://wa.me/2${property.owner.phone}`
+												);
+											}}
+											color="success"
+										>
 											{' '}
 											<MessageCircle />
 										</Button>
-										<Button color="inherit">
+										<Button
+											onClick={() => {
+												// move to call to phone
+												window.open(
+													`tel:${property.owner.phone}`
+												);
+											}}
+											color="inherit"
+										>
 											<Phone />
 										</Button>
 									</ButtonGroup>
 								</div>
-								<div className="check-contract">
-									<Button
-										variant="outlined"
-										color="error"
-										onClick={handleCheckContract}
-									>
-										CHECK CONTRACT
-									</Button>
-								</div>
+								{/* if current user ._id == property owner._id hide check contract */}
+
+								{!(
+									currentUser && currentUser._id === property.owner._id
+								) && (
+									<div className="check-contract">
+										<Button
+											variant="outlined"
+											color="error"
+											onClick={handleCheckContract}
+										>
+											CHECK CONTRACT
+										</Button>
+									</div>
+								)}
 							</div>
 						</div>
 						<div
