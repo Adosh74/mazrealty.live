@@ -11,7 +11,7 @@ function SearchBar() {
 		transaction: 'sale',
 		city: '',
 		minPrice: 0,
-		maxPrice: 1000000,
+		maxPrice: 1000000000,
 	});
 
 	const switchType = (val) => {
@@ -81,7 +81,7 @@ function SearchBar() {
 					placeholder="Max Price"
 					onChange={handleChange}
 				/>
-				
+
 				<Link to={`/list${queryStr}`}>
 					<button>
 						<img src="/search.png" alt="" />

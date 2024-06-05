@@ -425,7 +425,12 @@ function SinglePage() {
 							<div className="top">
 								<div className="user">
 									<img
-										src={property.owner.photo || '/default.jpg'}
+										src={
+											property.owner.photo &&
+											property.owner.photo.startWith('http')
+												? property.owner.photo
+												: '/default.jpg'
+										}
 										alt="user photo"
 									/>
 									{property.owner.name}

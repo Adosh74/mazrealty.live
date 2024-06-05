@@ -32,7 +32,10 @@ function EditProperty() {
 				// get id from params
 				const propertyRes = await apiRequest.get(`/properties/${params.id}`);
 
-				if (propertyRes.data.data.data.owner._id !== currentUser._id) {
+				if (
+					propertyRes.data.data.data.owner._id !== currentUser._id &&
+					currentUser.role !== 'admin'
+				) {
 					toast.error(`You are not allowed to edit this property`, {
 						style: {
 							border: '1px solid #713200',
@@ -75,7 +78,7 @@ function EditProperty() {
 			}
 		}
 		fetchData();
-	}, [currentUser._id, navigate, params.id]);
+	}, [currentUser._id, currentUser.role, navigate, params.id]);
 
 	const override = {
 		display: 'block',
