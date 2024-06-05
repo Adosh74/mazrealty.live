@@ -110,28 +110,31 @@ function EditProperty() {
 		e.preventDefault();
 		const formData = new FormData(e.target);
 
-		formData.append('description', value);
+		value !== ''
+			? formData.append('description', value)
+			: formData.append('description', property.description);
 		if (!images) return alert('Please select at least one image for the property');
 
 		//  make images like contract
-		const img = Array.from(images);
+		// const img = Array.from(images);
 
-		for (const oneImg of img) {
-			formData.append('images', oneImg);
-		}
+		// for (const oneImg of img) {
+		// 	formData.append('images', oneImg);
+		// }
 		// formData.append('images', ...img);
 		const input = Object.fromEntries(formData);
-		const cityId = cities.find((city) => city.city_name_en === input.city)._id;
+		console.log(input.city);
+		const cityId = cities.find((city) => city._id === input.city)._id;
 		formData.delete('city');
 		formData.append('city', cityId);
-		console.log(input);
+		input.city = cityId;
 
 		//  ////////////////////////////////////////////////////////////////
 		// setImages(property.images);
 		//  ////////////////////////////////////////////////////////////////
 
 		try {
-			const res = await apiRequest.patch(`/properties/${property._id}`, formData);
+			const res = await apiRequest.patch(`/properties/${property._id}`, input);
 			if (res.status === 200) {
 				toast.success('The property has been updated', {
 					style: {
@@ -146,8 +149,8 @@ function EditProperty() {
 			setError('');
 		} catch (error) {
 			console.log(error);
-			setError(error.response.data.message);
-			toast.error('Something went wrong');
+			// setError(error.response.data.message);
+			toast.error(`Something went wrong: ${error.response.data.message}`);
 		}
 	};
 
