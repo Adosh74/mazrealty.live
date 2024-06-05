@@ -1,4 +1,6 @@
-import { Trash2, Eye, BookCheck } from 'lucide-react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { Trash2, Eye, BookCheck, Phone, MessageCircle } from 'lucide-react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -100,54 +102,74 @@ function CardForLawyer({ item, bookId }) {
 
 	return (
 		<div className="cardLawyer">
-			<Link to={`/property/${item._id}`} className="imageContainer">
-				<img src={item.images[0]} alt="" />
-			</Link>
-			<div className="cardLeft">
-				<h2 className="title">
-					<Link to={`/property/${item._id}`}>{item.name}</Link>
-				</h2>
-				<p className="address">
-					<img src="/pin.png" alt="" />
-					<span>{item.address}</span>
-				</p>
-				<p className="price">$ {item.price}</p>
-				<div className="bottom">
-					<div className="features">
-						<div className="feature">
-							<img src="/bed.png" alt="" />
-							<span>{item.bedrooms} bedroom</span>
+			<div className="leftCard">
+				<Link to={`/property/${item._id}`} className="imageContainer">
+					<img src={item.images[0]} alt="" />
+				</Link>
+				<div className="cardLeft">
+					<h2 className="title">
+						<Link to={`/property/${item._id}`}>{item.name}</Link>
+					</h2>
+					<p className="address">
+						<img src="/pin.png" alt="" />
+						<span>{item.address}</span>
+					</p>
+					<p className="price">$ {item.price}</p>
+					<div className="bottom">
+						<div className="features">
+							<div className="feature">
+								<img src="/bed.png" alt="" />
+								<span>{item.bedrooms} bedroom</span>
+							</div>
+							<div className="feature">
+								<img src="/bath.png" alt="" />
+								<span>{item.bathrooms} bathroom</span>
+							</div>
 						</div>
-						<div className="feature">
-							<img src="/bath.png" alt="" />
-							<span>{item.bathrooms} bathroom</span>
-						</div>
-					</div>
-					<div className="icons">
-						<div className="icon">
-							<img src="/chat.png" alt="" />
+						<div className="icons">
+							<div className="icon">
+								<img src="/chat.png" alt="" />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div className="cardRight">
-				<button onClick={() => handelReject(item._id)} className="rejectButton">
-					<div></div>
-					<Trash2 />
-				</button>
-				<button onClick={() => handelAccept(item._id)} className="acceptButton">
-					<BookCheck />
-				</button>
-				<Link to={item.img}>
+				<div className="cardRight">
 					<button
-						className="viewButton"
-						onClick={() => handleViewContract(item.contract)}
+						onClick={() => handelReject(item._id)}
+						className="rejectButton"
 					>
-						<Eye />
-						<span>view contract</span>
+						<div></div>
+						<Trash2 />
 					</button>
-				</Link>
+					<button
+						onClick={() => handelAccept(item._id)}
+						className="acceptButton"
+					>
+						<BookCheck />
+					</button>
+					<Link to={item.img}>
+						<button
+							className="viewButton"
+							onClick={() => handleViewContract(item.contract)}
+						>
+							<Eye />
+							<span>view contract</span>
+						</button>
+					</Link>
+				</div>
+			</div>
+			<div className="user">
+				<img src={item.owner.photo || '/default.jpg'} alt="" />
+				<span>{item.owner.name}</span>
+				<ButtonGroup variant="outlined" aria-label="Basic button group">
+					<Button color="success">
+						{' '}
+						<MessageCircle />
+					</Button>
+					<Button color="inherit">
+						<Phone />
+					</Button>
+				</ButtonGroup>
 			</div>
 		</div>
 	);

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Skeleton from '@mui/material/Skeleton';
 import { SmilePlus, RefreshCwOff } from 'lucide-react';
 import { Suspense, useContext } from 'react';
@@ -30,38 +31,42 @@ function ProfilePage() {
 		<div className="profilePage">
 			<div className="details">
 				<div className="wrapper">
-					<div className="title">
-						<h1>User Information</h1>
-						<Link to="/profile/update">
-							<button>Update Profile</button>
-						</Link>
-						{(currentUser.role === 'lawyer' ||
-							currentUser.role === 'admin') && (
-							<Link to="/lawyer">
-								<button>Show contracts</button>
+					<div className="userData">
+						<div className="title">
+							<h1>Profile</h1>
+							<Link to="/profile/update">
+								<button className="updateButton">Update Profile</button>
 							</Link>
-						)}
-					</div>
-					<div className="info">
-						<span>
-							photo:
-							<img
-								src={`${currentUser.photo.startsWith('http') ? currentUser.photo : `${baseURL}/img/users/${currentUser.photo}`} `}
-								alt="user photo"
-							/>
-						</span>
-						<span>
-							Name: <b>{currentUser.name}</b>
-						</span>
-						<span>
-							E-mail: <b>{currentUser.email}</b>
-						</span>
-						<button onClick={handleLogout}>Logout</button>
+							{(currentUser.role === 'lawyer' ||
+								currentUser.role === 'admin') && (
+								<Link to="/lawyer">
+									<Button variant="contained" color="warning">
+										contracts
+									</Button>
+								</Link>
+							)}
+						</div>
+						<div className="info">
+							<span>
+								photo:
+								<img
+									src={`${currentUser.photo.startsWith('http') ? currentUser.photo : `${baseURL}/img/users/${currentUser.photo}`} `}
+									alt="user photo"
+								/>
+							</span>
+							<span>
+								Name: <b>{currentUser.name}</b>
+							</span>
+							<span>
+								E-mail: <b>{currentUser.email}</b>
+							</span>
+							<button onClick={handleLogout}>Logout</button>
+						</div>
 					</div>
 					<div className="title">
 						<h1>My Properties</h1>
 						<Link to="/add">
-							<button>Create New Property</button>
+							<button className="updateButton">Create New Property</button>
 						</Link>
 					</div>
 

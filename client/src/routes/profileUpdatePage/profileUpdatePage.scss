@@ -1,11 +1,10 @@
-
 @keyframes ColorChangee {
-  0% {
-      background-color: teal;
-  }
-  100% {
-     background-color: rgb(3, 85, 85);
-  }
+	0% {
+		background-color: teal;
+	}
+	100% {
+		background-color: rgb(3, 85, 85);
+	}
 }
 .profileUpdatePage {
 	height: 100%;
@@ -24,8 +23,8 @@
 			gap: 20px;
 			padding: 20px;
 
-			h1{
-			color:rgb(39, 94, 66);	
+			h1 {
+				color: rgb(39, 94, 66);
 			}
 			.item {
 				display: flex;
@@ -43,22 +42,22 @@
 					font-size: 1.2em;
 				}
 			}
-			 button {
-                cursor: pointer;
-                padding: 20px;
-                border-radius: 5px;
-                border: none;
-                background-color: teal;
-                color: white;
-                font-weight: bold;
-                margin-bottom: 50px;
-				&:hover{
-				    animation: ColorChangee 0.8s infinite; 
+			button {
+				cursor: pointer;
+				padding: 20px;
+				border-radius: 5px;
+				border: none;
+				background-color: teal;
+				color: white;
+				font-weight: bold;
+				margin-bottom: 50px;
+				&:hover {
+					animation: ColorChangee 0.8s infinite;
 				}
-                &:disabled {
-                    opacity: 0.6;
-                    cursor: not-allowed;
-                }
+				&:disabled {
+					opacity: 0.6;
+					cursor: not-allowed;
+				}
 			}
 		}
 	}

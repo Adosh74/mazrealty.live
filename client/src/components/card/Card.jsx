@@ -1,4 +1,4 @@
-import { BadgeCheck } from 'lucide-react';
+import { Copyright } from 'lucide-react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
@@ -19,7 +19,7 @@ function Card({ item }) {
 					</h2>
 					{item.owner._id === currentUser._id && (
 						<div className="mark">
-							<BadgeCheck />
+							<Copyright />
 						</div>
 					)}
 				</div>
@@ -47,11 +47,13 @@ function Card({ item }) {
 							<span>For {item.transaction}</span>
 						</div>
 					</div>
-					<div className="icons">
-						<div className="icon">
-							<img src="/chat.png" alt="" />
+					{!(item.owner._id === currentUser._id) && (
+						<div className="icons">
+							<div className="icon">
+								<img src="/chat.png" alt="" />
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</div>
 		</div>

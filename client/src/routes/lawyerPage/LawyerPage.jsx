@@ -41,7 +41,7 @@ function LawyerPage() {
 	}
 
 	return (
-		<div className="profilePage">
+		<div className="lawyerPage">
 			<div className="list">
 				{properties.map((item) => (
 					<CardForLawyer

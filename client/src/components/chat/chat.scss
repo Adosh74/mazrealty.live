@@ -34,6 +34,12 @@
 			span {
 				font-weight: bold;
 			}
+			p {
+				padding: 5px 10px;
+				border-radius: 3px;
+				background-color: rgb(239, 233, 233);
+				color: rgb(117, 114, 114);
+			}
 		}
 	}
 
@@ -65,6 +71,14 @@
 			}
 			.close {
 				cursor: pointer;
+				color: rgb(115, 80, 35);
+				padding: 10px;
+				background-color: antiquewhite;
+				border-radius: 10px;
+				transition: background-color 0.3s ease;
+				&:hover {
+					background-color: rgb(217, 193, 163);
+				}
 			}
 		}
 		.center {

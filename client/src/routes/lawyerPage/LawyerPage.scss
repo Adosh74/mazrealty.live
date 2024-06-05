@@ -1,19 +1,20 @@
 @import '../../responsive.scss';
 
-.profilePage {
+.lawyerPage {
+	display: flex;
 	height: 100%;
-	overflow-y: scroll;
-	padding-top: 50px;
-
+	overflow-y: auto;
+	margin-top: 3px;
 	@include md {
 		flex-direction: column;
-		overflow: scroll;
+		overflow: auto;
 	}
 
 	.list {
 		display: flex;
 		flex-direction: column;
 		gap: 50px;
+		padding-top: 20px;
 	}
 }
 

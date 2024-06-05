@@ -1,99 +1,98 @@
-@import "../../responsive.scss";
+@import '../../responsive.scss';
 
 .homePage {
-  display: flex;
-  height: 100%;
-  overflow-y: scroll;
-  position: relative;
-  z-index: 1;
+	display: flex;
+	height: 100%;
+	overflow-y: hidden;
+	position: relative;
+	z-index: 1;
+	@include sm {
+		overflow-y: scroll;
+	}
+	@include md {
+		overflow-y: scroll;
+	}
+	@include lg {
+		overflow-y: scroll;
+	}
+
+	.textContainer {
+		flex: 3;
+		z-index: 10;
+		.wrapper {
+			padding-right: 100px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 50px;
+			height: 100%;
+
+			@include lg {
+				padding-right: 50px;
+			}
+
+			@include md {
+				padding: 0;
+			}
+
 			@include sm {
-      overflow-y: scroll;
-      }
-      @include md {
-      overflow-y: scroll;
-      }
-      @include lg {
-      overflow-y: scroll;
-      }
-      
-  .textContainer {
-    flex: 3;
-    z-index: 10;
-    .wrapper {
-      padding-right: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 50px;
-      height: 100%;
+				justify-content: flex-start;
+			}
 
-      @include lg{
-        padding-right: 50px;
-      }
+			.title {
+				font-size: 64px;
 
-      @include md{
-        padding: 0;
-      }
+				@include lg {
+					font-size: 48px;
+				}
+			}
 
-      @include sm{
-        justify-content: flex-start;
-      }
+			.boxes {
+				display: flex;
+				justify-content: space-between;
 
-      .title {
-        font-size: 64px;
+				@include sm {
+					display: none;
+				}
 
-        @include lg {
-          font-size: 48px;
-        }
-      }
+				h1 {
+					font-size: 36px;
 
-      .boxes {
-        display: flex;
-        justify-content: space-between;
+					@include lg {
+						font-size: 32px;
+					}
+				}
 
-        @include sm {
-          display: none;
-        }
+				h2 {
+					font-size: 20px;
+					font-weight: 300;
+				}
+			}
+		}
+	}
 
-        h1 {
-          font-size: 36px;
+	.imgContainer {
+		flex: 2;
+		margin-top: 20px;
+		height: 100%;
+		background-color: #fcf5f3;
+		position: relative;
+		display: flex;
+		align-items: center;
+		z-index: 1;
 
-          @include lg {
-            font-size: 32px;
-          }
-        }
+		@include md {
+			display: none;
+		}
 
-        h2 {
-          font-size: 20px;
-          font-weight: 300;
-        }
-      }
-    }
-  }
+		img {
+			width: 115%;
+			position: absolute;
+			right: 0;
 
-  .imgContainer {
-    margin-top: 20px;
-    height: 100%;
-    flex: 2;
-    background-color: #fcf5f3;
-    position: relative;
-    display: flex;
-    align-items: center;
-    z-index: 1; 
-    
-
-    @include md {
-      display: none;
-    }
-
-    img {
-      width: 115%;
-      position: absolute;
-      right: 0;
-
-      @include lg {
-        width: 105%;
-      }  
-    }
-  }
+			@include lg {
+				width: 105%;
+			}
+		}
+	}
 }
