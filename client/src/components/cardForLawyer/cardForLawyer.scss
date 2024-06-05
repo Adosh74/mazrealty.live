@@ -9,7 +9,7 @@
 		gap: 20px;
 		background-color: #fcf5f3;
 		border-radius: 10px;
-		max-width: 900px;
+		width: 900px;
 		.imageContainer {
 			flex: 2;
 			height: 200px;
@@ -90,24 +90,24 @@
 					}
 				}
 
-				.icons {
-					display: flex;
-					gap: 20px;
+				// .icons {
+				// 	display: flex;
+				// 	gap: 20px;
 
-					.icon {
-						border: 1px solid #999;
-						padding: 2px 5px;
-						border-radius: 5px;
-						cursor: pointer;
-						display: flex;
-						align-items: center;
-						justify-content: center;
+				// 	.icon {
+				// 		border: 1px solid #999;
+				// 		padding: 2px 5px;
+				// 		border-radius: 5px;
+				// 		cursor: pointer;
+				// 		display: flex;
+				// 		align-items: center;
+				// 		justify-content: center;
 
-						&:hover {
-							background-color: lightgray;
-						}
-					}
-				}
+				// 		&:hover {
+				// 			background-color: lightgray;
+				// 		}
+				// 	}
+				// }
 			}
 		}
 
