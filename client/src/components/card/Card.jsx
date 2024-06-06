@@ -47,13 +47,13 @@ function Card({ item }) {
 							<span>For {item.transaction}</span>
 						</div>
 					</div>
-					{!(item.owner._id === currentUser._id) && (
+					{/* {!(item.owner._id === currentUser._id) && (
 						<div className="icons">
 							<div className="icon">
 								<img src="/chat.png" alt="" />
 							</div>
 						</div>
-					)}
+					)} */}
 				</div>
 			</div>
 		</div>
