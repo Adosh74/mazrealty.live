@@ -130,24 +130,24 @@ export const createBookingCheckout = catchAsync(
 			price: 500,
 		});
 
-		// const data = {
-		// 	user: { name: currentUser.name },
-		// 	property: {
-		// 		name: propertyObj.name,
-		// 		type: propertyObj.type,
-		// 		address: propertyObj.address,
-		// 		price: propertyObj.price,
-		// 	},
-		// };
+		const data = {
+			user: { name: currentUser.name },
+			property: {
+				name: propertyObj.name,
+				type: propertyObj.type,
+				address: propertyObj.address,
+				price: propertyObj.price,
+			},
+		};
 
-		// await ejs.renderFile(path.join(__dirname, '../../mails/request-check.ejs'), data);
+		await ejs.renderFile(path.join(__dirname, '../../mails/request-check.ejs'), data);
 
-		// await sendMail({
-		// 	email: currentUser.email as string,
-		// 	subject: 'Check Property Contract 📝',
-		// 	template: 'request-check.ejs',
-		// 	data,
-		// });
+		await sendMail({
+			email: currentUser.email as string,
+			subject: 'Check Property Contract 📝',
+			template: 'request-check.ejs',
+			data,
+		});
 
 		res.redirect(`${req.protocol}://${req.get('host')}/success-book`);
 		// res.redirect(`https://mazrealty-live.onrender.com/`);
