@@ -7,6 +7,7 @@ import UserFavorite from '../models/userFavorite.model';
 import APIFeatures from '../utils/APIFeatures.util';
 import AppError from '../utils/AppError.util';
 import catchAsync from '../utils/catchAsync.util';
+import generateDescription from '../utils/descreptionGenerator.util';
 import * as Factory from './handlerFactory.controller';
 
 // *** CRUD operation for property
@@ -40,6 +41,7 @@ export const updateOneProperty = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		// +[1] find property
 		const property: IPropertySchema | null = await Property.findById(req.params.id);
+		console.log(req.body);
 
 		// +[2] check if property exists
 		if (!property) {
@@ -55,6 +57,12 @@ export const updateOneProperty = catchAsync(
 		}
 
 		// +[4] update property
+		req.body.city = { _id: req.body.city };
+		req.body.area = req.body.area * 1;
+		req.body.price = req.body.price * 1;
+		req.body.bedrooms = req.body.bedrooms * 1;
+		req.body.bathrooms = req.body.bathrooms * 1;
+		req.body.level ? (req.body.level = req.body.level * 1) : (req.body.level = 0);
 		const updatedProperty = await Property.findByIdAndUpdate(
 			req.params.id,
 			req.body,
@@ -63,6 +71,9 @@ export const updateOneProperty = catchAsync(
 				runValidators: true,
 			}
 		);
+		console.log(req.body.bathrooms);
+
+		console.log('updatedProperty', updatedProperty?.bathrooms);
 
 		// +[5] send response
 		res.status(200).json({
@@ -234,6 +245,38 @@ export const addImages = catchAsync(
 		await property.save();
 
 		res.status(200).json({
+			status: 'success',
+			data: {
+				property,
+			},
+		});
+	}
+);
+
+// *** add property that supported description generation using gemini AI
+export const createPropertyWithDescription = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		req.body.owner = { _id: (req as any).user.id };
+		req.body.city = { _id: req.body.city };
+		req.body.area = req.body.area * 1;
+		req.body.price = req.body.price * 1;
+		req.body.bedrooms = req.body.bedrooms * 1;
+		req.body.bathrooms = req.body.bathrooms * 1;
+		req.body.level ? (req.body.level = req.body.level * 1) : (req.body.level = 0);
+
+		// generate description
+		const description = await generateDescription(req.body);
+
+		if (!description) {
+			return next(new AppError('Failed to generate description', 500));
+		}
+		console.log('description', description);
+		console.log('req.body', req.body);
+
+		req.body.description = description;
+		const property = await Property.create(req.body);
+
+		res.status(201).json({
 			status: 'success',
 			data: {
 				property,

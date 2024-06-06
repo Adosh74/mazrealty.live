@@ -12,6 +12,13 @@ routes
 	.get(propertyController.getAllProperty)
 	.post(upload, authController.protect, propertyController.createOneProperty);
 
+routes.post(
+	'/create-property-ai',
+	upload,
+	authController.protect,
+	propertyController.createPropertyWithDescription
+);
+
 routes.get('/my-properties', authController.protect, propertyController.getMyProperties);
 routes.patch('/delete-image/:id', authController.protect, propertyController.deleteImage);
 routes.patch(
