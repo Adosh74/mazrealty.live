@@ -427,7 +427,7 @@ function SinglePage() {
 									<img
 										src={
 											property.owner.photo &&
-											property.owner.photo.startWith('http')
+											property.owner.photo.startsWith('http')
 												? property.owner.photo
 												: '/default.jpg'
 										}
