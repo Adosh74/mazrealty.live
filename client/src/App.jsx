@@ -6,6 +6,7 @@ import {
 	myFavoritesLoader,
 	myPropertiesLoader,
 } from './lib/loaders';
+import About from './routes/about/About';
 import EditProperty from './routes/editMyProperty/editMyProperty';
 import Favourites from './routes/favourites/Favourites';
 import HomePage from './routes/homePage/homePage';
@@ -49,6 +50,10 @@ function App() {
 					path: '/register',
 					element: <Register />,
 				},
+				{
+					path: '/about',
+					element: <About />,
+				},
 			],
 		},
 		{
@@ -80,7 +85,7 @@ function App() {
 				},
 				{
 					path: '/success-book',
-					element: <SuccessBook/>,
+					element: <SuccessBook />,
 				},
 			],
 		},

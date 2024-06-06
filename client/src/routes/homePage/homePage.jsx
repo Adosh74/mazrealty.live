@@ -3,37 +3,34 @@ import './homePage.scss';
 
 function HomePage() {
 	return (
-		<div className="homePage">
-			<div className="textContainer">
-				<div className="wrapper">
-					<h1 className="title">Find Real Estate & Get Your Dream Place</h1>
-					<p>
-						MAZ Realty is a full-service real estate company that provides
-						professional real estate services. We are a team of professionals
-						who are committed to providing the best service to our clients.
-						based in Egypt, we have a wide range of properties for sale and
-						rent in all cities in Egypt.
-					</p>
-					<SearchBar />
-					<div className="boxes">
-						<div className="box">
-							<h1>16+</h1>
-							<h2>Years of Experience</h2>
-						</div>
-						<div className="box">
-							<h1>200</h1>
-							<h2>Award Gained</h2>
-						</div>
-						<div className="box">
-							<h1>2000+</h1>
-							<h2>Property Ready</h2>
-						</div>
+		<div div className="homePage">
+			<div className="HH">
+				<div className="textContainer">
+					<div className="wrapper">
+						<h1 className="title">Find Real Estate & Get Your Dream Place</h1>
+						<p>
+							Welcome to our real estate app. We are dedicated to helping
+							you find your dream home with ease and convenience
+						</p>
+						<SearchBar />
 					</div>
 				</div>
+				<div className="imgContainer">
+					<img src="/bg.png" alt="" />
+				</div>
 			</div>
-			<div className="imgContainer">
-				<img src="/bg.png" alt="" />
-			</div>
+			<footer className="footer">
+				<div className="container">
+					<p>
+						&copy; {new Date().getFullYear()} MAZ REALTY. All rights reserved.
+					</p>
+
+					<p>
+						Contact:
+						<a href="mailto:support@mazrealty.live">support@mazrealty.live</a>
+					</p>
+				</div>
+			</footer>
 		</div>
 	);
 }

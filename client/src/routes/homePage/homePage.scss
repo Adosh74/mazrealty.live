@@ -1,97 +1,122 @@
 @import '../../responsive.scss';
-
 .homePage {
 	display: flex;
 	height: 100%;
-	overflow-y: hidden;
+	overflow-y: auto;
 	position: relative;
 	z-index: 1;
 	@include sm {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 	@include md {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 	@include lg {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
+	.HH {
+		display: flex;
+		height: 100%;
 
-	.textContainer {
-		flex: 3;
-		z-index: 10;
-		.wrapper {
-			padding-right: 100px;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			gap: 50px;
-			height: 100%;
+		@include sm {
+			overflow-y: auto;
+		}
+		@include md {
+			overflow-y: auto;
+		}
+		@include lg {
+			overflow-y: auto;
+		}
 
-			@include lg {
-				padding-right: 50px;
-			}
-
-			@include md {
-				padding: 0;
-			}
-
-			@include sm {
-				justify-content: flex-start;
-			}
-
-			.title {
-				font-size: 64px;
+		.textContainer {
+			flex: 3;
+			z-index: 10;
+			.wrapper {
+				padding-right: 100px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				gap: 50px;
+				height: 100%;
 
 				@include lg {
-					font-size: 48px;
+					padding-right: 50px;
 				}
-			}
 
-			.boxes {
-				display: flex;
-				justify-content: space-between;
+				@include md {
+					padding: 0;
+				}
 
 				@include sm {
-					display: none;
+					justify-content: flex-start;
 				}
 
-				h1 {
-					font-size: 36px;
-
+				.title {
+					font-size: 64px;
 					@include lg {
-						font-size: 32px;
+						font-size: 48px;
 					}
 				}
+				p {
+					padding: 20px 10px;
+					border-radius: 10px;
+					background-color: #faf6f6;
+					text-align: center;
+					font-size: larger;
+					color: rgb(47, 24, 37);
+				}
+			}
+		}
 
-				h2 {
-					font-size: 20px;
-					font-weight: 300;
+		.imgContainer {
+			flex: 2;
+			height: 100%;
+			width: 100%;
+			position: relative;
+			display: flex;
+			align-items: normal;
+			z-index: 1;
+
+			@include md {
+				display: none;
+			}
+
+			img {
+				width: 115%;
+				right: 0;
+
+				@include lg {
+					width: 105%;
 				}
 			}
 		}
 	}
-
-	.imgContainer {
-		flex: 2;
-		margin-top: 20px;
-		height: 100%;
-		background-color: #fcf5f3;
-		position: relative;
-		display: flex;
-		align-items: center;
-		z-index: 1;
-
-		@include md {
-			display: none;
+	.footer {
+		background-color: #f8f9fa;
+		padding: 20px 0;
+		text-align: center;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		z-index: 10;
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 15px;
 		}
 
-		img {
-			width: 115%;
-			position: absolute;
-			right: 0;
+		p {
+			margin: 0;
+			color: #6c757d;
+		}
 
-			@include lg {
-				width: 105%;
+		a {
+			color: #007bff;
+			text-decoration: none;
+			transition: all 0.4s ease;
+			&:hover {
+				text-decoration: underline;
+				color: #034e9e;
 			}
 		}
 	}

@@ -162,11 +162,25 @@ function CardForLawyer({ item, bookId }) {
 				<img src={item.owner.photo || '/default.jpg'} alt="" />
 				<span>{item.owner.name}</span>
 				<ButtonGroup variant="outlined" aria-label="Basic button group">
-					<Button color="success">
+					<Button
+						onClick={() => {
+							// move to other page
+							// https://wa.me/2${item.owner.phone}
+							console.log(`2${item.owner.phone}`);
+							window.open(`https://wa.me/2${item.owner.phone}`);
+						}}
+						color="success"
+					>
 						{' '}
 						<MessageCircle />
 					</Button>
-					<Button color="inherit">
+					<Button
+						onClick={() => {
+							// move to call to phone
+							window.open(`tel:${item.owner.phone}`);
+						}}
+						color="inherit"
+					>
 						<Phone />
 					</Button>
 				</ButtonGroup>

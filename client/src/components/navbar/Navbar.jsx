@@ -1,10 +1,10 @@
+import { BookHeart } from 'lucide-react';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import baseURL from '../../lib/baseURL';
 import useNotificationStore from '../../lib/notificationStore';
 import './navbar.scss';
-import { BookHeart } from 'lucide-react';
 
 function Navbar() {
 	const [open, setOpen] = useState(false);
@@ -19,12 +19,18 @@ function Navbar() {
 			<div className="left">
 				<a href="/" className="logo">
 					<img src="/maz1.png" alt="" />
-					<span>MAZ Realty</span>
+					<span>MAZ REALTY</span>
 				</a>
 				<a href="/">Home</a>
-				<a href="/">About</a>
-				<a href="/">Contact</a>
-				{currentUser && <a href="/favourites" > Favourites<BookHeart /></a>}
+				<a href="/about">About</a>
+				<a href="mailto:support@mazrealty.live">Contact</a>
+				{currentUser && (
+					<a href="/favourites">
+						{' '}
+						Favourites
+						<BookHeart />
+					</a>
+				)}
 			</div>
 			<div className="right">
 				{currentUser ? (
@@ -56,8 +62,8 @@ function Navbar() {
 				</div>
 				<div className={open ? 'menu active' : 'menu'}>
 					<a href="/">Home</a>
-					<a href="/">About</a>
-					<a href="/">Contact</a>
+					<a href="/about">About</a>
+					<a href="mailto:support@mazrealty.live">Contact</a>
 					{currentUser && <a href="/favourites">Favourites</a>}
 
 					{currentUser ? (
