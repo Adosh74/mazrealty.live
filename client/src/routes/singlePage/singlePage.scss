@@ -349,6 +349,14 @@ $text-light-gray: #888;
 		}
 		.close {
 			cursor: pointer;
+			color: rgb(115, 80, 35);
+			padding: 10px;
+			background-color: antiquewhite;
+			border-radius: 10px;
+			transition: background-color 0.3s ease;
+			&:hover {
+				background-color: rgb(217, 193, 163);
+			}
 		}
 	}
 	.center {
