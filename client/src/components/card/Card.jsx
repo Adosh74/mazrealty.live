@@ -17,7 +17,7 @@ function Card({ item }) {
 					<h2 className="title">
 						<Link to={`/property/${item._id}`}>{item.name}</Link>
 					</h2>
-					{item.owner._id === currentUser._id && (
+					{currentUser && item.owner._id === currentUser._id && (
 						<div className="mark">
 							<Copyright />
 						</div>
