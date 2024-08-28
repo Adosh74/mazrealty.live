@@ -67,6 +67,25 @@ function SinglePage() {
 	};
 
 	const handleOpenChat = async (chatId, receiver) => {
+		if (!currentUser) {
+			toast.error('You need to login first', {
+				style: {
+					border: '1px solid #713200',
+					padding: '16px',
+					paddingLeft: '25px',
+					paddingRight: '25px',
+					color: '#713200',
+				},
+				iconTheme: {
+					primary: '#713200',
+					secondary: '#FFFAEE',
+				},
+			});
+			setTimeout(() => {
+				navigate('/login');
+			}, 2000);
+		}
+
 		try {
 			const res = await apiRequest.get(`/chats/${receiver._id}`);
 			console.log(res.data);
@@ -451,11 +470,11 @@ function SinglePage() {
 										className="chatMessage"
 										style={{
 											alignSelf:
-												message.userId === currentUser._id
+												message.userId === currentUser?._id
 													? 'flex-end'
 													: 'flex-start',
 											textAlign:
-												message.userId === currentUser._id
+												message.userId === currentUser?._id
 													? 'right'
 													: 'left',
 										}}
@@ -479,12 +498,12 @@ function SinglePage() {
 						className="buttons"
 						style={{
 							justifyContent:
-								property.owner._id === currentUser._id
+								property.owner._id === currentUser?._id
 									? 'flex-end'
 									: 'space-between',
 						}}
 					>
-						{!(property.owner._id === currentUser._id) && (
+						{!(property.owner._id === currentUser?._id) && (
 							<button
 								onClick={() =>
 									handleOpenChat(currentUser._id, property.owner)
